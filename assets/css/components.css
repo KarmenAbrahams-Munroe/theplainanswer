@@ -1,0 +1,86 @@
+/* Shared content components. Content remains editable in the block editor. */
+.bc-accordion-controls[hidden] { display: none !important; }
+.bc-accordion-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem 1rem; margin-bottom: .75rem; }
+.bc-accordion-actions button {
+    font: inherit; color: var(--bcds-typography-color-link); background: white;
+    border: 1px solid var(--bcds-surface-color-border-medium); border-radius: 4px;
+    min-height: 44px; padding: .5rem .75rem; cursor: pointer;
+}
+.bc-accordion-actions button:hover { background: var(--bcds-surface-color-background-light-blue); }
+.bc-accordion-actions button:disabled { color: var(--bcds-typography-color-secondary); cursor: default; }
+.bc-accordion-group > .wp-block-details, .bc-accordion-item.wp-block-details {
+    border-block: 1px solid var(--bcds-surface-color-border-default); padding: 0; margin-block: 0;
+}
+.bc-accordion-group > .wp-block-details + .wp-block-details { border-top: 0; }
+.bc-accordion-group > h2 { font-size: 1.625rem; line-height: 1.3; margin-top: 0; }
+.bc-accordion-group > .wp-block-details > summary, .bc-accordion-item.wp-block-details > summary {
+    padding: 1rem .25rem; cursor: pointer; font-weight: 700; color: var(--bcds-typography-color-link); line-height: 1.5;
+}
+.bc-accordion-group > .wp-block-details > :not(summary), .bc-accordion-item.wp-block-details > :not(summary) { margin-inline: 1.5rem; }
+.bc-accordion-group > .wp-block-details > :last-child, .bc-accordion-item.wp-block-details > :last-child { margin-bottom: 1.5rem; }
+.bc-accordion-group > .wp-block-details > summary:last-child, .bc-accordion-item.wp-block-details > summary:last-child { margin-bottom: 0; }
+
+ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-reset: bc-step; }
+.bc-steps > .bc-step {
+    counter-increment: bc-step; position: relative; min-width: 0;
+    padding: .15rem 0 2rem 3.5rem; margin: 0; box-sizing: border-box;
+}
+.bc-step::before {
+    content: counter(bc-step); position: absolute; inset-inline-start: 0; top: 0;
+    width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--bcds-surface-color-primary-default);
+    color: white; font-weight: 700; line-height: 2.25rem; text-align: center;
+}
+.bc-steps-connected > .bc-step:not(:last-child)::after {
+    content: ''; position: absolute; inset-inline-start: 1.125rem; top: 2.65rem; bottom: .45rem;
+    border-inline-start: 1px solid var(--bcds-surface-color-border-default);
+}
+.bc-steps > .bc-step > :first-child { margin-top: 0; }
+.bc-steps > .bc-step > :last-child { margin-bottom: 0; }
+.bc-step h3 { font-size: 1.125rem; line-height: 1.5; }
+.bc-step p, .bc-step ul, .bc-step ol { max-width: 72ch; }
+.bc-steps-cards > .bc-step { border: 1px solid var(--bcds-surface-color-primary-default); border-radius: 4px; padding: 1.5rem 1.5rem 1.5rem 4.5rem; margin-bottom: 1.5rem; }
+.bc-steps-cards > .bc-step::before { border-radius: 3px 0 4px 0; width: 3rem; height: 3rem; line-height: 3rem; }
+.bc-steps > .bc-step > ul { list-style: disc; }
+.bc-steps > .bc-step > ol { list-style: decimal; }
+
+.bc-icon-text { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.wp-block-group.bc-icon-text > * { margin-block-start: 0; min-width: 0; }
+.bc-component-icon { color: var(--bcds-surface-color-primary-default); line-height: 0; }
+.bc-component-icon svg { width: 2.5rem; height: 2.5rem; }
+.bc-icon-text h3, .bc-notice h3, .bc-component-callout h3, .bc-component-card h3, .bc-component-support h3 { font-size: 1.25rem; line-height: 1.4; margin-top: 0; }
+.bc-icon-text p, .bc-notice p, .bc-component-callout p { max-width: 72ch; }
+.bc-icon-list { display: grid; gap: 2.5rem; }
+.wp-block-group.bc-icon-list > * { margin-block: 0; }
+.bc-notice { --bc-notice-fill: var(--bcds-support-surface-color-info); --bc-notice-border: var(--bcds-support-border-color-info); --bc-notice-icon: var(--bcds-icons-color-info); background: var(--bc-notice-fill); border: 1px solid var(--bc-notice-border); border-inline-start-width: 4px; border-radius: 4px; padding: 1.25rem; }
+.bc-notice .bc-component-icon { color: var(--bc-notice-icon); }
+.bc-notice-warning { --bc-notice-fill: var(--bcds-support-surface-color-warning); --bc-notice-border: var(--bcds-support-border-color-warning); --bc-notice-icon: #805400; }
+.bc-notice-success { --bc-notice-fill: var(--bcds-support-surface-color-success); --bc-notice-border: var(--bcds-support-border-color-success); --bc-notice-icon: var(--bcds-icons-color-success); }
+.bc-notice-error { --bc-notice-fill: var(--bcds-support-surface-color-danger); --bc-notice-border: var(--bcds-support-border-color-danger); --bc-notice-icon: var(--bcds-icons-color-danger); }
+.bc-notice p:last-child, .bc-component-callout p:last-child, .bc-component-card p:last-child, .bc-component-support p:last-child { margin-bottom: 0; }
+.bc-component-callout { background: var(--bcds-surface-color-background-light-gray); border-inline-start: 4px solid var(--bcds-theme-primary-gold); padding: 1.5rem; }
+.bc-component-support { background: var(--bcds-surface-color-background-light-blue); border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; padding: 1.5rem; }
+.bc-component-card { border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; padding: 1.5rem; height: 100%; box-sizing: border-box; }
+.bc-component-related > h2 { font-size: 1.5rem; }
+.bc-component-related > .wp-block-columns { align-items: stretch; gap: 1.5rem; }
+.bc-component-related .wp-block-column { min-width: 0; }
+.bc-last-updated { display: flex; gap: .6rem; align-items: baseline; color: var(--bcds-typography-color-secondary); font-size: .9375rem; border-bottom: 1px solid var(--bcds-surface-color-border-default); padding-bottom: 1rem; }
+.bc-last-updated svg { width: 1.25rem; height: 1.25rem; flex: none; align-self: flex-start; margin-top: .2rem; color: var(--bcds-surface-color-primary-default); }
+.bc-last-updated p { margin: 0; }
+.bc-reference-table { overflow-x: auto; }
+.bc-reference-table th { background: var(--bcds-surface-color-primary-default); color: white; text-align: start; }
+.bc-reference-table td { vertical-align: top; }
+.bc-reference-table figcaption { text-align: start; font-size: .875rem; color: var(--bcds-typography-color-secondary); }
+
+@media (max-width: 600px) {
+    .bc-icon-text { grid-template-columns: 2rem minmax(0, 1fr); gap: .875rem; }
+    .bc-component-icon svg { width: 2rem; height: 2rem; }
+    .bc-notice, .bc-component-support, .bc-component-card, .bc-component-callout { padding: 1rem; }
+    .bc-steps > .bc-step { padding-inline-start: 2.75rem; }
+    .bc-steps-cards > .bc-step { padding: 3.75rem 1rem 1rem; }
+}
+@media print {
+    .bc-accordion-controls { display: none !important; }
+    .bc-accordion-group details::details-content { content-visibility: visible; height: auto; }
+    .bc-steps > .bc-step, .bc-component-card, .bc-notice { break-inside: avoid; }
+    .bc-reference-table { overflow: visible; }
+}

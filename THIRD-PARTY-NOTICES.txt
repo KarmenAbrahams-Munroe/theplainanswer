@@ -1,0 +1,14 @@
+This custom practice theme includes unmodified third-party assets:
+
+@bcgov/design-tokens 5.0.0
+Source: https://github.com/bcgov/design-system
+Publisher: Government of British Columbia
+Licence: Apache License 2.0 (licenses/design-system-Apache-2.0.txt)
+The generated CSS token file is included unchanged. Theme palette, type and spacing presets are generated from its values for WordPress editor controls.
+
+@bcgov/bc-sans 2.1.2
+Source: https://github.com/bcgov/bc-sans
+Authors: Google; Government of B.C. Contributor: Chris Harvey.
+Licences: Apache License 2.0 and SIL Open Font License 1.1.
+See licenses/bc-sans-Apache-2.0.txt and licenses/bc-sans-OFL-1.1.txt.
+Font files are included unchanged.

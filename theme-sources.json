@@ -1,0 +1,12 @@
+{
+  "designTokens": {
+    "package": "@bcgov/design-tokens",
+    "version": "5.0.0",
+    "tarball": "https://registry.npmjs.org/@bcgov/design-tokens/-/design-tokens-5.0.0.tgz"
+  },
+  "font": {
+    "package": "@bcgov/bc-sans",
+    "version": "2.1.2",
+    "tarball": "https://registry.npmjs.org/@bcgov/bc-sans/-/bc-sans-2.1.2.tgz"
+  }
+}
