@@ -1,13 +1,25 @@
-B.C. practice — WordPress block theme, version 1.5.1
+B.C. practice — WordPress block theme, version 1.6.0
 
-Install or update
-1. Keep bc-practice.zip zipped.
-2. Go to Appearance > Themes > Add New Theme > Upload Theme.
-3. Choose bc-practice.zip and click Install Now.
-4. For an update, choose Replace current with uploaded. For a first install, Activate.
-5. Open Appearance > Editor to edit the shared header, footer and site styles.
+Update an existing GitHub-managed theme
+Apply the 1.6.0 patch to the theme repository after checking it with git apply --check. This patch expects version 1.5.1. Review, commit and deploy through your normal GitHub workflow. The companion feedback plugin is installed separately.
+
+First installation from a complete theme package
+Upload the complete bc-practice.zip through Appearance > Themes > Add New Theme > Upload Theme, then activate it. A patch file is not a complete theme package.
+
+Open Appearance > Editor to edit the shared header, footer and site styles.
 
 This update does not import content or rewrite saved pages. Existing pages keep their assigned template. WordPress gives saved Site Editor template customisations precedence over theme files. If you previously edited Detailed content page in the Site Editor, back up that customisation before resetting it to use the updated theme layout.
+
+Quick links, icons and body text — version 1.6.0
+- Quick actions and resources: an icon-tile pattern with eight editable entries. Its grid uses two, four or eight columns as space allows. Select each label and add its real destination with the link control. One link per tile makes the whole tile clickable on the published page.
+- Quick access links: a boxed resource-link pattern. Add real links and replace sample file names/types/sizes. External-link icons do not automatically open a new tab; choose link behaviour deliberately.
+- Find both patterns under B.C. components. Duplicate or remove entries as needed. Their content is manually curated; no popularity is inferred from analytics.
+- The shared Component icon block now offers 44 local SVG symbols. Type in Symbol in Block settings to search. Existing icon selections remain valid across all patterns that use this block.
+- The default body preset is Large body, 1.125rem. Paragraph, list, Details and table defaults use it, including accordion summaries and content. Navigation controls and secondary metadata can retain their own UI sizes.
+- Existing per-block sizes and saved Global Styles can override theme defaults. In Appearance > Editor > Styles > Typography, choose Large body for body/content text where a saved customisation still supplies the previous size. Clear a block's custom font-size choice to use the default.
+
+Optional page feedback
+Install the separate B.C. page feedback plugin once through Plugins > Add New Plugin > Upload Plugin. It supplies the Page feedback block/pattern, source-page reports, the site-wide report and CSV export. Its data stays in WordPress when themes change. Open Page feedback > Settings to configure display, support and retention; automatic display is initially off. See the plugin's README and settings for data fields, access and retention controls.
 
 Global mega menu — version 1.5.0
 The default header now contains the site title, WordPress search and a Mega menu block. There are also Mega menu and Header with mega menu patterns under B.C. navigation. Existing saved header customisations remain in place; no database content is overwritten by this update.
@@ -129,7 +141,7 @@ Using components
 - Patterns insert independent starter content. Edit the headings, text, table entries and links before publishing. Later changes to a pattern definition do not rewrite existing copies.
 - Heading levels are editable. Most individual components begin at Heading 3 for placement within a Heading 2 section. Keep the page's heading hierarchy logical.
 - Related-topic headings are deliberately plain text. Select each heading and add its real destination using the link control. No placeholder URLs are supplied.
-- Icons are decorative; headings and body text carry the meaning. Select a Component icon and use Symbol in Block settings to choose from nine local SVG icons.
+- Icons are decorative; headings and body text carry the meaning. Select a Component icon and use Symbol in Block settings to choose from 44 local SVG icons.
 - Notices are static content. They do not announce themselves as live alerts when a page loads. Application-generated live errors require application-specific behaviour.
 
 Accordions
@@ -164,6 +176,12 @@ Sources and licences
 - @bcgov/bc-sans 2.1.2, locally hosted WOFF2 fonts: https://github.com/bcgov/bc-sans — Apache-2.0 and OFL-1.1.
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
 
+Validation for version 1.6.0
+- Installed build checked with WordPress 6.6.10 and PHP 8.3.33; PHP syntax also checked with 7.4.33.
+- Checked all pattern block markup in the editor, the searchable 44-symbol picker, both quick-link layouts and native whole-tile links.
+- Checked responsive layouts at 320, 390 and 768px, including 18px paragraph, list and accordion-summary defaults.
+- Checked the companion feedback block, manual/automatic display and private page/site reports in the installed theme.
+
 Validation for version 1.5.1
 - Compared identical page content before and after at 1512 x 804px and 1313 x 613px, including a scaled screenshot. Link text remained 16px in both builds.
 - At 1512 x 804px, fully visible root links increased from 7 to 12. At 1313 x 613px, visible links increased from 5 to 7 in the root column and from 3 to 5 in the page column.
@@ -193,6 +211,7 @@ Validation for version 1.4.0
 - Automated axe checks of showcase desktop/mobile and accordion main content reported no violations for the selected WCAG 2 A/AA and 2.1 AA rules.
 
 Version history
+1.6.0: Two curated quick-link patterns, 44 searchable icons, Large body defaults and optional companion feedback-plugin support.
 1.5.1: Compact menu spacing, more list height, fixed column headings and overview links, simpler page-column headers, and a large-text scrolling fallback.
 1.5.0: Page-driven three-column mega menu, mobile drill-down, configurable sections and support link, native fallback, shared header with search, and two navigation patterns.
 1.4.0: Sixteen individual component patterns, grouped accordion controls, rich numbered steps, selectable local icons and automatic last-updated dates.

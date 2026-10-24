@@ -2,6 +2,16 @@
     'use strict';
     var el = wp.element.createElement;
     var ServerSideRender = wp.serverSideRender.default || wp.serverSideRender;
+    function IconPicker(props) {
+        var state = wp.element.useState(''), search = state[0], setSearch = state[1];
+        var options = props.options.filter(function (option) { return (option.label + ' ' + option.value).toLowerCase().indexOf(search.toLowerCase()) !== -1; });
+        return el(wp.components.ComboboxControl, {
+            label: 'Symbol', value: props.value, options: options, allowReset: false,
+            onFilterValueChange: setSearch,
+            onChange: function (value) { if (value) props.onChange(value); },
+            help: 'Type to search the shared icon library.'
+        });
+    }
     Object.keys(window.bcPracticeTemplateBlocks || {}).forEach(function (slug) {
         var settings = window.bcPracticeTemplateBlocks[slug];
         wp.blocks.registerBlockType('bc-practice/' + slug, {
@@ -19,8 +29,7 @@
                 if (slug === 'icon') {
                     controls = el(wp.blockEditor.InspectorControls, {},
                         el(wp.components.PanelBody, { title: 'Icon' },
-                            el(wp.components.SelectControl, {
-                                label: 'Symbol',
+                            el(IconPicker, {
                                 value: props.attributes.icon,
                                 options: settings.iconOptions,
                                 onChange: function (value) { props.setAttributes({ icon: value }); }

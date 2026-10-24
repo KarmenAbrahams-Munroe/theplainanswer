@@ -36,7 +36,7 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 }
 .bc-steps > .bc-step > :first-child { margin-top: 0; }
 .bc-steps > .bc-step > :last-child { margin-bottom: 0; }
-.bc-step h3 { font-size: 1.125rem; line-height: 1.5; }
+.bc-step h3 { font-size: 1.25rem; line-height: 1.5; }
 .bc-step p, .bc-step ul, .bc-step ol { max-width: 72ch; }
 .bc-steps-cards > .bc-step { border: 1px solid var(--bcds-surface-color-primary-default); border-radius: 4px; padding: 1.5rem 1.5rem 1.5rem 4.5rem; margin-bottom: 1.5rem; }
 .bc-steps-cards > .bc-step::before { border-radius: 3px 0 4px 0; width: 3rem; height: 3rem; line-height: 3rem; }
@@ -84,3 +84,29 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
     .bc-steps > .bc-step, .bc-component-card, .bc-notice { break-inside: avoid; }
     .bc-reference-table { overflow: visible; }
 }
+
+/* Curated navigation patterns. Add one real destination link to each label. */
+.bc-quick-actions { container-type: inline-size; }
+.bc-quick-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+@container (min-width: 40rem) { .bc-quick-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@container (min-width: 70rem) { .bc-quick-tiles { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+.wp-block-group.bc-quick-tiles > * { margin-block: 0; min-width: 0; }
+.bc-quick-tile { position: relative; text-align: center; padding: 1rem .75rem; border: 1px solid var(--bcds-surface-color-border-default); border-radius: 8px; background: white; box-shadow: 0 1px 2px rgb(0 0 0 / 8%); }
+.bc-quick-tile .bc-component-icon { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; margin-inline: auto; border-radius: 50%; background: var(--bcds-surface-color-background-light-blue); }
+.bc-quick-tile .bc-component-icon svg { width: 1.5rem; height: 1.5rem; }
+.wp-block-group.bc-quick-tile > p { margin: .6rem 0 0; line-height: 1.45; }
+.bc-quick-tile a { text-decoration: none; }
+.bc-quick-tile a::after { content: ''; position: absolute; inset: 0; border-radius: 8px; }
+.bc-quick-tile:has(a):hover { border-color: var(--bcds-typography-color-link); background: #f7fbff; }
+.bc-quick-tile:focus-within { outline: 3px solid var(--bcds-surface-color-border-active); outline-offset: 2px; }
+.bc-quick-tile a:focus-visible { outline: 0; }
+.editor-styles-wrapper .bc-quick-tile a::after { display: none; }
+.bc-quick-links-panel { padding: 1.5rem; border: 1px solid var(--bcds-surface-color-border-default); border-radius: 12px; background: white; box-shadow: 0 2px 4px rgb(0 0 0 / 8%); }
+.bc-quick-links-panel > h2 { margin-top: 0; padding-bottom: .75rem; border-bottom: 1px solid #eef2f6; font-size: 1.5rem; line-height: 1.35; }
+.bc-quick-links-list { display: grid; gap: 1rem; }
+.wp-block-group.bc-quick-links-list > * { margin-block: 0; }
+.bc-quick-link-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; align-items: start; }
+.bc-quick-link-row .bc-component-icon { padding-top: .2rem; }
+.bc-quick-link-row .bc-component-icon svg { width: 1.5rem; height: 1.5rem; }
+.wp-block-group.bc-quick-link-row > p { margin: 0; line-height: 1.5; }
+@media (max-width: 600px) { .bc-quick-links-panel { padding: 1rem; } }

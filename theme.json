@@ -192,7 +192,7 @@
     },
     "typography": {
       "fontFamily": "var:preset|font-family|bc-sans",
-      "fontSize": "var:preset|font-size|medium",
+      "fontSize": "var:preset|font-size|large",
       "fontWeight": "400",
       "lineHeight": "1.6"
     },
@@ -317,6 +317,26 @@
           "padding": {
             "left": "1.5rem"
           }
+        }
+      },
+      "core/paragraph": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "core/list": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "core/details": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "core/table": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
         }
       }
     }
