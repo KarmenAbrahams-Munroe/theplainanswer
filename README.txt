@@ -1,4 +1,4 @@
-B.C. practice — WordPress block theme, version 1.4.0
+B.C. practice — WordPress block theme, version 1.5.0
 
 Install or update
 1. Keep bc-practice.zip zipped.
@@ -8,6 +8,46 @@ Install or update
 5. Open Appearance > Editor to edit the shared header, footer and site styles.
 
 This update does not import content or rewrite saved pages. Existing pages keep their assigned template. WordPress gives saved Site Editor template customisations precedence over theme files. If you previously edited Detailed content page in the Site Editor, back up that customisation before resetting it to use the updated theme layout.
+
+Global mega menu — version 1.5.0
+The default header now contains the site title, WordPress search and a Mega menu block. There are also Mega menu and Header with mega menu patterns under B.C. navigation. Existing saved header customisations remain in place; no database content is overwritten by this update.
+
+Configure the menu
+1. Open Appearance > Editor and edit the Header template part. In WordPress 6.6, find it under Patterns > Template parts > Header. Other versions may show template parts under Design > Patterns.
+2. Select Mega menu in List View and open its Block settings. The initial Browse topics section uses Top-level topic pages.
+3. Change its Section label to Browse HR topics, or another label that describes your site.
+4. Keep Top-level topic pages to list your published topic roots, such as Benefits and Pay and compensation. The homepage and pages assigned to their own hierarchy sections are excluded from that list. Published children of the homepage are promoted into the topic list.
+5. To restrict a section to one branch, choose a published Parent page instead. That page's children become the first column; the parent remains available through View all.
+6. Use Add menu section for Forms, Tools and systems, Policies and agreements, or Get support. Choose the matching published parent page for each. Type in Parent page to search the site's published pages.
+7. Use Move up / Move down to order the top bar. A parent with no children becomes a normal link. Direct link sections can point to another internal or external address; links open normally in the same tab.
+8. Optionally fill in both Support link text and Support URL for a link in the menu footer. Enter your real support destination.
+9. Save the header and preview the site. The editor shows a non-interactive bar plus a native hierarchy preview; the three-column interaction runs on the public page.
+
+If your existing header still shows the old navigation
+- WordPress saved template parts take precedence over updated theme files. Back up any header customisation you want to retain.
+- Edit the Header template part and replace its contents with the Header with mega menu pattern. The site title and search use the site's current settings. Restore any custom logo or extra header content you want to keep, then configure the Mega menu block and save.
+- Alternatively, remove the old Navigation block and add Mega menu as a separate full-width block below the existing brand/header group. Keep one global navigation menu per header.
+- Do not reset page templates to change the header.
+
+Menu content and page structure
+- Page titles supply the link labels. Explicit Excerpts provide short branch introductions, up to 35 words. Blank excerpts remain blank; body content is never copied into the menu.
+- Parent and Order settings control the hierarchy and ordering, shared with the existing topic navigation and child-page cards. Pages sort by Order, title and ID.
+- Use the actual page hierarchy. A separate artificial HR wrapper page is not required: Top-level topic pages works with Benefits, Pay and compensation and other existing roots.
+- Published pages only. Draft, private, pending, scheduled and deleted pages are omitted. A section whose selected root is no longer published disappears rather than reverting to the whole site. A published descendant beneath an unpublished branch is not included through that branch.
+- Password-protected published pages remain links, but their excerpts are omitted.
+- Changes to titles, excerpts, ordering and page relationships appear on the next uncached page render. Clear hosting/page caches if old navigation remains visible.
+- This update does not import sample HR pages, invent support destinations or migrate a saved WordPress Navigation menu. The Mega menu has its own section settings.
+- Top-level sections are manually selected; their page hierarchies populate automatically. Navigation, topic sidebars and On this page retain their separate roles: site-wide choices, nearby pages and headings within the current page.
+
+Interaction and accessibility
+- Desktop: three columns show topics, subtopics and pages. Gold markers and pale backgrounds identify the selected branch. Landing-page links remain visible as View all in [title].
+- Selecting a deeper branch moves the three-column window forward. Back restores the previous level. The current page's branch opens when its menu section is opened.
+- At 900px and below, Menu opens the main sections. Choosing a section opens one panel at a time. Back moves up one level and eventually returns to the main sections.
+- Menu buttons open on click, Enter or Space; moving the pointer across a row does not change the selection. Leaf links retain normal browser actions such as opening in a new tab.
+- Tab follows ordinary controls and links. Choosing a branch moves focus to the new panel's heading; Back returns it to the parent branch button. Escape or Close menu closes the whole menu and returns focus to its opening control. Tabbing or clicking outside also dismisses it.
+- This is non-modal site navigation. It does not trap focus, lock page scrolling or use application-menu roles. The menu and each column have accessible names; the current page link uses aria-current.
+- Long titles wrap. Tall lists scroll within their column, keeping the footer reachable in the available viewport. No animation is required. Print styles omit navigation.
+- If JavaScript is unavailable, a native Menu disclosure contains linked nested page lists. Content remains navigable. Search uses the standard WordPress search form and results template.
 
 Page templates
 - Topic landing page: title, excerpt, topic cards, quick access and related topics.
@@ -115,14 +155,25 @@ Last updated
 - The date remains page-specific when the block is reused in a template or synced pattern.
 
 Requirements and scope
-WordPress 6.6+ and PHP 7.4+. No parent theme, plugin, external font service, build tools or government hosting is required. Theme activation affects the site's appearance. There are no content imports, database migrations, analytics or external API requests. Bundled front-end JavaScript enhances the page navigation; standard WordPress supplies the site header's navigation behaviour. Other plugins may add their own behaviour.
+WordPress 6.6+ and PHP 7.4+. No parent theme, plugin, external font service, build tools or government hosting is required. Theme activation affects the site's appearance. There are no content imports, database migrations, analytics or external API requests. Bundled front-end JavaScript enhances the page navigation, component controls and global mega menu; search uses standard WordPress behaviour. Other plugins may add their own behaviour.
 
-This is a custom practice theme using official B.C. design tokens and fonts. It is not the official BCEW theme and does not install the React component library. It does not claim full design-system or WCAG conformance. The three-column interactive menu from earlier examples remains a separate feature.
+This is a custom practice theme using official B.C. design tokens and fonts. It is not the official BCEW theme and does not install the React component library. It does not claim full design-system or WCAG conformance.
 
 Sources and licences
 - @bcgov/design-tokens 5.0.0, bundled unchanged: https://github.com/bcgov/design-system — Apache-2.0.
 - @bcgov/bc-sans 2.1.2, locally hosted WOFF2 fonts: https://github.com/bcgov/bc-sans — Apache-2.0 and OFL-1.1.
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
+
+Validation for version 1.5.0
+- Installed builds checked with WordPress 6.6.10 and 7.1.3, using PHP 8.3.33. PHP syntax also checked with 7.4.33.
+- Checked published-page filtering, protected excerpts, unavailable roots, homepage children and safe data rendering.
+- Checked desktop drill-down, changing sections, deeper branches, landing links, current-page state, Back, Enter/Space, Escape, outside dismissal and focus handling.
+- Checked responsive layouts at 320, 390, 768 and 1024px, including short viewports and resizing an open menu.
+- Checked multiple menu instances, unique IDs, native no-JavaScript navigation and print behaviour.
+- Checked integration with Detailed content sidebar/heading navigation, WordPress search results, posts and 404 pages.
+- Checked header and pattern block validity, editor previews, parent-page searching, section labels and adding menu sections.
+- Checked that saved title and parent changes appear in the menu without editing the menu's settings.
+- Automated axe checks of the open desktop and mobile menus reported no violations for the selected WCAG 2 A/AA and 2.1 AA rules. This is a development check, not a conformance certification.
 
 Validation for version 1.4.0
 - Installed test build used WordPress 6.6.10 and PHP 8.3.33.
@@ -137,6 +188,7 @@ Validation for version 1.4.0
 - Automated axe checks of showcase desktop/mobile and accordion main content reported no violations for the selected WCAG 2 A/AA and 2.1 AA rules.
 
 Version history
+1.5.0: Page-driven three-column mega menu, mobile drill-down, configurable sections and support link, native fallback, shared header with search, and two navigation patterns.
 1.4.0: Sixteen individual component patterns, grouped accordion controls, rich numbered steps, selectable local icons and automatic last-updated dates.
 1.3.0: Collapsible topic navigation, responsive heading indexes, sticky active-section index, Long reference template and starter, four navigation patterns, and synced-pattern heading support.
 1.2.0: Automatic child page cards and automatic topic landing starter.

@@ -16,3 +16,4 @@ add_action( 'enqueue_block_assets', function () {
 
 require_once get_theme_file_path( 'inc/page-templates.php' );
 require_once get_theme_file_path( 'inc/components.php' );
+require_once get_theme_file_path( 'inc/mega-menu.php' );
