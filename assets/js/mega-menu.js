@@ -105,11 +105,29 @@
                 scrollPositions[pane.dataset.scrollKey] = pane.scrollTop;
             });
         }
+        function revealInList(control) {
+            var list = control && control.closest('.bc-mega-links');
+            if (!list) return;
+            var scrollBox = panel.classList.contains('bc-mega-flow') ? panel : list;
+            var bounds = scrollBox.getBoundingClientRect(), row = control.getBoundingClientRect();
+            var top = bounds.top + scrollBox.clientTop, bottom = top + scrollBox.clientHeight;
+            if (row.top < top) scrollBox.scrollTop -= top - row.top;
+            else if (row.bottom > bottom) scrollBox.scrollTop += row.bottom - bottom;
+        }
         function fit() {
             if (active < 0 && !mobileOpen) return;
             var top = mobile.matches ? surface.getBoundingClientRect().top : panel.getBoundingClientRect().top;
             // All rows remain reachable in short viewports; the page itself can scroll.
             root.style.setProperty('--bc-mega-available', Math.max(180, window.innerHeight - Math.max(0, top) - 16) + 'px');
+            var fixedHeight = 0;
+            columns.querySelectorAll('.bc-mega-column').forEach(function (pane) {
+                var head = pane.querySelector('.bc-mega-column-head'), linkFooter = pane.querySelector('.bc-mega-column-footer');
+                fixedHeight = Math.max(fixedHeight, (head ? head.offsetHeight : 0) + (linkFooter ? linkFooter.offsetHeight : 0));
+            });
+            var minimumList = Math.max(44, parseFloat(window.getComputedStyle(root).fontSize) * 3.3);
+            var available = panel.clientHeight - toolbar.offsetHeight - footer.offsetHeight;
+            // At very large text sizes, scroll the complete panel so its headings cannot cover the links.
+            panel.classList.toggle('bc-mega-flow', active >= 0 && available < fixedHeight + minimumList);
         }
         function updateVisibility() {
             surface.hidden = mobile.matches && !mobileOpen;
@@ -125,12 +143,14 @@
         }
         function renderColumns(targetLevel, focusId) {
             rememberScroll();
+            panel.scrollTop = 0;
             var list = levels();
             var end = list.length - 1;
             var start = mobile.matches ? end : Math.max(0, end - 2);
             columns.replaceChildren();
             trail.textContent = [data.sections[active].label].concat(list.slice(1).map(function (item) { return item.owner.title; })).join(' / ');
             back.hidden = !mobile.matches && start === 0;
+            toolbar.hidden = back.hidden;
             var backLabel = end ? list[end - 1].owner.title : strings.main;
             back.replaceChildren(arrow('left'), element('span', '', strings.backTo.replace('%s', backLabel)));
             var count = mobile.matches ? 1 : 3;
@@ -144,21 +164,28 @@
                     columns.appendChild(pane);
                     continue;
                 }
-                pane.dataset.scrollKey = active + '-' + entry.owner.id + '-' + level;
                 var heading = element('h2', 'bc-mega-column-title', entry.owner.title);
                 heading.id = prefix + 'heading-' + level;
                 heading.tabIndex = -1;
                 pane.setAttribute('aria-labelledby', heading.id);
                 var head = element('div', 'bc-mega-column-head');
                 head.appendChild(heading);
-                if (entry.owner.summary) head.appendChild(element('p', 'bc-mega-description', entry.owner.summary));
+                // The middle desktop column carries the introduction once; other heads stay compact.
+                if (!mobile.matches && slot === 1 && entry.owner.summary) head.appendChild(element('p', 'bc-mega-description', entry.owner.summary));
+                var overview = null;
                 if (entry.owner.url) {
-                    var overview = makeLink(entry.owner, 'bc-mega-overview', strings.viewAll.replace('%s', entry.owner.title));
+                    var overviewLabel = strings.viewAll.replace('%s', entry.owner.title);
+                    overview = makeLink(entry.owner, 'bc-mega-overview', overviewLabel);
+                    if (mobile.matches || slot === 2) {
+                        overview.textContent = strings.overview;
+                        overview.setAttribute('aria-label', overviewLabel);
+                    }
                     overview.appendChild(arrow('right'));
-                    head.appendChild(overview);
+                    if (mobile.matches || slot === 2) head.appendChild(overview);
                 }
                 pane.appendChild(head);
                 var ul = element('ul', 'bc-mega-links');
+                ul.dataset.scrollKey = active + '-' + entry.owner.id + '-' + level;
                 entry.nodes.forEach(function (node) {
                     var li = element('li');
                     var control;
@@ -178,16 +205,25 @@
                     ul.appendChild(li);
                 });
                 pane.appendChild(ul);
+                if (overview && !mobile.matches && slot < 2) {
+                    var columnFooter = element('div', 'bc-mega-column-footer');
+                    columnFooter.appendChild(overview);
+                    pane.appendChild(columnFooter);
+                }
                 columns.appendChild(pane);
-                pane.scrollTop = scrollPositions[pane.dataset.scrollKey] || 0;
             }
             updateVisibility();
+            columns.querySelectorAll('[data-scroll-key]').forEach(function (list) {
+                if (Object.prototype.hasOwnProperty.call(scrollPositions, list.dataset.scrollKey)) list.scrollTop = scrollPositions[list.dataset.scrollKey];
+                else revealInList(list.querySelector('[aria-expanded="true"], [aria-current="page"]'));
+            });
             if (focusId !== undefined) {
                 var branch = columns.querySelector('[data-node-id="' + focusId + '"]');
+                revealInList(branch);
                 focus(branch || document.getElementById(prefix + 'heading-' + end));
             } else if (targetLevel !== undefined) {
                 var target = document.getElementById(prefix + 'heading-' + targetLevel);
-                if (target) target.closest('.bc-mega-column').scrollTop = 0;
+                if (panel.classList.contains('bc-mega-flow')) panel.scrollTop = 0;
                 focus(target);
             }
         }

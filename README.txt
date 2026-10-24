@@ -1,4 +1,4 @@
-B.C. practice — WordPress block theme, version 1.5.0
+B.C. practice — WordPress block theme, version 1.5.1
 
 Install or update
 1. Keep bc-practice.zip zipped.
@@ -30,7 +30,7 @@ If your existing header still shows the old navigation
 - Do not reset page templates to change the header.
 
 Menu content and page structure
-- Page titles supply the link labels. Explicit Excerpts provide short branch introductions, up to 35 words. Blank excerpts remain blank; body content is never copied into the menu.
+- Page titles supply the link labels. Explicit Excerpts provide short branch introductions, up to 35 words, shown in the middle desktop column. Blank excerpts remain blank; body content is never copied into the menu.
 - Parent and Order settings control the hierarchy and ordering, shared with the existing topic navigation and child-page cards. Pages sort by Order, title and ID.
 - Use the actual page hierarchy. A separate artificial HR wrapper page is not required: Top-level topic pages works with Benefits, Pay and compensation and other existing roots.
 - Published pages only. Draft, private, pending, scheduled and deleted pages are omitted. A section whose selected root is no longer published disappears rather than reverting to the whole site. A published descendant beneath an unpublished branch is not included through that branch.
@@ -40,13 +40,13 @@ Menu content and page structure
 - Top-level sections are manually selected; their page hierarchies populate automatically. Navigation, topic sidebars and On this page retain their separate roles: site-wide choices, nearby pages and headings within the current page.
 
 Interaction and accessibility
-- Desktop: three columns show topics, subtopics and pages. Gold markers and pale backgrounds identify the selected branch. Landing-page links remain visible as View all in [title].
-- Selecting a deeper branch moves the three-column window forward. Back restores the previous level. The current page's branch opens when its menu section is opened.
+- Desktop: three columns show topics, subtopics and pages. Gold markers and pale backgrounds identify the selected branch. The first two columns keep their landing-page links at the bottom. The third column uses a compact View all link with a descriptive accessible name.
+- The first three desktop levels have no additional breadcrumb strip. Selecting a deeper branch moves the three-column window forward and shows Back with the path. Back restores the previous level. The current page's branch opens when its menu section is opened.
 - At 900px and below, Menu opens the main sections. Choosing a section opens one panel at a time. Back moves up one level and eventually returns to the main sections.
 - Menu buttons open on click, Enter or Space; moving the pointer across a row does not change the selection. Leaf links retain normal browser actions such as opening in a new tab.
 - Tab follows ordinary controls and links. Choosing a branch moves focus to the new panel's heading; Back returns it to the parent branch button. Escape or Close menu closes the whole menu and returns focus to its opening control. Tabbing or clicking outside also dismisses it.
 - This is non-modal site navigation. It does not trap focus, lock page scrolling or use application-menu roles. The menu and each column have accessible names; the current page link uses aria-current.
-- Long titles wrap. Tall lists scroll within their column, keeping the footer reachable in the available viewport. No animation is required. Print styles omit navigation.
+- Long titles wrap in full. Link text retains its inherited size; compact rows have a minimum height of 44px. Lists use the available viewport height, up to 52rem, with fixed column headings and landing-page links. In very short viewports or with large text, the entire panel can scroll so headings cannot cover the links. No animation is required. Print styles omit navigation.
 - If JavaScript is unavailable, a native Menu disclosure contains linked nested page lists. Content remains navigable. Search uses the standard WordPress search form and results template.
 
 Page templates
@@ -164,6 +164,11 @@ Sources and licences
 - @bcgov/bc-sans 2.1.2, locally hosted WOFF2 fonts: https://github.com/bcgov/bc-sans — Apache-2.0 and OFL-1.1.
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
 
+Validation for version 1.5.1
+- Compared identical page content before and after at 1512 x 804px and 1313 x 613px, including a scaled screenshot. Link text remained 16px in both builds.
+- At 1512 x 804px, fully visible root links increased from 7 to 12. At 1313 x 613px, visible links increased from 5 to 7 in the root column and from 3 to 5 in the page column.
+- Checked fixed column headings, column-footer links, longer labels, large text and existing menu interactions.
+
 Validation for version 1.5.0
 - Installed builds checked with WordPress 6.6.10 and 7.1.3, using PHP 8.3.33. PHP syntax also checked with 7.4.33.
 - Checked published-page filtering, protected excerpts, unavailable roots, homepage children and safe data rendering.
@@ -188,6 +193,7 @@ Validation for version 1.4.0
 - Automated axe checks of showcase desktop/mobile and accordion main content reported no violations for the selected WCAG 2 A/AA and 2.1 AA rules.
 
 Version history
+1.5.1: Compact menu spacing, more list height, fixed column headings and overview links, simpler page-column headers, and a large-text scrolling fallback.
 1.5.0: Page-driven three-column mega menu, mobile drill-down, configurable sections and support link, native fallback, shared header with search, and two navigation patterns.
 1.4.0: Sixteen individual component patterns, grouped accordion controls, rich numbered steps, selectable local icons and automatic last-updated dates.
 1.3.0: Collapsible topic navigation, responsive heading indexes, sticky active-section index, Long reference template and starter, four navigation patterns, and synced-pattern heading support.

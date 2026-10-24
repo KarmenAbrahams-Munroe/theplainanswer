@@ -175,7 +175,7 @@ function bc_practice_render_mega_menu( $attributes ) {
         'strings' => array(
             'menu' => __( 'Menu', 'bc-practice' ), 'close' => __( 'Close menu', 'bc-practice' ),
             'backTo' => __( 'Back to %s', 'bc-practice' ), 'main' => __( 'Main menu', 'bc-practice' ),
-            'viewAll' => __( 'View all in %s', 'bc-practice' ), 'chooseTopic' => __( 'Choose a topic to see its subtopics.', 'bc-practice' ),
+            'viewAll' => __( 'View all in %s', 'bc-practice' ), 'overview' => __( 'View all', 'bc-practice' ), 'chooseTopic' => __( 'Choose a topic to see its subtopics.', 'bc-practice' ),
             'chooseSubtopic' => __( 'Choose a subtopic to see its pages.', 'bc-practice' ),
         ),
     );
