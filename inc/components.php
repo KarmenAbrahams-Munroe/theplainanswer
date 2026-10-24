@@ -45,7 +45,7 @@ function bc_practice_component_icons() {
         'lightbulb' => array( 'label' => __( 'Light bulb / ideas', 'bc-practice' ), 'paths' => '<path d="M8 17c0-4-4-4-4-8a8 8 0 0 1 16 0c0 4-4 4-4 8H8Zm0 3h8m-6 3h4"/>' ),
         'leaf' => array( 'label' => __( 'Leaf / environment', 'bc-practice' ), 'paths' => '<path d="M21 2C7 2 2 7 3 14c1 6 8 9 13 4 4-4 5-10 5-16ZM2 22 16 8"/>' ),
         'accessibility' => array( 'label' => __( 'Accessibility', 'bc-practice' ), 'paths' => '<circle cx="12" cy="4" r="2"/><path d="M3 9h18m-9-3v9m0-3-6 10m6-10 6 10"/>' ),
-        'tools' => array( 'label' => __( 'Tools', 'bc-practice' ), 'paths' => '<path d="M21 3a6 6 0 0 0-8 8L3 21l-2-2 10-10a6 6 0 0 0 8-8l-4 4 4 4 4-4"/>' ),
+        'tools' => array( 'label' => __( 'Tools', 'bc-practice' ), 'paths' => '<path d="M14.4 6.6 17 9.2l4-4a6 6 0 0 1-7.7 7.7l-7.6 7.6a2.1 2.1 0 0 1-3-3l7.6-7.6A6 6 0 0 1 18 2.2l-3.6 4.4Z"/><circle cx="4.3" cy="19.2" r=".55" fill="currentColor" stroke="none"/>' ),
         'star' => array( 'label' => __( 'Star / favourite', 'bc-practice' ), 'paths' => '<path d="m12 2 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1 3-7Z"/>' ),
         'refresh' => array( 'label' => __( 'Refresh / update', 'bc-practice' ), 'paths' => '<path d="M21 8a9 9 0 0 0-16-3L2 8m0-6v6h6m-5 8a9 9 0 0 0 16 3l3-3m0 6v-6h-6"/>' ),
     );
@@ -74,8 +74,19 @@ add_action( 'init', function () {
     wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ), $version, true );
     register_block_type( 'bc-practice/steps', array(
         'api_version' => 3, 'title' => __( 'Numbered steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
-        'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'connected', 'cards' ), 'default' => 'connected' ) ),
+        'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'connected', 'cards', 'roadmap' ), 'default' => 'connected' ) ),
         'supports' => array( 'html' => false ), 'editor_script' => 'bc-practice-component-blocks',
+    ) );
+    register_block_type( 'bc-practice/resource-tabs', array(
+        'api_version' => 3, 'title' => __( 'Resource tabs', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'index-card',
+        'attributes' => array( 'label' => array( 'type' => 'string', 'default' => 'Resource categories' ) ),
+        'supports' => array( 'html' => false, 'anchor' => true ), 'editor_script' => 'bc-practice-component-blocks',
+    ) );
+    register_block_type( 'bc-practice/resource-panel', array(
+        'api_version' => 3, 'title' => __( 'Resource group', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'screenoptions',
+        'attributes' => array( 'title' => array( 'type' => 'string', 'source' => 'html', 'selector' => '.bc-tab-panel-title', 'default' => 'Resource group' ) ),
+        'parent' => array( 'bc-practice/resource-tabs' ), 'supports' => array( 'html' => false, 'anchor' => true, 'reusable' => false ),
+        'editor_script' => 'bc-practice-component-blocks',
     ) );
     register_block_type( 'bc-practice/step', array(
         'api_version' => 3, 'title' => __( 'Step', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',

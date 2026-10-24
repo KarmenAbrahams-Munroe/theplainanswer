@@ -1,0 +1,12 @@
+<?php
+/**
+ * Title: Icon roadmap
+ * Slug: bc-practice/icon-roadmap
+ * Categories: bc-components
+ * Post Types: page, post
+ * Description: Five ordered steps with editable icons and short descriptions. Stacks in narrow spaces.
+ * Viewport Width: 1200
+ * Inserter: yes
+ */
+?>
+<!-- wp:group {"className":"bc-pattern-section","layout":{"type":"default"}} --><div class="wp-block-group bc-pattern-section"><!-- wp:heading --><h2 class="wp-block-heading">Your first steps</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Follow these steps to get started. Adapt the sequence to your process.</p><!-- /wp:paragraph --><!-- wp:bc-practice/steps {"presentation":"roadmap"} --><ol role="list" class="wp-block-bc-practice-steps bc-steps bc-steps-roadmap"><!-- wp:bc-practice/step --><li class="wp-block-bc-practice-step bc-step"><!-- wp:bc-practice/icon {"icon":"clipboard"} /--><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Prepare your information</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Gather the forms and details you need.</p><!-- /wp:paragraph --></li><!-- /wp:bc-practice/step --><!-- wp:bc-practice/step --><li class="wp-block-bc-practice-step bc-step"><!-- wp:bc-practice/icon {"icon":"people"} /--><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Connect with your team</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Confirm your contacts and next steps.</p><!-- /wp:paragraph --></li><!-- /wp:bc-practice/step --><!-- wp:bc-practice/step --><li class="wp-block-bc-practice-step bc-step"><!-- wp:bc-practice/icon {"icon":"book"} /--><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Review the guidance</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Read the policies and resources that apply.</p><!-- /wp:paragraph --></li><!-- /wp:bc-practice/step --><!-- wp:bc-practice/step --><li class="wp-block-bc-practice-step bc-step"><!-- wp:bc-practice/icon {"icon":"graduation"} /--><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Complete your learning</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Work through the required training.</p><!-- /wp:paragraph --></li><!-- /wp:bc-practice/step --><!-- wp:bc-practice/step --><li class="wp-block-bc-practice-step bc-step"><!-- wp:bc-practice/icon {"icon":"calendar"} /--><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Plan your check-ins</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Arrange time to review progress and get support.</p><!-- /wp:paragraph --></li><!-- /wp:bc-practice/step --></ol><!-- /wp:bc-practice/steps --></div><!-- /wp:group -->

@@ -1,7 +1,7 @@
-B.C. practice — WordPress block theme, version 1.6.0
+B.C. practice — WordPress block theme, version 1.7.0
 
 Update an existing GitHub-managed theme
-Apply the 1.6.0 patch to the theme repository after checking it with git apply --check. This patch expects version 1.5.1. Review, commit and deploy through your normal GitHub workflow. The companion feedback plugin is installed separately.
+Apply the 1.7.0 patch to the theme repository after checking it with git apply --check. This patch expects version 1.6.0. Review, commit and deploy through your normal GitHub workflow. The companion feedback plugin is installed separately.
 
 First installation from a complete theme package
 Upload the complete bc-practice.zip through Appearance > Themes > Add New Theme > Upload Theme, then activate it. A patch file is not a complete theme package.
@@ -9,6 +9,23 @@ Upload the complete bc-practice.zip through Appearance > Themes > Add New Theme 
 Open Appearance > Editor to edit the shared header, footer and site styles.
 
 This update does not import content or rewrite saved pages. Existing pages keep their assigned template. WordPress gives saved Site Editor template customisations precedence over theme files. If you previously edited Detailed content page in the Site Editor, back up that customisation before resetting it to use the updated theme layout.
+
+Content and resource patterns — version 1.7.0
+Find these eight patterns under B.C. components:
+- Image cards: two image cards with a heading and short description. Add one real destination to each card heading. Replace the local decorative image placeholder using the Image block's Replace control; add useful alternative text if the image conveys information. One heading link makes the whole card clickable. Keep other links outside that card.
+- Three-column text: an introductory heading and three related short descriptions.
+- Three-column lists: an introductory heading and three named lists. Keep independent topics in each column; use Numbered steps for a sequence.
+- Topic banner: a blue and gold section banner. It uses a level-two heading and fits inside a page that already has a title. It does not add another page title or breadcrumbs.
+- Task links panel: a concise introduction alongside common tasks. Add real links to the list items. The list is manually curated.
+- Split introduction: an introductory statement alongside supporting text and an optional primary action. Add the action's destination with the Button block link control, or remove the button.
+- Icon roadmap: five ordered steps with editable Component icons. The Numbered steps block now offers Icon roadmap in its Presentation setting. Three to five steps can run horizontally when the block has at least 50rem of space. Narrow spaces and sequences longer than five steps use the vertical layout. Step numbers are automatic; this is an informational sequence, with no completion or progress tracking.
+- Tabbed resource cards: resource categories with editable image cards. Edit a Resource group heading to name its tab. Duplicate, remove or reorder Resource group blocks in List View. Select Resource tabs to edit the accessible Tab group label. All groups stay visible while editing; preview the page to try the tabs. Use concise category labels and short, related resources. Keep essential instructions visible in the main page content.
+
+Layouts respond to their available space, including narrow columns on a wide screen. They retain the theme's BC Sans, B.C. colour tokens and Large body defaults. New sample content supplies no invented service URLs. Add real destinations before publishing.
+
+Resource tabs support Left/Right, Home/End and Enter/Space. Arrow keys move focus; Enter or Space activates the focused tab. Tab moves into the active panel. Separate tab groups operate independently. Links into a hidden resource panel reveal it, including targets inside a Details block. Without JavaScript every group remains a normal readable section; print output includes every group. A single group shows its content without a tab strip.
+
+The shared Tools icon is now a cleaner wrench with a rounded handle and a clear open jaw. Its key remains tools, so existing selections update automatically. All 44 icon choices remain available.
 
 Quick links, icons and body text — version 1.6.0
 - Quick actions and resources: an icon-tile pattern with eight editable entries. Its grid uses two, four or eight columns as space allows. Select each label and add its real destination with the link control. One link per tile makes the whole tile clickable on the published page.
@@ -176,6 +193,14 @@ Sources and licences
 - @bcgov/bc-sans 2.1.2, locally hosted WOFF2 fonts: https://github.com/bcgov/bc-sans — Apache-2.0 and OFL-1.1.
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
 
+Validation for version 1.7.0
+- Installed builds checked with WordPress 6.6.10 and 7.1.3, using PHP 8.3.33. PHP syntax also checked with 7.4.33.
+- Checked all existing and new pattern markup in the actual editor, resource-group label editing and save/reload, Image block replacement fields and alternative text, and step presentation changes.
+- Checked horizontal and vertical roadmaps, narrow columns on desktop, and page reflow at 320, 390 and 768px. Pattern paragraphs and lists retained 18px defaults.
+- Checked tab keyboard controls, focus movement, repeated instances, unique relationships, deep links into hidden panels and Details blocks, a single-group fallback, print and no-JavaScript content.
+- Checked local image loading, whole-card destination links and the wrench at 24, 32 and 48px. The feedback plugin remained usable alongside the new patterns.
+- Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content violations. This is a development check, not a conformance certification.
+
 Validation for version 1.6.0
 - Installed build checked with WordPress 6.6.10 and PHP 8.3.33; PHP syntax also checked with 7.4.33.
 - Checked all pattern block markup in the editor, the searchable 44-symbol picker, both quick-link layouts and native whole-tile links.
@@ -211,6 +236,7 @@ Validation for version 1.4.0
 - Automated axe checks of showcase desktop/mobile and accordion main content reported no violations for the selected WCAG 2 A/AA and 2.1 AA rules.
 
 Version history
+1.7.0: Eight content/resource patterns, progressively enhanced resource tabs, responsive icon roadmaps and an improved Tools symbol.
 1.6.0: Two curated quick-link patterns, 44 searchable icons, Large body defaults and optional companion feedback-plugin support.
 1.5.1: Compact menu spacing, more list height, fixed column headings and overview links, simpler page-column headers, and a large-text scrolling fallback.
 1.5.0: Page-driven three-column mega menu, mobile drill-down, configurable sections and support link, native fallback, shared header with search, and two navigation patterns.
