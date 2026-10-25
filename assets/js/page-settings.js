@@ -28,7 +28,7 @@
             }),
             el(wp.components.ToggleControl, {
                 label: 'This page starts a guide', checked: !!data.meta._bc_guide_start,
-                help: 'Scopes the guide contents and chapter navigation. Chapters follow Page order, then title.',
+                help: 'Scopes In this section and enables ordered Previous/Next links. Chapters follow Page order, then title.',
                 onChange: function (value) { update('_bc_guide_start', value); }
             })
         );

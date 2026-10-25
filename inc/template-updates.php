@@ -95,6 +95,7 @@ function bc_practice_setup_screen() {
     } else {
         echo '<p>No earlier template assignments need updating.</p>';
     }
+    echo '<p>Version 1.10 updates Pages, Guide and reference, and Topic landing page. The new reading layouts align titles with article content and provide a sticky two-view sidebar. Topic landing page supplies navigation cards automatically. Saved layout overrides remain in control until reviewed.</p>';
     echo '<h2>Saved Site Editor layouts</h2><p>These customizations take precedence over theme files. Review or export a customization before using the Site Editor’s reset controls to adopt the updated layout.</p><ul>';
     $saved = false;
     foreach ( array( 'wp_template', 'wp_template_part' ) as $type ) {

@@ -1,15 +1,18 @@
 <?php
 /** Shared page titles, metadata, guide links and footer integration. */
 defined( 'ABSPATH' ) || exit;
+require_once get_theme_file_path( 'inc/reading-navigation.php' );
 
 function bc_practice_framework_blocks() {
     return array(
         'page-title' => array( 'title' => 'Page title and introduction', 'icon' => 'heading', 'description' => 'Current page title, explicit excerpt, appearance and page information.', 'attributes' => array( 'showUpdated' => array( 'type' => 'boolean', 'default' => true ), 'showAudience' => array( 'type' => 'boolean', 'default' => true ) ) ),
         'page-information' => array( 'title' => 'Page information', 'icon' => 'info', 'description' => 'Selected audience and applicability terms, with an optional saved modification date.', 'attributes' => array( 'showUpdated' => array( 'type' => 'boolean', 'default' => false ), 'showAudience' => array( 'type' => 'boolean', 'default' => true ) ) ),
-        'guide-contents' => array( 'title' => 'Guide contents', 'icon' => 'editor-ol', 'description' => 'Lists published pages within the closest marked guide, in page order.' ),
+        'guide-contents' => array( 'title' => 'In this section', 'icon' => 'editor-ol', 'description' => 'Lists published pages within the closest marked guide, in page order.' ),
         'guide-navigation' => array( 'title' => 'Previous and next chapter', 'icon' => 'leftright', 'description' => 'Previous and next pages within an explicitly marked guide.' ),
         'home-content' => array( 'title' => 'Home page content', 'icon' => 'admin-home', 'description' => 'The static home page body, or the posts index when Reading settings use latest posts.' ),
         'footer-feedback' => array( 'title' => 'Footer page feedback', 'icon' => 'feedback', 'description' => 'Page-linked feedback above the site footer. Requires B.C. page feedback 1.1 or later.' ),
+        'reading-navigation' => array( 'title' => 'Reading navigation', 'icon' => 'menu', 'description' => 'On this page and In this section share a sticky desktop sidebar. The section menu appears after the article on mobile.' ),
+        'section-menu' => array( 'title' => 'Section menu at page end', 'icon' => 'editor-ul', 'description' => 'Published section pages, paired with the Reading navigation block.' ),
     );
 }
 
@@ -98,6 +101,9 @@ function bc_practice_guide_pages( $root ) {
 
 function bc_practice_render_guide_contents( $attributes, $content, $block ) {
     $page = bc_practice_context_page( $block );
+    if ( $page && ( ! empty( $GLOBALS['bc_practice_automatic_cards'][ $page->ID ] ) || ! empty( $GLOBALS['bc_practice_reading_layout'][ $page->ID ] ) ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+        return '';
+    }
     $root = $page ? bc_practice_guide_root( $page->ID ) : 0;
     if ( ! $root ) {
         return bc_practice_empty_preview( 'Mark the guide’s starting page in Page presentation and navigation.' );
@@ -107,7 +113,7 @@ function bc_practice_render_guide_contents( $attributes, $content, $block ) {
         return bc_practice_empty_preview( 'Publish child pages to populate the guide contents.' );
     }
     $list = wp_list_pages( array( 'pages' => $pages, 'child_of' => $root, 'title_li' => '', 'echo' => false, 'current_page' => $page->ID, 'sort_column' => 'menu_order,post_title,ID' ) );
-    return '<nav ' . get_block_wrapper_attributes( array( 'class' => 'bc-guide-contents' ) ) . ' aria-label="Guide contents"><h2>In this guide</h2><ul>' . $list . '</ul></nav>';
+    return '<nav ' . get_block_wrapper_attributes( array( 'class' => 'bc-guide-contents' ) ) . ' aria-label="In this section"><h2>In this section</h2><ul>' . $list . '</ul></nav>';
 }
 
 function bc_practice_guide_order( $parent, $groups, &$ordered, &$seen, $depth = 0 ) {
@@ -147,7 +153,9 @@ function bc_practice_render_guide_navigation( $attributes, $content, $block ) {
             continue;
         }
         $target = $ordered[ $position + $offset ];
-        $links .= '<a class="bc-guide-' . ( $offset < 0 ? 'previous' : 'next' ) . '" rel="' . ( $offset < 0 ? 'prev' : 'next' ) . '" href="' . esc_url( get_permalink( $target ) ) . '"><span>' . esc_html( $label ) . '</span><strong>' . esc_html( bc_practice_card_title( $target ) ) . '</strong></a>';
+        $direction = $offset < 0 ? 'previous' : 'next';
+        $arrow = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="' . ( $offset < 0 ? 'M20 12H4m6-6-6 6 6 6' : 'M4 12h16m-6-6 6 6-6 6' ) . '" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+        $links .= '<a class="bc-guide-' . $direction . '" rel="' . ( $offset < 0 ? 'prev' : 'next' ) . '" href="' . esc_url( get_permalink( $target ) ) . '"><span>' . $arrow . esc_html( $label ) . '</span><strong>' . esc_html( bc_practice_card_title( $target ) ) . '</strong></a>';
     }
     return '<nav ' . get_block_wrapper_attributes( array( 'class' => 'bc-guide-navigation' ) ) . ' aria-label="Guide chapters">' . $links . '</nav>';
 }

@@ -6,7 +6,7 @@
  * Keywords: topic, browse, landing, children
  * Block Types: core/post-content
  * Post Types: page
- * Description: Automatic child and grandchild listings followed by optional related topics. Use with Topic landing page.
+ * Description: Related content and a child-page listing. Topic landing page supplies the listing automatically; the standalone pattern also works with other layouts.
  * Viewport Width: 1200
  * Inserter: yes
  */

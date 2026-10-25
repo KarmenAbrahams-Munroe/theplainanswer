@@ -28,5 +28,5 @@ add_filter( 'allowed_block_types_all', function ( $allowed, $context ) {
         return $allowed;
     }
     $types = true === $allowed ? array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() ) : $allowed;
-    return array_values( array_diff( $types, array( 'bc-practice/page-title', 'bc-practice/home-content', 'bc-practice/footer-feedback' ) ) );
+    return array_values( array_diff( $types, array( 'bc-practice/page-title', 'bc-practice/home-content', 'bc-practice/footer-feedback', 'bc-practice/reading-navigation', 'bc-practice/section-menu' ) ) );
 }, 10, 2 );

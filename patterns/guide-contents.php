@@ -1,11 +1,11 @@
 <?php
 /**
- * Title: Guide contents
+ * Title: In this section
  * Slug: bc-practice/guide-contents
  * Categories: bc-page-information
  * Keywords: guide, chapters, contents, policies
  * Post Types: page, post
- * Description: Automatic contents for a page marked as a guide starting page.
+ * Description: Published section contents for a page marked as a guide starting page.
  * Viewport Width: 1200
  * Inserter: yes
  */
