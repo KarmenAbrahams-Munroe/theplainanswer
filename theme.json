@@ -375,6 +375,34 @@
       "postTypes": [
         "page"
       ]
+    },
+    {
+      "name": "bc-banner-image-compact",
+      "title": "Compact image title",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "bc-banner-image-tall",
+      "title": "Taller image title",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "bc-banner-solid-compact",
+      "title": "Compact solid-colour title",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "bc-banner-solid-tall",
+      "title": "Taller solid-colour title",
+      "postTypes": [
+        "page"
+      ]
     }
   ]
 }

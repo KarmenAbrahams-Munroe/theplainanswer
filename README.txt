@@ -1,7 +1,7 @@
-B.C. practice — WordPress block theme, version 1.7.0
+B.C. practice — WordPress block theme, version 1.8.0
 
 Update an existing GitHub-managed theme
-Apply the 1.7.0 patch to the theme repository after checking it with git apply --check. This patch expects version 1.6.0. Review, commit and deploy through your normal GitHub workflow. The companion feedback plugin is installed separately.
+Apply the 1.8.0 patch to the theme repository after checking it with git apply --check. This patch expects version 1.7.0. Review, commit and deploy through your normal GitHub workflow. The companion feedback plugin is installed separately.
 
 First installation from a complete theme package
 Upload the complete bc-practice.zip through Appearance > Themes > Add New Theme > Upload Theme, then activate it. A patch file is not a complete theme package.
@@ -9,6 +9,28 @@ Upload the complete bc-practice.zip through Appearance > Themes > Add New Theme 
 Open Appearance > Editor to edit the shared header, footer and site styles.
 
 This update does not import content or rewrite saved pages. Existing pages keep their assigned template. WordPress gives saved Site Editor template customisations precedence over theme files. If you previously edited Detailed content page in the Site Editor, back up that customisation before resetting it to use the updated theme layout.
+
+Title and promo banners — version 1.8.0
+Four patterns appear under B.C. components:
+- Compact image banner: a white text panel beside an Image block, with a gold accent. Its minimum desktop height is 220px; longer copy grows naturally.
+- Taller image banner: a native Cover image behind an opaque white text panel, with an optional action. Its minimum desktop height is 420px.
+- Compact solid-colour banner: white text on B.C. navy with a gold bottom rule. Its minimum desktop height is 220px.
+- Taller solid-colour banner: the same navy treatment with more room for copy, a primary action and an optional secondary link. Its minimum desktop height is 420px.
+
+For a promo within page content
+Insert a pattern, edit its Heading and Paragraph blocks, then replace the image where present. Pattern headings start at H2 to fit inside an existing page. Use Image > Replace for the compact image, and select the outer Cover block > Replace for the taller image. The Cover block's focal point controls which part of the photo stays in view. Add real links to actions with the Button/Paragraph link controls, or remove unused actions. Sample actions have no invented destination. Images use a local decorative placeholder until replaced; no external image service or generated mockup screenshot is used by the patterns.
+
+For a page title
+In the page's settings, choose one of these four templates:
+- Compact image title
+- Taller image title
+- Compact solid-colour title
+- Taller solid-colour title
+Each template supplies one H1 using the current page title, its explicitly entered Excerpt as the introduction, and its Featured image for the image versions. Set those fields on the individual page. Empty excerpts remain empty; page body text is not copied into the title area. A missing featured image produces a plain fallback. Title templates retain breadcrumbs, the topic-navigation sidebar and the On this page index where applicable. Page content supplies the normal body below the banner. Optional promotional buttons belong in the editable patterns; the templates do not invent service destinations.
+
+The patterns and templates use the same banner styles. Available space controls the layout: image banners stack in narrow areas, including narrow columns on a wide screen. Long titles, paragraphs and action labels wrap. Main copy retains Large body at 1.125rem. Print output retains the text and actions while omitting decorative banner imagery. Use a suitable decorative photo; essential information should be in the text. Supply alternative text for meaningful Image block content.
+
+The Help / question icon keeps its existing circle and now has a smaller inset question mark and a separate centred dot. Existing help selections update automatically. Its key remains help; all 44 icon choices remain available.
 
 Content and resource patterns — version 1.7.0
 Find these eight patterns under B.C. components:
@@ -193,6 +215,13 @@ Sources and licences
 - @bcgov/bc-sans 2.1.2, locally hosted WOFF2 fonts: https://github.com/bcgov/bc-sans — Apache-2.0 and OFL-1.1.
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
 
+Validation for version 1.8.0
+- Installed builds checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33; PHP syntax also checked with 7.4.33.
+- Checked all new and existing pattern/template markup in the actual editor, editable headings, image replacement, saved Cover focal points and usable Image previews.
+- Checked one H1 per page-title template, explicit excerpts, featured images, missing-image/empty-excerpt fallbacks, topic navigation and the on-page heading index.
+- Checked desktop compact/tall sizes, 18px body text, 320/390/768px reflow, long titles/excerpts, narrow desktop columns, native action links, no-JavaScript and print output.
+- Checked topic-sidebar collapse/restore and compatibility with the optional feedback plugin. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content violations.
+
 Validation for version 1.7.0
 - Installed builds checked with WordPress 6.6.10 and 7.1.3, using PHP 8.3.33. PHP syntax also checked with 7.4.33.
 - Checked all existing and new pattern markup in the actual editor, resource-group label editing and save/reload, Image block replacement fields and alternative text, and step presentation changes.
@@ -236,6 +265,7 @@ Validation for version 1.4.0
 - Automated axe checks of showcase desktop/mobile and accordion main content reported no violations for the selected WCAG 2 A/AA and 2.1 AA rules.
 
 Version history
+1.8.0: Four editable promo banners, four automatic page-title templates, responsive image layouts and improved Help icon spacing.
 1.7.0: Eight content/resource patterns, progressively enhanced resource tabs, responsive icon roadmaps and an improved Tools symbol.
 1.6.0: Two curated quick-link patterns, 44 searchable icons, Large body defaults and optional companion feedback-plugin support.
 1.5.1: Compact menu spacing, more list height, fixed column headings and overview links, simpler page-column headers, and a large-text scrolling fallback.

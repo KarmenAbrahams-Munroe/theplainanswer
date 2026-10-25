@@ -28,7 +28,7 @@ function bc_practice_component_icons() {
         'home' => array( 'label' => __( 'Home', 'bc-practice' ), 'paths' => '<path d="m2 11 10-9 10 9M5 9v13h14V9M9 22v-8h6v8"/>' ),
         'phone' => array( 'label' => __( 'Phone', 'bc-practice' ), 'paths' => '<path d="M4 2h4l2 5-3 2a16 16 0 0 0 8 8l2-3 5 2v4c0 2-2 3-4 2C10 20 4 14 2 6 1 4 2 2 4 2Z"/>' ),
         'chat' => array( 'label' => __( 'Chat / feedback', 'bc-practice' ), 'paths' => '<path d="M3 3h18v14H9l-6 5V3Zm4 5h10M7 12h7"/>' ),
-        'help' => array( 'label' => __( 'Help / question', 'bc-practice' ), 'paths' => '<circle cx="12" cy="12" r="10"/><path d="M8 8a4 4 0 0 1 8 0c0 3-4 3-4 6m0 3v1"/>' ),
+        'help' => array( 'label' => __( 'Help / question', 'bc-practice' ), 'paths' => '<circle cx="12" cy="12" r="10"/><path d="M9.25 8a2.75 2.75 0 1 1 5.5 0c0 2.1-2.75 2.25-2.75 4.75"/><circle cx="12" cy="17" r=".8" fill="currentColor" stroke="none"/>' ),
         'download' => array( 'label' => __( 'Download', 'bc-practice' ), 'paths' => '<path d="M12 2v13m-5-5 5 5 5-5M3 16v6h18v-6"/>' ),
         'upload' => array( 'label' => __( 'Upload', 'bc-practice' ), 'paths' => '<path d="M12 16V3m-5 5 5-5 5 5M3 16v6h18v-6"/>' ),
         'external-link' => array( 'label' => __( 'External link', 'bc-practice' ), 'paths' => '<path d="M14 3h7v7m0-7L10 14M10 5H3v16h16v-7"/>' ),
@@ -97,6 +97,7 @@ add_action( 'init', function () {
 
 add_action( 'enqueue_block_assets', function () {
     wp_enqueue_style( 'bc-practice-components', get_theme_file_uri( 'assets/css/components.css' ), array( 'bc-practice-page-templates' ), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'bc-practice-banners', get_theme_file_uri( 'assets/css/banners.css' ), array( 'bc-practice-components' ), wp_get_theme()->get( 'Version' ) );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
