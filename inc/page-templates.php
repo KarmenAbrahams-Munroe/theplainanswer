@@ -13,7 +13,7 @@ function bc_practice_template_blocks() {
         'topic-navigation' => array( 'title' => 'Topic navigation', 'icon' => 'menu', 'description' => 'Shows the page hierarchy for this topic.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'sidebar', 'disclosure' ), 'default' => 'sidebar' ) ) ),
         'page-contents' => array( 'title' => 'On this page', 'icon' => 'editor-ul', 'description' => 'Links to the level-two headings in this page.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'inline', 'sticky' ), 'default' => 'inline' ) ) ),
         'child-page-cards' => array( 'title' => 'Child page cards', 'icon' => 'index-card', 'description' => 'Creates linked cards from this page’s children, with links to their children.' ),
-    ), bc_practice_component_blocks() );
+    ), bc_practice_component_blocks(), bc_practice_framework_blocks() );
 }
 
 add_action( 'init', function () {
@@ -121,7 +121,8 @@ function bc_practice_render_topic_navigation( $attributes, $content, $block ) {
         return bc_practice_empty_preview( 'Topic navigation will use the page Parent setting.' );
     }
     $ancestors = array_values( array_filter( array_map( 'intval', get_post_ancestors( $page ) ), function ( $id ) { return 'publish' === get_post_status( $id ); } ) );
-    $root = $ancestors ? end( $ancestors ) : $page->ID;
+    $topic_ancestors = array_values( array_filter( $ancestors, function ( $id ) { return (int) $id !== (int) get_option( 'page_on_front' ); } ) );
+    $root = bc_practice_guide_root( $page->ID ) ?: ( $topic_ancestors ? end( $topic_ancestors ) : $page->ID );
     $pages = get_pages( array( 'child_of' => $root, 'sort_column' => 'menu_order,post_title,ID', 'post_status' => 'publish' ) );
     $groups = array();
     foreach ( $pages as $item ) {
@@ -195,13 +196,26 @@ function bc_practice_render_child_page_cards( $attributes, $content, $block ) {
     return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-child-page-cards bc-topic-stack' ) ) . '>' . $cards . '</div>';
 }
 
-/** Resolve published synced patterns, preserving a cycle/depth guard. */
+/** Resolve registered patterns and published synced blocks with cycle guards. */
 function bc_practice_expand_content_blocks( $blocks, $seen = array(), $depth = 0 ) {
     if ( $depth > 20 ) {
         return array();
     }
     $expanded = array();
     foreach ( $blocks as $item ) {
+        if ( 'core/pattern' === $item['blockName'] ) {
+            $slug = $item['attrs']['slug'] ?? '';
+            $key = is_string( $slug ) ? 'pattern:' . $slug : '';
+            $registry = WP_Block_Patterns_Registry::get_instance();
+            if ( ! $key || isset( $seen[ $key ] ) || ! $registry->is_registered( $slug ) ) {
+                continue;
+            }
+            $pattern = $registry->get_registered( $slug );
+            $next_seen = $seen;
+            $next_seen[ $key ] = true;
+            $expanded = array_merge( $expanded, bc_practice_expand_content_blocks( parse_blocks( $pattern['content'] ), $next_seen, $depth + 1 ) );
+            continue;
+        }
         if ( 'core/block' === $item['blockName'] && ! empty( $item['attrs']['ref'] ) ) {
             // Preserve WordPress's per-instance overrides and their binding context.
             // These references render natively and are omitted from the heading map.

@@ -84,7 +84,7 @@
                     }),
                     el(c.PanelBody, { title: 'Add a section' },
                         el(c.Button, { variant: 'secondary', disabled: sections.length >= 20, onClick: function () { props.setAttributes({ sections: sections.concat({ label: 'New section', type: 'tree', rootId: 0 }) }); } }, 'Add menu section'),
-                        el('p', {}, 'Keep the top bar short. Use Top-level topic pages for Browse HR topics, then choose the Forms, Tools and systems, Policies and agreements, and Get support parent pages for their sections.')
+                        el('p', {}, 'Keep the top bar short. Choose published parent pages for the main sections. Use each page’s Mega-menu visibility setting to stop expanding a guide or omit a branch.')
                     ),
                     el(c.PanelBody, { title: 'Optional support link', initialOpen: false },
                         el(c.TextControl, { label: 'Support link text', value: a.supportLabel, onChange: function (v) { props.setAttributes({ supportLabel: v }); } }),

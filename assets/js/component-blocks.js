@@ -74,7 +74,7 @@
         edit: function (props) {
             var inner = useInnerBlocksProps(useBlockProps({ className: 'bc-resource-tabs' }), {
                 allowedBlocks: ['bc-practice/resource-panel'],
-                template: [['bc-practice/resource-panel', { title: 'Business resources' }], ['bc-practice/resource-panel', { title: 'Employee resources' }]]
+                template: [['bc-practice/resource-panel', { title: 'Getting started' }], ['bc-practice/resource-panel', { title: 'Guidance and tools' }]]
             });
             return el(wp.element.Fragment, {},
                 el(wp.blockEditor.InspectorControls, {},

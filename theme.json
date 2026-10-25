@@ -352,6 +352,11 @@
       "name": "footer",
       "title": "Footer",
       "area": "footer"
+    },
+    {
+      "name": "site-notice",
+      "title": "Site notice",
+      "area": "uncategorized"
     }
   ],
   "customTemplates": [
@@ -363,43 +368,8 @@
       ]
     },
     {
-      "name": "bc-detail-content",
-      "title": "Detailed content page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
       "name": "bc-long-reference",
-      "title": "Long reference page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "bc-banner-image-compact",
-      "title": "Compact image title",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "bc-banner-image-tall",
-      "title": "Taller image title",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "bc-banner-solid-compact",
-      "title": "Compact solid-colour title",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "bc-banner-solid-tall",
-      "title": "Taller solid-colour title",
+      "title": "Guide and reference",
       "postTypes": [
         "page"
       ]

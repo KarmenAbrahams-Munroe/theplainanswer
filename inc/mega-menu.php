@@ -14,7 +14,6 @@ function bc_practice_mega_attributes() {
 
 add_action( 'init', function () {
     $version = wp_get_theme()->get( 'Version' );
-    register_block_pattern_category( 'bc-navigation', array( 'label' => __( 'B.C. navigation', 'bc-practice' ) ) );
     wp_register_script( 'bc-practice-mega-editor', get_theme_file_uri( 'assets/js/mega-menu-editor.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-api-fetch', 'wp-server-side-render', 'wp-html-entities' ), $version, true );
     wp_add_inline_script( 'bc-practice-mega-editor', 'window.bcPracticeMegaAttributes = ' . wp_json_encode( bc_practice_mega_attributes() ) . ';', 'before' );
     register_block_type( 'bc-practice/mega-menu', array(
@@ -47,7 +46,7 @@ function bc_practice_mega_pages() {
             'post_type' => 'page', 'post_status' => 'publish', 'posts_per_page' => -1,
             'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC', 'ID' => 'ASC' ),
             'no_found_rows' => true, 'ignore_sticky_posts' => true,
-            'update_post_meta_cache' => false, 'update_post_term_cache' => false,
+            'update_post_meta_cache' => true, 'update_post_term_cache' => false,
             'suppress_filters' => false,
         ) );
     }
@@ -69,7 +68,7 @@ function bc_practice_mega_nodes( $parent, $groups, $seen = array(), $depth = 0 )
     }
     $nodes = array();
     foreach ( $groups[ $parent ] as $page ) {
-        if ( isset( $seen[ $page->ID ] ) ) {
+        if ( isset( $seen[ $page->ID ] ) || ! bc_practice_in_mega_menu( $page->ID ) ) {
             continue;
         }
         $next = $seen;
@@ -83,7 +82,7 @@ function bc_practice_mega_nodes( $parent, $groups, $seen = array(), $depth = 0 )
             'title' => bc_practice_mega_plain_text( bc_practice_card_title( $page ) ),
             'url' => esc_url_raw( get_permalink( $page ) ),
             'summary' => bc_practice_mega_summary( $page ),
-            'children' => bc_practice_mega_nodes( $page->ID, $groups, $next, $depth + 1 ),
+            'children' => 'page' === bc_practice_navigation_mode( $page->ID ) ? array() : bc_practice_mega_nodes( $page->ID, $groups, $next, $depth + 1 ),
         );
     }
     return $nodes;
@@ -119,11 +118,11 @@ function bc_practice_mega_sections( $attributes ) {
             continue;
         }
         $root_id = isset( $setting['rootId'] ) && is_scalar( $setting['rootId'] ) ? absint( $setting['rootId'] ) : 0;
-        if ( $root_id && ! isset( $by_id[ $root_id ] ) ) {
+        if ( $root_id && ( ! isset( $by_id[ $root_id ] ) || ! bc_practice_in_mega_menu( $root_id ) ) ) {
             continue; // A removed, draft or private root never falls back to the entire site.
         }
         $root = $root_id ? $by_id[ $root_id ] : null;
-        $children = bc_practice_mega_nodes( $root_id, $groups, $root_id ? array( $root_id => true ) : array() );
+        $children = $root_id && 'page' === bc_practice_navigation_mode( $root_id ) ? array() : bc_practice_mega_nodes( $root_id, $groups, $root_id ? array( $root_id => true ) : array() );
         if ( ! $root_id ) {
             // Utility sections have their own top-level entry, so do not duplicate them as topics.
             $children = array_values( array_filter( $children, function ( $node ) use ( $separate_roots ) { return ! in_array( $node['id'], $separate_roots, true ); } ) );

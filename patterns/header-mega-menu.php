@@ -2,7 +2,9 @@
 /**
  * Title: Header with mega menu
  * Slug: bc-practice/header-mega-menu
- * Categories: bc-navigation
+ * Categories: bc-site-structure
+ * Post Types: wp_template, wp_template_part
+ * Keywords: header, menu, navigation
  * Block Types: core/template-part/header
  * Description: Site title, search and a page-driven drill-down menu.
  * Inserter: true

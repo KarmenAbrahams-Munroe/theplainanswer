@@ -69,7 +69,6 @@ add_filter( 'block_categories_all', function ( $categories ) {
 } );
 
 add_action( 'init', function () {
-    register_block_pattern_category( 'bc-components', array( 'label' => __( 'B.C. components', 'bc-practice' ) ) );
     $version = wp_get_theme()->get( 'Version' );
     wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ), $version, true );
     register_block_type( 'bc-practice/steps', array(
@@ -98,6 +97,7 @@ add_action( 'init', function () {
 add_action( 'enqueue_block_assets', function () {
     wp_enqueue_style( 'bc-practice-components', get_theme_file_uri( 'assets/css/components.css' ), array( 'bc-practice-page-templates' ), wp_get_theme()->get( 'Version' ) );
     wp_enqueue_style( 'bc-practice-banners', get_theme_file_uri( 'assets/css/banners.css' ), array( 'bc-practice-components' ), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'bc-practice-framework', get_theme_file_uri( 'assets/css/page-framework.css' ), array( 'bc-practice-banners' ), wp_get_theme()->get( 'Version' ) );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
@@ -124,10 +124,9 @@ function bc_practice_render_accordion_controls() {
 function bc_practice_render_last_updated( $attributes, $content, $block ) {
     $id = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : get_the_ID();
     $post = get_post( $id );
-    $date = $post ? get_post_datetime( $post, 'modified' ) : false;
+    $date = bc_practice_updated_date( $post );
     if ( ! $date ) {
-        return bc_practice_empty_preview( __( 'The last saved update date will appear here.', 'bc-practice' ) );
+        return bc_practice_empty_preview( __( 'The page layout displays this date automatically when enabled. It uses the last saved modification date.', 'bc-practice' ) );
     }
-    $format = get_option( 'date_format' ) ?: 'F j, Y';
-    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-last-updated' ) ) . '>' . bc_practice_component_svg( 'calendar' ) . '<p>' . esc_html__( 'Last updated:', 'bc-practice' ) . ' <time datetime="' . esc_attr( $date->format( DATE_W3C ) ) . '">' . esc_html( wp_date( $format, $date->getTimestamp() ) ) . '</time></p></div>';
+    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-last-updated' ) ) . '>' . bc_practice_component_svg( 'calendar' ) . '<p>' . esc_html__( 'Last updated:', 'bc-practice' ) . ' ' . $date . '</p></div>';
 }

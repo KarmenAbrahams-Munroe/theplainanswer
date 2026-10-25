@@ -17,6 +17,10 @@ add_action( 'enqueue_block_assets', function () {
 require_once get_theme_file_path( 'inc/page-templates.php' );
 require_once get_theme_file_path( 'inc/components.php' );
 require_once get_theme_file_path( 'inc/mega-menu.php' );
+require_once get_theme_file_path( 'inc/page-settings.php' );
+require_once get_theme_file_path( 'inc/page-framework.php' );
+require_once get_theme_file_path( 'inc/pattern-library.php' );
+require_once get_theme_file_path( 'inc/template-updates.php' );
 
 function my_custom_theme_setup() {
     // 1. Disable the remote patterns from loading from WordPress.org

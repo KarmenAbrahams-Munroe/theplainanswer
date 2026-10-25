@@ -26,6 +26,22 @@
             edit: function (props) {
                 var postId = props.context && props.context.postId;
                 var controls = null;
+                if (slug === 'page-title' || slug === 'page-information') {
+                    controls = el(wp.blockEditor.InspectorControls, {},
+                        el(wp.components.PanelBody, { title: 'Page information' },
+                            el(wp.components.ToggleControl, {
+                                label: 'Show Last updated', checked: !!props.attributes.showUpdated,
+                                help: 'Uses the page’s saved modification date.',
+                                onChange: function (value) { props.setAttributes({ showUpdated: value }); }
+                            }),
+                            el(wp.components.ToggleControl, {
+                                label: 'Show audience and applicability', checked: props.attributes.showAudience !== false,
+                                help: 'Only explicitly selected page terms appear.',
+                                onChange: function (value) { props.setAttributes({ showAudience: value }); }
+                            })
+                        )
+                    );
+                }
                 if (slug === 'icon') {
                     controls = el(wp.blockEditor.InspectorControls, {},
                         el(wp.components.PanelBody, { title: 'Icon' },
