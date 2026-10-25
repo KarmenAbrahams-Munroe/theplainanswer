@@ -61,9 +61,9 @@
     function PageSettings() {
         var data = wp.data.useSelect(function (select) {
             var editor = select('core/editor');
-            return { id: editor.getCurrentPostId(), type: editor.getCurrentPostType(), meta: editor.getEditedPostAttribute('meta') || {}, template: editor.getEditedPostAttribute('template'), excerpt: editor.getEditedPostAttribute('excerpt') || '' };
+            return { id: window.bcPageWorkflow ? window.bcPageWorkflow.page.source_id : editor.getCurrentPostId(), type: editor.getCurrentPostType(), meta: editor.getEditedPostAttribute('meta') || {}, template: editor.getEditedPostAttribute('template'), excerpt: editor.getEditedPostAttribute('excerpt') || '' };
         }, []);
-        if (data.type !== 'page') { return null; }
+        if ((window.bcPracticePageEditorTypes || ['page']).indexOf(data.type) === -1) { return null; }
         function update(key, value) {
             var next = Object.assign({}, data.meta); next[key] = value;
             wp.data.dispatch('core/editor').editPost({ meta: next });

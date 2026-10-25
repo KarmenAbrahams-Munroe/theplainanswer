@@ -1,7 +1,15 @@
-B.C. practice — WordPress block theme, version 1.12.0
+B.C. practice — WordPress block theme, version 1.13.0
+
+Optional shared-draft workflow — version 1.13.0
+Install B.C. page workflow 0.1.0 separately to test one shared draft per page, intentional Save draft checkpoints, authenticated saved-version previews, publication summaries, history/reset/restore and the Site pages editor drawer. Read the plugin's README.txt for its workflow, installation order, scope and host/cache requirements. This is a practice/staging release, not a production-readiness claim.
+
+The integration resolves a private working record to its canonical page context for dynamic editor blocks. Preview-only hooks supply the saved template, title appearance, featured image, audience/applicability fields, guide-start flag and related-page choices. Automatic child-page cards continue using the canonical page's actual published children. Public requests retain native metadata and thumbnail behaviour. No draft values are written into shared public post caches. Feedback is disabled in draft previews. Without the plugin, normal public rendering and editing continue.
+
+Validation for version 1.13.0
+Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.11.1 (the usability fixes patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
+This patch expects version 1.12.0 (the page refinements patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -117,6 +125,8 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.13.0: Request-scoped integration with the optional B.C. page workflow plugin for private working records and saved page previews, including presentation settings, templates, images, audience fields and related-page selections.
+1.12.0: Direct mega-menu heading links, removal confirmations, translucent taller image titles, editor-selected page-end related cards and refined feedback placement.
 1.11.1: Native accordion-body editing and an Edit panel content action; full-width reading introductions; clearer parent links and tabs; corrected heading tracking; compact bulk accordion controls.
 1.11.0: Direct accordion-heading editing, labelled collection appenders, item actions, searchable icon toolbar, clearer introduction/source fields and editor-only controls.
 1.10.0: Automatic excerpt-based navigation cards, aligned reading titles, sticky two-view navigation, mobile page-end section menu and clearer ordered Previous/Next links.

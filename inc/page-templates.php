@@ -49,6 +49,7 @@ add_action( 'enqueue_block_assets', function () {
 function bc_practice_context_page( $block ) {
     $id = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : get_the_ID();
     $page = get_post( $id );
+    $page = apply_filters( 'bc_practice_context_page', $page, $block );
     return $page && 'page' === $page->post_type ? $page : null;
 }
 

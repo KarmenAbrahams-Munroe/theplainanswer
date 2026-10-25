@@ -42,10 +42,10 @@ function bc_practice_page_information( $page, $updated, $audience ) {
     $editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
     if ( $audience && ( $editor || empty( $GLOBALS['bc_practice_audience'][ $page->ID ] ) ) ) {
         foreach ( array( 'bc_audience' => 'Written for', 'bc_applicability' => 'Applies to' ) as $taxonomy => $label ) {
-            if ( 'bc_audience' === $taxonomy && 'bc-topic-landing' === get_page_template_slug( $page->ID ) ) {
+            if ( 'bc_audience' === $taxonomy && 'bc-topic-landing' === bc_practice_page_meta( $page->ID, '_wp_page_template' ) ) {
                 continue;
             }
-            $terms = get_the_terms( $page, $taxonomy );
+            $terms = apply_filters( 'bc_practice_page_terms', get_the_terms( $page, $taxonomy ), $page, $taxonomy );
             if ( ! $terms || is_wp_error( $terms ) ) {
                 continue;
             }
@@ -83,7 +83,8 @@ function bc_practice_render_page_title( $attributes, $content, $block ) {
     $style = bc_practice_title_style( $page->ID );
     $image = '';
     if ( 0 === strpos( $style, 'image-' ) && ! post_password_required( $page ) ) {
-        $image = get_the_post_thumbnail( $page, 'large', array( 'alt' => '', 'class' => 'bc-title-image', 'loading' => 'eager' ) );
+        $image_attributes = array( 'alt' => '', 'class' => 'bc-title-image', 'loading' => 'eager' );
+        $image = apply_filters( 'bc_practice_page_image', get_the_post_thumbnail( $page, 'large', $image_attributes ), $page, $image_attributes );
     }
     if ( 'plain' === $style || ( 0 === strpos( $style, 'image-' ) && ! $image ) ) {
         return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-page-title bc-page-hero' ) ) . '>' . $copy . $information . '</div>';
@@ -181,11 +182,11 @@ function bc_practice_render_related_pages() {
     if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ! is_singular( 'page' ) ) {
         return '';
     }
-    $page = get_post( get_queried_object_id() );
-    if ( ! $page || ! is_post_publicly_viewable( $page ) || ! empty( $page->post_password ) || ! empty( $GLOBALS['bc_practice_related_rendered'][ $page->ID ] ) ) {
+    $page = apply_filters( 'bc_practice_context_page', get_post( get_queried_object_id() ), null );
+    if ( ! $page || ( ! is_post_publicly_viewable( $page ) && ! apply_filters( 'bc_practice_page_preview', false, $page->ID ) ) || ! empty( $page->post_password ) || ! empty( $GLOBALS['bc_practice_related_rendered'][ $page->ID ] ) ) {
         return '';
     }
-    $ids = get_post_meta( $page->ID, '_bc_related_pages', true );
+    $ids = bc_practice_page_meta( $page->ID, '_bc_related_pages' );
     $ids = is_array( $ids ) ? array_values( array_diff( array_unique( array_filter( array_map( 'absint', $ids ) ) ), array( $page->ID ) ) ) : array();
     if ( ! $ids ) {
         return '';
@@ -211,7 +212,7 @@ function bc_practice_render_related_pages() {
 }
 
 function bc_practice_render_footer_feedback( $attributes = array(), $content = '', $block = null ) {
-    $form = function_exists( 'bc_pf_render_footer' ) ? bc_pf_render_footer() : '';
+    $form = apply_filters( 'bc_practice_footer_feedback', function_exists( 'bc_pf_render_footer' ) ? bc_pf_render_footer() : '' );
     $strip = $form ? '<div class="bc-footer-feedback"><div class="bc-page-shell">' . $form . '</div></div>' : '';
     return $strip . bc_practice_render_related_pages();
 }

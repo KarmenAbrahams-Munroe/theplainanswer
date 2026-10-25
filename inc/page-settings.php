@@ -2,6 +2,10 @@
 /** Page presentation, navigation boundaries and site-managed audience terms. */
 defined( 'ABSPATH' ) || exit;
 
+function bc_practice_page_meta( $id, $key ) {
+    return apply_filters( 'bc_practice_page_meta', get_post_meta( $id, $key, true ), $id, $key );
+}
+
 function bc_practice_title_styles() {
     return array( '' => 'Plain', 'plain' => 'Plain', 'image-compact' => 'Compact image', 'image-tall' => 'Taller image', 'solid-compact' => 'Compact solid colour', 'solid-tall' => 'Taller solid colour' );
 }
@@ -11,11 +15,11 @@ function bc_practice_legacy_templates() {
 }
 
 function bc_practice_title_style( $id ) {
-    $style = get_post_meta( $id, '_bc_title_style', true );
+    $style = bc_practice_page_meta( $id, '_bc_title_style' );
     if ( $style && isset( bc_practice_title_styles()[ $style ] ) ) {
         return $style;
     }
-    return bc_practice_legacy_templates()[ get_page_template_slug( $id ) ] ?? 'plain';
+    return bc_practice_legacy_templates()[ bc_practice_page_meta( $id, '_wp_page_template' ) ] ?? 'plain';
 }
 
 function bc_practice_navigation_mode( $id ) {
@@ -39,7 +43,7 @@ function bc_practice_in_mega_menu( $id ) {
 /** The closest explicitly marked guide wins for nested guides. */
 function bc_practice_guide_root( $id ) {
     foreach ( array_merge( array( $id ), get_post_ancestors( $id ) ) as $candidate ) {
-        if ( get_post_meta( $candidate, '_bc_guide_start', true ) && 'publish' === get_post_status( $candidate ) ) {
+        if ( bc_practice_page_meta( $candidate, '_bc_guide_start' ) && ( 'publish' === get_post_status( $candidate ) || apply_filters( 'bc_practice_page_preview', false, $candidate ) ) ) {
             return (int) $candidate;
         }
     }
@@ -83,9 +87,10 @@ add_action( 'init', function () {
 
 add_action( 'enqueue_block_editor_assets', function () {
     $screen = get_current_screen();
-    if ( ! $screen || 'page' !== $screen->post_type || 'post' !== $screen->base ) {
+    if ( ! $screen || ! in_array( $screen->post_type, apply_filters( 'bc_practice_page_editor_types', array( 'page' ) ), true ) || 'post' !== $screen->base ) {
         return;
     }
     wp_enqueue_script( 'bc-practice-page-settings', get_theme_file_uri( 'assets/js/page-settings.js' ), array( 'wp-plugins', 'wp-editor', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-core-data', 'wp-html-entities' ), wp_get_theme()->get( 'Version' ), true );
+    wp_add_inline_script( 'bc-practice-page-settings', 'window.bcPracticePageEditorTypes = ' . wp_json_encode( apply_filters( 'bc_practice_page_editor_types', array( 'page' ) ) ) . ';', 'before' );
     wp_add_inline_script( 'bc-practice-page-settings', 'window.bcPracticeLegacyTemplates = ' . wp_json_encode( bc_practice_legacy_templates() ) . ';', 'before' );
 } );
