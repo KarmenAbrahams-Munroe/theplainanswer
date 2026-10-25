@@ -31,7 +31,7 @@ function bc_practice_reading_data( $page ) {
     $root_page = get_post( $root );
     $section = '';
     if ( $items && $root_page && 'publish' === $root_page->post_status ) {
-        $section = '<ul><li class="bc-section-overview"><a href="' . esc_url( get_permalink( $root ) ) . '"' . ( (int) $root === (int) $page->ID ? ' aria-current="page"' : '' ) . '>Overview</a></li>' . $items . '</ul>';
+        $section = '<ul><li class="bc-section-overview"><a href="' . esc_url( get_permalink( $root ) ) . '"' . ( (int) $root === (int) $page->ID ? ' aria-current="page"' : '' ) . '>' . esc_html( bc_practice_card_title( $root_page ) ) . '</a></li>' . $items . '</ul>';
     }
     $headings = post_password_required( $page ) ? array() : bc_practice_prepared_content( $page->post_content )['headings'];
     if ( count( $headings ) < 2 ) {
@@ -62,7 +62,7 @@ function bc_practice_render_reading_navigation( $attributes, $content, $block ) 
     }
     $id = $data['id'];
     $html = '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-reading-navigation' ) ) . ' data-bc-reading-navigation data-section-id="' . esc_attr( $id . '-section-pane' ) . '" data-section-root="' . (int) $data['root'] . '">';
-    $html .= '<div class="bc-reading-tools" data-reading-tools hidden><h2>' . esc_html( $data['section'] ? $data['title'] : 'On this page' ) . '</h2><div class="bc-reading-tabs" role="tablist" aria-label="Page and section navigation" data-reading-tabs>';
+    $html .= '<div class="bc-reading-tools" data-reading-tools hidden><h2 data-reading-single-label hidden>' . esc_html( $data['headings'] ? 'On this page' : 'In this section' ) . '</h2><div class="bc-reading-tabs" role="tablist" aria-label="Page and section navigation" data-reading-tabs>';
     if ( $data['headings'] ) {
         $html .= '<button type="button" id="' . esc_attr( $id . '-page-tab' ) . '" role="tab" aria-controls="' . esc_attr( $id . '-page-pane' ) . '" aria-selected="true" tabindex="0" data-reading-tab="page">On this page</button>';
     }

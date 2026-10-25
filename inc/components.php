@@ -128,7 +128,7 @@ function bc_practice_render_icon( $attributes ) {
 
 function bc_practice_render_accordion_controls() {
     $editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
-    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-accordion-controls' ) ) . ' data-bc-accordion-controls data-expanded-message="' . esc_attr__( 'All sections expanded.', 'bc-practice' ) . '" data-collapsed-message="' . esc_attr__( 'All sections collapsed.', 'bc-practice' ) . '"' . ( $editor ? '' : ' hidden' ) . '><div class="bc-accordion-actions"><button type="button" data-bc-expand-all' . ( $editor ? ' disabled' : '' ) . '>' . esc_html__( 'Expand all', 'bc-practice' ) . '</button><button type="button" data-bc-collapse-all' . ( $editor ? ' disabled' : '' ) . '>' . esc_html__( 'Collapse all', 'bc-practice' ) . '</button></div><span class="screen-reader-text" data-bc-accordion-status aria-live="polite"></span></div>';
+    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-accordion-controls' ) ) . ' data-bc-accordion-controls data-expanded-message="' . esc_attr__( 'All sections expanded.', 'bc-practice' ) . '" data-collapsed-message="' . esc_attr__( 'All sections collapsed.', 'bc-practice' ) . '"' . ( $editor ? '' : ' hidden' ) . '><div class="bc-accordion-actions"><button type="button" data-bc-expand-all' . ( $editor ? ' disabled' : '' ) . '>' . esc_html__( 'Expand all', 'bc-practice' ) . '</button><span aria-hidden="true">|</span><button type="button" data-bc-collapse-all' . ( $editor ? ' disabled' : '' ) . '>' . esc_html__( 'Collapse all', 'bc-practice' ) . '</button></div><span class="screen-reader-text" data-bc-accordion-status aria-live="polite"></span></div>';
 }
 
 function bc_practice_render_last_updated( $attributes, $content, $block ) {

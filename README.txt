@@ -1,7 +1,7 @@
-B.C. practice — WordPress block theme, version 1.11.0
+B.C. practice — WordPress block theme, version 1.11.1
 
 Update an existing GitHub-managed theme
-This patch expects version 1.10.0 (the navigation refinement patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
+This patch expects version 1.11.0 (the editor usability patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -44,7 +44,7 @@ A parent's boundary covers newly created descendants and also applies when a des
 For a multi-page guide, mark the overview page This page starts a guide. Choose Show page only when the mega menu should stop there. Use Topic landing page for the overview; its child-page cards are supplied automatically. Add optional body content if needed. Use Guide and reference for chapters. In this section is scoped to the closest marked guide; other content pages use their published parent’s section. Previous/next chapter links follow published pages in hierarchy and Page order, with title/ID ties resolved consistently. Draft/private chapters are omitted. Nested guides keep their own chapter sequence. Guide order is editorial page order, not publication date.
 
 Reading navigation and page-end links — version 1.10.0
-On desktop, Pages and Guide and reference use a sidebar with On this page and In this section. On this page is the default reading view when at least two eligible headings exist. The reader selects another view explicitly; scrolling updates only the current-heading marker. The tabs and section title remain above the selected list. Long lists use the available viewport height and can scroll independently. The sidebar also respects the article height, so a long section menu does not add a large blank region below a short article. A single available view has no redundant tab selector. At very short viewport heights (420px or below), navigation remains in normal flow so all controls can be reached.
+On desktop, Pages and Guide and reference use a sidebar with On this page and In this section. On this page is the default reading view when at least two eligible headings exist. The reader selects another view explicitly; scrolling updates only the current-heading marker. The tabs remain above the selected list. The section’s actual parent-page title is a clickable first link inside In this section; it is not repeated above the tabs. Long lists use the available viewport height and can scroll independently. The sidebar also respects the article height, so a long section menu does not add a large blank region below a short article. A single available view has no redundant tab selector. At very short viewport heights (420px or below), navigation remains in normal flow so all controls can be reached.
 
 At 900px and below, On this page is a native disclosure near the introduction. In this section appears after the article and any Previous/Next links, before feedback and the footer. A small In this section link near the top opens that page-end menu. The same section-list node moves between these locations on breakpoint changes, with keyboard focus retained; duplicate link lists are not generated. Without JavaScript, native disclosures and ordinary links remain available. Print omits the navigation controls and preserves article content.
 
@@ -69,10 +69,15 @@ Pattern library
 - Site structure: header and mega-menu patterns for template editing.
 Patterns include descriptive search keywords and generic sample wording. Replace sample copy and add real link destinations before publishing. The five earlier page-starter slugs remain hidden compatibility aliases. Existing inserted blocks keep their saved copy; the theme does not rewrite authored pages.
 
+Usability corrections — version 1.11.1
+Plain reading-page introductions use the full title-column width. Body text keeps its existing reading measure. The desktop navigation starts with On this page / In this section, with single-line tab labels. In this section begins with the named, clickable parent page. Single-view navigation uses its view label in place of the tabs.
+
+Heading tracking accounts for both the scrolling container’s padding and each target’s scroll margin, including the signed-in admin-bar offset. At the end of the page it can identify a final section whose heading cannot scroll to the top. Expand all / Collapse all use compact underlined buttons separated by a decorative pipe. Keyboard activation, focus outlines and status messages are retained.
+
 Editing components — version 1.11.0
 Unsynced patterns use normal block editing, including on WordPress 7.x. This removes the extra Edit pattern step for independent copies. Synced patterns, template parts and explicit layout locks retain WordPress controls.
 
-Accordion panels have a dedicated Panel heading field and an always-visible content area in the editor. Click the heading field to replace it; click a paragraph, list or other content block to edit the body. Open when the page loads controls the published panel state. The ordinary unstyled WordPress Details block retains its native editor.
+Accordion panels have a dedicated Panel heading field and an always-visible native nested-block area in the editor. When the whole panel is selected, Edit panel content in its toolbar focuses an existing body block, or starts a paragraph if the body is empty. Click the heading field to replace it; click a paragraph, list or other content block to edit the body. Open when the page loads controls the published panel state. The ordinary unstyled WordPress Details block retains its native editor.
 
 Use Add accordion panel beneath a group, Add step beneath a process, or Add resource group beneath tabbed resources. New items start with editable placeholders; resource-group headings become the tab labels. A selected panel, step or resource group has Move up, Move down, Duplicate and Remove controls. Undo can restore removals. Numbering follows step order automatically. Roadmap steps added through Add step include an icon.
 
@@ -99,7 +104,10 @@ Sources and licences
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
 This is a custom practice theme, not an official B.C. government theme or an accessibility certification.
 
-Validation for version 1.11.0
+Validation for version 1.11.1
+Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all nine theme scripts passed JavaScript syntax checks. Installed checks covered pointer re-entry into panel paragraphs after List View and other selections, Edit panel content focus, saving/reopening and continued editing without invalid blocks. Front-end checks covered introduction width, single-line selected/unselected tabs, the parent link destination, anonymous/signed-in anchor tracking, accordion height changes, page-end tracking, compact keyboard-operated bulk controls, 320–1440px reflow, mobile section placement and native no-JavaScript navigation/disclosures. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content violations. The exact reported intermittent body lock was not reproduced on clean sample content; the native-body change and explicit entry action were validated with repeated editing workflows.
+
+Earlier validation for version 1.11.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. All 62 theme PHP files passed syntax checks on PHP 7.4.33 and 8.3.33; all nine theme scripts passed JavaScript syntax checks. Installed editor checks covered repeated accordion-heading edits, adding/reordering/duplicating/removing panels and steps, Undo, resource-group names and order, all labelled collection appenders, keyboard Add activation, searchable icon selection, the introduction field, explicit layout locks, native pattern insertion and editable starter content. Checks also covered toolbar item duplication, new roadmap icons, clean pattern previews, saving/reopening without invalid-block recovery, public accordion/tab behaviour, editor-control exclusion and mobile reflow. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content violations.
 
 Earlier validation for version 1.10.0
@@ -109,6 +117,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.11.1: Native accordion-body editing and an Edit panel content action; full-width reading introductions; clearer parent links and tabs; corrected heading tracking; compact bulk accordion controls.
 1.11.0: Direct accordion-heading editing, labelled collection appenders, item actions, searchable icon toolbar, clearer introduction/source fields and editor-only controls.
 1.10.0: Automatic excerpt-based navigation cards, aligned reading titles, sticky two-view navigation, mobile page-end section menu and clearer ordered Previous/Next links.
 1.9.0: Consolidated page layouts, independent title appearance, reviewable legacy migration, grouped/generic patterns, basic text and heading-free callout patterns, shared spacing, audience/applicability fields, guide boundaries and footer feedback integration.

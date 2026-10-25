@@ -1,12 +1,12 @@
 /* Page titles and reading content share a column; navigation has its own rail. */
 .bc-template-reading { --bc-reading-width: 52rem; }
 .bc-template-reference.bc-template-reading { --bc-reading-width: 46rem; }
-.bc-reading-layout { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); grid-template-areas: "rail title" "rail body"; grid-template-rows: auto 1fr; gap: 1.75rem clamp(2rem, 4vw, 3.5rem); align-items: start; padding-block: .25rem 4rem; }
+.bc-reading-layout { display: grid; grid-template-columns: minmax(14rem, 16rem) minmax(0, 1fr); grid-template-areas: "rail title" "rail body"; grid-template-rows: auto 1fr; gap: 1.75rem clamp(2rem, 4vw, 3.5rem); align-items: start; padding-block: .25rem 4rem; }
 .bc-reading-layout > * { min-width: 0; margin-block: 0; }
 .bc-reading-title { grid-area: title; width: 100%; max-width: var(--bc-reading-width, 52rem); }
 .bc-reading-title .bc-page-title { margin: 0; }
 .bc-reading-title .bc-page-hero { padding-block-start: .25rem; }
-.bc-reading-title .bc-page-introduction { max-width: 65ch; overflow-wrap: anywhere; }
+.bc-reading-title .bc-page-introduction { width: 100%; max-width: none; overflow-wrap: anywhere; }
 .bc-reading-body { grid-area: body; width: 100%; max-width: var(--bc-reading-width, 52rem); }
 .bc-reading-body > .wp-block-post-content { margin-block-start: 0; }
 .bc-reading-body > .wp-block-post-content > :first-child { margin-block-start: 0; }
@@ -16,10 +16,10 @@
 .bc-reading-layout:not(:has([data-bc-reading-navigation]:not([hidden]))) > .bc-reading-rail { display: none; }
 .bc-reading-navigation { min-width: 0; }
 .bc-reading-navigation [hidden], .bc-section-end [hidden] { display: none !important; }
-.bc-reading-tools { padding: 1rem 1rem 0; flex: none; background: var(--bcds-surface-color-background-light-blue); border-bottom: 1px solid var(--bcds-surface-color-border-default); }
-.bc-reading-tools h2 { color: var(--bcds-surface-color-primary-default); font-size: 1.125rem; line-height: 1.4; margin: 0 0 .875rem; overflow-wrap: anywhere; }
-.bc-reading-tabs { display: flex; gap: .5rem; margin-inline: -.5rem; }
-.bc-reading-tabs button { flex: 1; min-width: 0; min-height: 44px; padding: .65rem .35rem; margin: 0; font: inherit; font-size: .9375rem; line-height: 1.35; color: var(--bcds-typography-color-link); background: transparent; border: 0; border-bottom: 3px solid transparent; cursor: pointer; overflow-wrap: anywhere; }
+.bc-reading-tools { padding: 0 .5rem; flex: none; background: var(--bcds-surface-color-background-light-blue); border-bottom: 1px solid var(--bcds-surface-color-border-default); }
+.bc-reading-tools h2 { color: var(--bcds-surface-color-primary-default); font-size: 1.125rem; line-height: 1.4; margin: 0; padding: .75rem .5rem; overflow-wrap: anywhere; }
+.bc-reading-tabs { display: flex; gap: 0; margin: 0; }
+.bc-reading-tabs button { flex: 1; min-width: 0; min-height: 44px; padding: .65rem .2rem; margin: 0; font: inherit; font-size: .9375rem; line-height: 1.35; color: var(--bcds-typography-color-link); background: transparent; border: 0; border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap; }
 .bc-reading-tabs button:hover { background: white; }
 .bc-reading-tabs button[aria-selected="true"] { color: var(--bcds-surface-color-primary-default); border-bottom-color: var(--bcds-surface-color-primary-default); font-weight: 700; }
 .bc-reading-tabs button:focus-visible { outline-offset: -4px; }
@@ -38,6 +38,8 @@
 .bc-reading-section-links ul { list-style: none; padding: 0; margin: 0; }
 .bc-reading-section-links ul ul { border-inline-start: 1px solid var(--bcds-surface-color-border-default); padding-inline-start: .5rem; margin-inline-start: .75rem; }
 .bc-reading-section-links li { margin: 0; }
+.bc-reading-section-links .bc-section-overview { margin-bottom: .5rem; padding-bottom: .5rem; border-bottom: 1px solid var(--bcds-surface-color-border-default); }
+.bc-reading-section-links .bc-section-overview > a { font-weight: 700; text-decoration: underline; }
 .bc-reading-section-links .bc-topic-row { display: flex; align-items: stretch; min-width: 0; }
 .bc-reading-section-links a { display: block; border-inline-start: 3px solid transparent; padding: .65rem .75rem; font-size: 1rem; line-height: 1.45; text-decoration: none; overflow-wrap: anywhere; }
 .bc-reading-section-links a:hover { text-decoration: underline; background: var(--bcds-surface-color-background-light-gray); }

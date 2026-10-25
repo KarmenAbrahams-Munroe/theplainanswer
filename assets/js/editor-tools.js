@@ -104,8 +104,18 @@
     }
     function PanelEdit(props) {
         var blockProps = wp.blockEditor.useBlockProps({ className: 'bc-editor-accordion-panel' });
-        var inner = wp.blockEditor.useInnerBlocksProps({ className: 'bc-editor-accordion-content' }, { renderAppender: wp.blockEditor.InnerBlocks.ButtonBlockAppender });
+        async function editContent() {
+            var editor = wp.data.select(store), children = editor.getBlocks(props.clientId), first = children[0];
+            if (!first && editor.canInsertBlockType('core/paragraph', props.clientId)) {
+                first = paragraph();
+                await wp.data.dispatch(store).insertBlocks([first], 0, props.clientId, false);
+            }
+            if (first && wp.data.select(store).getBlock(first.clientId)) { focusNew(first); }
+        }
         return el(wp.element.Fragment, {},
+            el(wp.blockEditor.BlockControls, {}, el(wp.components.ToolbarGroup, {},
+                el(wp.components.ToolbarButton, { onClick: editContent, label: __('Edit panel content', 'bc-practice') }, __('Edit panel content', 'bc-practice'))
+            )),
             el(wp.blockEditor.InspectorControls, {}, el(wp.components.PanelBody, { title: __('Accordion panel', 'bc-practice') },
                 el(wp.components.ToggleControl, { label: __('Open when the page loads', 'bc-practice'), checked: !!props.attributes.showContent, onChange: function (value) { props.setAttributes({ showContent: value }); }, help: __('Panels stay open in the editor so you can edit their content.', 'bc-practice') }),
                 wp.blocks.getBlockType('core/details').attributes.name && el(wp.components.TextControl, { label: __('Exclusive group name (optional)', 'bc-practice'), value: props.attributes.name || '', onChange: function (value) { props.setAttributes({ name: value || undefined }); }, help: __('Panels with the same name allow only one open at a time. Leave blank to use Expand all.', 'bc-practice') })
@@ -113,7 +123,9 @@
             el('div', blockProps,
                 el('span', { className: 'bc-editor-field-label' }, __('Panel heading', 'bc-practice')),
                 el(wp.blockEditor.RichText, { tagName: 'div', className: 'bc-editor-accordion-heading', identifier: 'summary', 'aria-label': __('Panel heading', 'bc-practice'), value: props.attributes.summary, placeholder: __('Enter a panel heading…', 'bc-practice'), onChange: function (summary) { props.setAttributes({ summary: summary }); } }),
-                el('div', inner),
+                el('div', { className: 'bc-editor-accordion-content', role: 'group', 'aria-label': __('Panel content', 'bc-practice') },
+                    el(wp.blockEditor.InnerBlocks, { renderAppender: wp.blockEditor.InnerBlocks.ButtonBlockAppender })
+                ),
                 el(ItemActions, { clientId: props.clientId, name: 'core/details', label: __('Panel controls', 'bc-practice') })
             )
         );

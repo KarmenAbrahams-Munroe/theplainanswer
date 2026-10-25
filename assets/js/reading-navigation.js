@@ -37,6 +37,7 @@
         var sectionDetails = sectionPane && sectionPane.querySelector('details');
         var tools = host.querySelector('[data-reading-tools]');
         var tablist = host.querySelector('[data-reading-tabs]');
+        var singleLabel = host.querySelector('[data-reading-single-label]');
         var tabs = Array.from(host.querySelectorAll('[data-reading-tab]'));
         var jump = host.querySelector('[data-reading-section-jump]');
         var selected = pagePane ? 'page' : 'section';
@@ -159,6 +160,7 @@
                 tools.hidden = false;
                 var both = Boolean(pagePane && sectionPane);
                 tablist.hidden = !both;
+                if (singleLabel) { singleLabel.hidden = both; }
                 [pagePane, sectionPane].filter(Boolean).forEach(function (pane) {
                     if (both) {
                         pane.setAttribute('role', 'tabpanel');
@@ -224,9 +226,18 @@
         function track() {
             sizeNavigation();
             if (!entries.length) { return; }
-            var offset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bc-sticky-offset')) || 24;
+            var rootStyle = getComputedStyle(document.documentElement);
+            var offset = parseFloat(rootStyle.getPropertyValue('--bc-sticky-offset')) || 24;
+            var padding = parseFloat(rootStyle.scrollPaddingTop) || 0;
             var current = entries[0];
-            entries.forEach(function (entry) { if (entry.target.getBoundingClientRect().top <= offset + 16) { current = entry; } });
+            entries.forEach(function (entry) {
+                var margin = parseFloat(getComputedStyle(entry.target).scrollMarginTop) || 0;
+                // Anchor alignment combines the scrolling container's padding and target margin.
+                if (entry.target.getBoundingClientRect().top <= Math.max(offset + 16, padding + margin + 2)) { current = entry; }
+            });
+            var last = entries[entries.length - 1];
+            var scroller = document.scrollingElement || document.documentElement;
+            if (Math.ceil(window.scrollY + window.innerHeight) >= scroller.scrollHeight - 2 && last.target.getBoundingClientRect().top < window.innerHeight) { current = last; }
             if (active !== current) {
                 entries.forEach(function (entry) { entry.link.removeAttribute('aria-current'); });
                 current.link.setAttribute('aria-current', 'location'); active = current;
