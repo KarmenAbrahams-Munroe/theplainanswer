@@ -4,6 +4,14 @@
     var __ = wp.i18n.__;
     var useBlockProps = wp.blockEditor.useBlockProps;
     var useInnerBlocksProps = wp.blockEditor.useInnerBlocksProps;
+    var tools = window.bcPracticeEditorTools;
+    function editable(edit) {
+        return function (props) {
+            var preview = tools.usePreview();
+            var blocks = wp.data.useSelect(function (select) { return select('core/block-editor').getBlocks(props.clientId); }, [props.clientId]);
+            return preview ? wp.blocks.getSaveElement(props.name, props.attributes, blocks) : el(edit, props);
+        };
+    }
 
     wp.blocks.registerBlockType('bc-practice/steps', {
         apiVersion: 3,
@@ -13,13 +21,14 @@
         icon: 'editor-ol',
         attributes: { presentation: { type: 'string', enum: ['connected', 'cards', 'roadmap'], default: 'connected' } },
         supports: { html: false },
-        edit: function (props) {
+        edit: editable(function (props) {
             var presentation = props.attributes.presentation;
             var blockProps = useBlockProps({ className: 'bc-steps bc-steps-' + presentation, role: 'list' });
             var innerProps = useInnerBlocksProps(blockProps, {
                 allowedBlocks: ['bc-practice/step'],
                 template: [['bc-practice/step'], ['bc-practice/step'], ['bc-practice/step']],
-                orientation: presentation === 'roadmap' ? 'horizontal' : 'vertical'
+                orientation: presentation === 'roadmap' ? 'horizontal' : 'vertical',
+                renderAppender: function () { return el(tools.Appender, { clientId: props.clientId, name: 'bc-practice/step', label: __('Add step', 'bc-practice'), create: function () { return tools.step(presentation); } }); }
             });
             return el(wp.element.Fragment, {},
                 el(wp.blockEditor.InspectorControls, {},
@@ -37,7 +46,7 @@
                 ),
                 el('ol', innerProps)
             );
-        },
+        }),
         save: function (props) {
             return el('ol', useBlockProps.save({ className: 'bc-steps bc-steps-' + props.attributes.presentation, role: 'list' }), el(wp.blockEditor.InnerBlocks.Content));
         }
@@ -50,15 +59,16 @@
         icon: 'editor-ol',
         parent: ['bc-practice/steps'],
         supports: { html: false, reusable: false },
-        edit: function () {
+        edit: editable(function (attributes) {
             var props = useInnerBlocksProps(useBlockProps({ className: 'bc-step' }), {
                 template: [
                     ['core/heading', { level: 3, placeholder: __('Step heading', 'bc-practice') }],
                     ['core/paragraph', { placeholder: __('Explain what to do and why.', 'bc-practice') }]
-                ]
+                ],
+                renderAppender: wp.blockEditor.InnerBlocks.ButtonBlockAppender
             });
-            return el('li', props);
-        },
+            return el('li', props, props.children, el(tools.ItemActions, { clientId: attributes.clientId, name: 'bc-practice/step', label: __('Step controls', 'bc-practice') }));
+        }),
         save: function () {
             return el('li', useBlockProps.save({ className: 'bc-step' }), el(wp.blockEditor.InnerBlocks.Content));
         }
@@ -71,10 +81,11 @@
         category: 'bc-components', icon: 'index-card',
         attributes: { label: { type: 'string', default: 'Resource categories' } },
         supports: { html: false, anchor: true },
-        edit: function (props) {
+        edit: editable(function (props) {
             var inner = useInnerBlocksProps(useBlockProps({ className: 'bc-resource-tabs' }), {
                 allowedBlocks: ['bc-practice/resource-panel'],
-                template: [['bc-practice/resource-panel', { title: 'Getting started' }], ['bc-practice/resource-panel', { title: 'Guidance and tools' }]]
+                template: [['bc-practice/resource-panel', { title: 'Getting started' }], ['bc-practice/resource-panel', { title: 'Guidance and tools' }]],
+                renderAppender: function () { return el(tools.Appender, { clientId: props.clientId, name: 'bc-practice/resource-panel', label: __('Add resource group', 'bc-practice'), create: tools.resource }); }
             });
             return el(wp.element.Fragment, {},
                 el(wp.blockEditor.InspectorControls, {},
@@ -84,12 +95,12 @@
                             onChange: function (value) { props.setAttributes({ label: value }); },
                             help: __('Describe this set of resource categories.', 'bc-practice')
                         }),
-                        el('p', {}, __('Edit each group heading to name its tab. All groups stay visible here; preview the page to try the tabs. Reorder or duplicate Resource group blocks in List View.', 'bc-practice'))
+                        el('p', {}, __('Edit each group heading to name its tab. All groups stay visible here; preview the page to try the tabs. Use the controls beneath a selected group to move, duplicate or remove it.', 'bc-practice'))
                     )
                 ),
                 el('div', inner)
             );
-        },
+        }),
         save: function (props) {
             return el('div', useBlockProps.save({ className: 'bc-resource-tabs', 'data-tab-label': props.attributes.label }), el(wp.blockEditor.InnerBlocks.Content));
         }
@@ -100,18 +111,21 @@
         parent: ['bc-practice/resource-tabs'],
         attributes: { title: { type: 'string', source: 'html', selector: '.bc-tab-panel-title', default: 'Resource group' } },
         supports: { html: false, anchor: true, reusable: false },
-        edit: function (props) {
+        edit: editable(function (props) {
             return el('section', useBlockProps({ className: 'bc-tab-panel' }),
                 el(wp.blockEditor.RichText, {
                     tagName: 'h3', className: 'bc-tab-panel-title', value: props.attributes.title,
+                    identifier: 'title', 'aria-label': __('Resource group name', 'bc-practice'),
                     allowedFormats: [], placeholder: __('Resource group name', 'bc-practice'),
                     onChange: function (title) { props.setAttributes({ title: title }); }
                 }),
                 el('div', { className: 'bc-tab-panel-content' }, el(wp.blockEditor.InnerBlocks, {
-                    template: [['core/paragraph', { placeholder: __('Add resources for this group.', 'bc-practice') }]]
-                }))
+                    template: [['core/paragraph', { placeholder: __('Add resources for this group.', 'bc-practice') }]],
+                    renderAppender: wp.blockEditor.InnerBlocks.ButtonBlockAppender
+                })),
+                el(tools.ItemActions, { clientId: props.clientId, name: 'bc-practice/resource-panel', label: __('Resource group controls', 'bc-practice') })
             );
-        },
+        }),
         save: function (props) {
             return el('section', useBlockProps.save({ className: 'bc-tab-panel' }),
                 el(wp.blockEditor.RichText.Content, { tagName: 'h3', className: 'bc-tab-panel-title', value: props.attributes.title }),

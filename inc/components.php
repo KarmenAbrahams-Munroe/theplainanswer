@@ -70,7 +70,8 @@ add_filter( 'block_categories_all', function ( $categories ) {
 
 add_action( 'init', function () {
     $version = wp_get_theme()->get( 'Version' );
-    wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ), $version, true );
+    wp_register_script( 'bc-practice-editor-tools', get_theme_file_uri( 'assets/js/editor-tools.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-hooks' ), $version, true );
+    wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'bc-practice-editor-tools' ), $version, true );
     register_block_type( 'bc-practice/steps', array(
         'api_version' => 3, 'title' => __( 'Numbered steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
         'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'connected', 'cards', 'roadmap' ), 'default' => 'connected' ) ),
@@ -92,6 +93,15 @@ add_action( 'init', function () {
         'parent' => array( 'bc-practice/steps' ), 'supports' => array( 'html' => false, 'reusable' => false ),
         'editor_script' => 'bc-practice-component-blocks',
     ) );
+} );
+
+add_action( 'after_setup_theme', function () {
+    add_theme_support( 'editor-styles' );
+    add_editor_style( 'assets/css/editor.css' );
+} );
+
+add_action( 'enqueue_block_editor_assets', function () {
+    wp_enqueue_script( 'bc-practice-editor-tools' );
 } );
 
 add_action( 'enqueue_block_assets', function () {

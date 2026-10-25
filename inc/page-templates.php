@@ -18,7 +18,7 @@ function bc_practice_template_blocks() {
 
 add_action( 'init', function () {
     $version = wp_get_theme()->get( 'Version' );
-    wp_register_script( 'bc-practice-template-blocks', get_theme_file_uri( 'assets/js/template-blocks.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render' ), $version, true );
+    wp_register_script( 'bc-practice-template-blocks', get_theme_file_uri( 'assets/js/template-blocks.js' ), array( 'bc-practice-editor-tools', 'wp-server-side-render' ), $version, true );
     wp_add_inline_script( 'bc-practice-template-blocks', 'window.bcPracticeTemplateBlocks = ' . wp_json_encode( bc_practice_template_blocks() ) . ';', 'before' );
     foreach ( bc_practice_template_blocks() as $slug => $settings ) {
         register_block_type( 'bc-practice/' . $slug, array(

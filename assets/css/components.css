@@ -61,7 +61,7 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 .bc-component-support { background: var(--bcds-surface-color-background-light-blue); border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; padding: 1.5rem; }
 .bc-component-card { border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; padding: 1.5rem; height: 100%; box-sizing: border-box; }
 .bc-component-related > h2 { font-size: 1.5rem; }
-.bc-component-related > .wp-block-columns { align-items: stretch; gap: 1.5rem; }
+.bc-component-related > .wp-block-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); align-items: stretch; gap: 1.5rem; }
 .bc-component-related .wp-block-column { min-width: 0; }
 .bc-last-updated { display: flex; gap: .6rem; align-items: baseline; color: var(--bcds-typography-color-secondary); font-size: .9375rem; border-bottom: 1px solid var(--bcds-surface-color-border-default); padding-bottom: 1rem; }
 .bc-last-updated svg { width: 1.25rem; height: 1.25rem; flex: none; align-self: flex-start; margin-top: .2rem; color: var(--bcds-surface-color-primary-default); }

@@ -2,6 +2,12 @@
 /** Pattern categories describe editorial tasks. Block categories remain separate. */
 defined( 'ABSPATH' ) || exit;
 
+/** Independent pattern copies use normal block editing; authored locks still apply. */
+add_filter( 'block_editor_settings_all', function ( $settings ) {
+    $settings['disableContentOnlyForUnsyncedPatterns'] = true;
+    return $settings;
+} );
+
 add_action( 'init', function () {
     foreach ( array(
         'bc-page-starters' => 'Page starters',

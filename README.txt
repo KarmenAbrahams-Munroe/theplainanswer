@@ -1,7 +1,7 @@
-B.C. practice — WordPress block theme, version 1.10.0
+B.C. practice — WordPress block theme, version 1.11.0
 
 Update an existing GitHub-managed theme
-This patch expects version 1.9.0, including the corrected mega-menu patch if that was needed. From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
+This patch expects version 1.10.0 (the navigation refinement patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -69,6 +69,19 @@ Pattern library
 - Site structure: header and mega-menu patterns for template editing.
 Patterns include descriptive search keywords and generic sample wording. Replace sample copy and add real link destinations before publishing. The five earlier page-starter slugs remain hidden compatibility aliases. Existing inserted blocks keep their saved copy; the theme does not rewrite authored pages.
 
+Editing components — version 1.11.0
+Unsynced patterns use normal block editing, including on WordPress 7.x. This removes the extra Edit pattern step for independent copies. Synced patterns, template parts and explicit layout locks retain WordPress controls.
+
+Accordion panels have a dedicated Panel heading field and an always-visible content area in the editor. Click the heading field to replace it; click a paragraph, list or other content block to edit the body. Open when the page loads controls the published panel state. The ordinary unstyled WordPress Details block retains its native editor.
+
+Use Add accordion panel beneath a group, Add step beneath a process, or Add resource group beneath tabbed resources. New items start with editable placeholders; resource-group headings become the tab labels. A selected panel, step or resource group has Move up, Move down, Duplicate and Remove controls. Undo can restore removals. Numbering follows step order automatically. Roadmap steps added through Add step include an icon.
+
+Quick actions, quick links, icon/text lists, image cards, text columns and related topics have labelled Add controls beneath their collection. Select a whole card, row or column to use Item actions in the block toolbar. Edit its text with native heading/paragraph controls; use Link (Ctrl+K) to set a destination. Images retain the native Replace/upload controls. Related cards wrap into additional rows as the collection grows.
+
+Select an icon and choose Change icon in the toolbar to search the icon library. The same picker remains in block settings. Under the Page tab, open Page presentation and navigation to edit Page introduction (excerpt). This is the existing Excerpt field, also used by automatic navigation cards.
+
+Automatic navigation, dates, titles and page information show a source explanation when selected. Their text is edited through the page content or settings named in that explanation. Editing controls are absent from published content and pattern previews. Existing saved patterns use the improved editor without reinsertion; page text is not automatically rewritten. Structural controls respect WordPress layout locks and allowed block types.
+
 Spacing and editing
 New patterns have a shared wrapper with a 2rem outer gap, reducing to 1.5rem at 600px and below. Heading/paragraph pairs stay closer together. No blank paragraphs or Spacer blocks are needed between patterns. Existing inserted components retain their markup and receive the shared spacing where their component classes identify them. User-set block margins can override defaults. Standard body text, lists, accordions and tables use Large body (1.125rem).
 
@@ -86,13 +99,17 @@ Sources and licences
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
 This is a custom practice theme, not an official B.C. government theme or an accessibility certification.
 
-Validation for version 1.10.0
+Validation for version 1.11.0
+Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. All 62 theme PHP files passed syntax checks on PHP 7.4.33 and 8.3.33; all nine theme scripts passed JavaScript syntax checks. Installed editor checks covered repeated accordion-heading edits, adding/reordering/duplicating/removing panels and steps, Undo, resource-group names and order, all labelled collection appenders, keyboard Add activation, searchable icon selection, the introduction field, explicit layout locks, native pattern insertion and editable starter content. Checks also covered toolbar item duplication, new roadmap icons, clean pattern previews, saving/reopening without invalid-block recovery, public accordion/tab behaviour, editor-control exclusion and mobile reflow. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content violations.
+
+Earlier validation for version 1.10.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all eight theme scripts passed JavaScript syntax checks. Installed checks covered automatic cards and explicit excerpts, unpublished/protected exclusions, duplicate prevention, all title appearances and column alignment, manual sidebar tab activation, current-heading tracking, long scrollable section menus, short-article height limits, ordered Previous/Next links, mobile document order and anchor focus, breakpoint focus preservation, 320–768px reflow, short-height fallback, no-JavaScript and print output. All existing/new pattern and template markup validated in the editor, and the dynamic reading-navigation preview rendered. Existing settings, migration/restoration, saved customizations and page-linked footer feedback were retained. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations. These checks do not replace usability testing with readers or assistive-technology testing.
 
 Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.11.0: Direct accordion-heading editing, labelled collection appenders, item actions, searchable icon toolbar, clearer introduction/source fields and editor-only controls.
 1.10.0: Automatic excerpt-based navigation cards, aligned reading titles, sticky two-view navigation, mobile page-end section menu and clearer ordered Previous/Next links.
 1.9.0: Consolidated page layouts, independent title appearance, reviewable legacy migration, grouped/generic patterns, basic text and heading-free callout patterns, shared spacing, audience/applicability fields, guide boundaries and footer feedback integration.
 1.8.0: Four promo banners and initial page-title templates; improved Help icon.

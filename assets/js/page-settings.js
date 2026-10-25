@@ -5,7 +5,7 @@
     function PageSettings() {
         var data = wp.data.useSelect(function (select) {
             var editor = select('core/editor');
-            return { type: editor.getCurrentPostType(), meta: editor.getEditedPostAttribute('meta') || {}, template: editor.getEditedPostAttribute('template') };
+            return { type: editor.getCurrentPostType(), meta: editor.getEditedPostAttribute('meta') || {}, template: editor.getEditedPostAttribute('template'), excerpt: editor.getEditedPostAttribute('excerpt') || '' };
         }, []);
         if (data.type !== 'page') { return null; }
         function update(key, value) {
@@ -17,8 +17,13 @@
             el(wp.components.SelectControl, {
                 label: 'Page-title appearance', value: titleStyle,
                 options: [{ label: 'Plain', value: 'plain' }, { label: 'Compact image', value: 'image-compact' }, { label: 'Taller image', value: 'image-tall' }, { label: 'Compact solid colour', value: 'solid-compact' }, { label: 'Taller solid colour', value: 'solid-tall' }],
-                help: 'Image titles use this page’s Featured image. The introduction uses its Excerpt.',
+                help: 'Image titles use this page’s Featured image.',
                 onChange: function (value) { update('_bc_title_style', value); }
+            }),
+            el(wp.components.TextareaControl, {
+                label: 'Page introduction (excerpt)', value: data.excerpt,
+                help: 'Appears below this page’s title and on its card on the parent navigation page.',
+                onChange: function (value) { wp.data.dispatch('core/editor').editPost({ excerpt: value }); }
             }),
             el(wp.components.SelectControl, {
                 label: 'Mega-menu visibility', value: data.meta._bc_menu_visibility || 'branch',
