@@ -17,3 +17,12 @@ add_action( 'enqueue_block_assets', function () {
 require_once get_theme_file_path( 'inc/page-templates.php' );
 require_once get_theme_file_path( 'inc/components.php' );
 require_once get_theme_file_path( 'inc/mega-menu.php' );
+
+function my_custom_theme_setup() {
+    // 1. Disable the remote patterns from loading from WordPress.org
+    add_filter( 'should_load_remote_block_patterns', '__return_false' );
+
+    // 2. Remove all native core patterns bundled with WordPress
+    remove_theme_support( 'core-block-patterns' );
+}
+add_action( 'after_setup_theme', 'my_custom_theme_setup' );
