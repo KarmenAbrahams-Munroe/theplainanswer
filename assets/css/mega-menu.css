@@ -49,21 +49,16 @@
 .bc-mega-column + .bc-mega-column { border-left: 1px solid var(--bc-mega-line); }
 .bc-mega-column-head { padding: .875rem 1.25rem; border-bottom: 1px solid var(--bc-mega-line); background: #f7f9fc; flex-shrink: 0; }
 .bc-mega-column-title { margin: 0; font-size: 1.25rem; line-height: 1.35; color: #013366; font-weight: 700; overflow-wrap: anywhere; }
+.bc-mega-heading-link { display: inline-block; padding-block: .2rem; text-decoration: underline; }
+.bc-mega-heading-link:hover { text-decoration-thickness: 2px; }
 .bc-mega-column-title:focus-visible { outline: 3px solid #255a90; outline-offset: 4px; }
 .bc-mega-column-first .bc-mega-column-head { background: #013366; color: #fff; }
 .bc-mega-column-first .bc-mega-column-title, .bc-mega-column-first .bc-mega-description { color: #fff; }
 .bc-mega-column-first .bc-mega-column-title:focus-visible { outline-color: var(--bc-mega-gold); }
 .bc-mega-description { font-size: .9375rem; line-height: 1.5; color: #435971; margin: .35rem 0 0; overflow-wrap: anywhere; }
-.bc-mega-overview { display: inline-flex; align-items: center; gap: .2rem; margin-top: .35rem; font-size: .9375rem !important; padding-block: .2rem; }
-.bc-mega-column-first .bc-mega-overview { color: #fff; }
-.bc-mega-column-first .bc-mega-overview:focus-visible { outline-color: var(--bc-mega-gold); outline-offset: 3px; }
 .bc-mega-links { padding: .25rem 0 !important; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; flex: 1 1 auto; }
 .bc-mega-links > li { border-bottom: 1px solid #eef2f6; }
 .bc-mega-column:not(.bc-mega-column-first) .bc-mega-links > li { border-bottom: 0; }
-.bc-mega-column-footer { flex-shrink: 0; border-top: 1px solid var(--bc-mega-line); background: #f7f9fc; }
-.bc-mega-column-footer .bc-mega-overview { margin: 0; padding: .5rem 1.25rem; min-height: 44px; width: 100%; font-weight: 700; }
-.bc-mega-column-first .bc-mega-column-footer .bc-mega-overview { color: #013366; }
-.bc-mega-column-first .bc-mega-column-footer .bc-mega-overview:focus-visible { outline-color: #255a90; outline-offset: -4px; }
 .bc-mega-flow .bc-mega-columns { flex: 0 0 auto; min-height: auto; }
 .bc-mega-flow .bc-mega-column { overflow: visible; min-height: auto; }
 .bc-mega-flow .bc-mega-links { overflow: visible; scrollbar-gutter: auto; flex: 0 0 auto; }
@@ -124,3 +119,5 @@
  .bc-mega :is(a, button, summary):focus-visible { outline-color: Highlight; }
 }
 @media print { .bc-mega { display: none !important; } }
+
+.bc-mega-column-first .bc-mega-heading-link:focus-visible { outline-color: var(--bc-mega-gold); }

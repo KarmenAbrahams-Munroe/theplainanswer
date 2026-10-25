@@ -70,7 +70,7 @@ add_filter( 'block_categories_all', function ( $categories ) {
 
 add_action( 'init', function () {
     $version = wp_get_theme()->get( 'Version' );
-    wp_register_script( 'bc-practice-editor-tools', get_theme_file_uri( 'assets/js/editor-tools.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-hooks' ), $version, true );
+    wp_register_script( 'bc-practice-editor-tools', get_theme_file_uri( 'assets/js/editor-tools.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-hooks', 'wp-notices' ), $version, true );
     wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'bc-practice-editor-tools' ), $version, true );
     register_block_type( 'bc-practice/steps', array(
         'api_version' => 3, 'title' => __( 'Numbered steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
@@ -102,6 +102,7 @@ add_action( 'after_setup_theme', function () {
 
 add_action( 'enqueue_block_editor_assets', function () {
     wp_enqueue_script( 'bc-practice-editor-tools' );
+    wp_enqueue_style( 'bc-practice-editor-ui', get_theme_file_uri( 'assets/css/editor.css' ), array(), wp_get_theme()->get( 'Version' ) );
 } );
 
 add_action( 'enqueue_block_assets', function () {

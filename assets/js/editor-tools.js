@@ -45,6 +45,7 @@
         );
     }
     function ItemActions(props) {
+        var confirmation = wp.element.useState(false), confirming = confirmation[0], setConfirming = confirmation[1];
         var data = wp.data.useSelect(function (select) {
             var editor = select(store), root = editor.getBlockRootClientId(props.clientId);
             return { root: root, order: editor.getBlockOrder(root), siblings: editor.getBlocks(root).filter(function (block) { return block.name === props.name; }).map(function (block) { return block.clientId; }), selected: editor.isBlockSelected(props.clientId) || editor.hasSelectedInnerBlock(props.clientId, true), move: editor.canMoveBlocks([props.clientId], root), remove: editor.canRemoveBlocks([props.clientId]), insert: editor.canInsertBlockType(props.name, root) };
@@ -56,7 +57,23 @@
             el(wp.components.Button, { variant: 'tertiary', disabled: !data.move || siblingIndex <= 0, onClick: function () { move(-1); } }, __('Move up', 'bc-practice')),
             el(wp.components.Button, { variant: 'tertiary', disabled: !data.move || siblingIndex === data.siblings.length - 1, onClick: function () { move(1); } }, __('Move down', 'bc-practice')),
             el(wp.components.Button, { variant: 'tertiary', disabled: !data.insert, onClick: async function () { var block = copy(wp.data.select(store).getBlock(props.clientId)); await dispatch.insertBlocks([block], index + 1, data.root, false); if (wp.data.select(store).getBlock(block.clientId)) { focusNew(block); } } }, __('Duplicate', 'bc-practice')),
-            el(wp.components.Button, { variant: 'tertiary', isDestructive: true, disabled: !data.remove, onClick: async function () { var next = data.order[index + 1] || data.order[index - 1] || data.root; await dispatch.removeBlocks([props.clientId], false); if (next) { dispatch.selectBlock(next); } } }, __('Remove', 'bc-practice'))
+            el(wp.components.Button, { variant: 'tertiary', isDestructive: true, disabled: !data.remove, onClick: function () { setConfirming(true); } }, __('Remove…', 'bc-practice')),
+            confirming && el(wp.components.Modal, {
+                title: __('Remove this item?', 'bc-practice'), focusOnMount: 'firstContentElement',
+                onRequestClose: function () { setConfirming(false); }, shouldCloseOnClickOutside: false
+            },
+                el('p', {}, __('This removes the selected item and all content inside it. You can restore it with Undo.', 'bc-practice')),
+                el('div', { className: 'bc-editor-confirm-actions' },
+                    el(wp.components.Button, { variant: 'secondary', onClick: function () { setConfirming(false); } }, __('Keep item', 'bc-practice')),
+                    el(wp.components.Button, { variant: 'primary', isDestructive: true, onClick: async function () {
+                        if (!wp.data.select(store).canRemoveBlocks([props.clientId])) { setConfirming(false); return; }
+                        var next = data.order[index + 1] || data.order[index - 1] || data.root;
+                        await dispatch.removeBlocks([props.clientId], false);
+                        if (next) { dispatch.selectBlock(next); }
+                        wp.data.dispatch('core/notices').createNotice('success', __('Item removed. Use Undo to restore it.', 'bc-practice'), { type: 'snackbar' });
+                    } }, __('Remove item', 'bc-practice'))
+                )
+            )
         );
     }
     function itemFactory(kind, clientId) {

@@ -10,7 +10,7 @@ function bc_practice_framework_blocks() {
         'guide-contents' => array( 'title' => 'In this section', 'icon' => 'editor-ol', 'description' => 'Lists published pages within the closest marked guide, in page order.' ),
         'guide-navigation' => array( 'title' => 'Previous and next chapter', 'icon' => 'leftright', 'description' => 'Previous and next pages within an explicitly marked guide.' ),
         'home-content' => array( 'title' => 'Home page content', 'icon' => 'admin-home', 'description' => 'The static home page body, or the posts index when Reading settings use latest posts.' ),
-        'footer-feedback' => array( 'title' => 'Footer page feedback', 'icon' => 'feedback', 'description' => 'Page-linked feedback above the site footer. Requires B.C. page feedback 1.1 or later.' ),
+        'footer-feedback' => array( 'title' => 'Footer page feedback', 'icon' => 'feedback', 'description' => 'Page-linked feedback followed by selected related pages above the site footer. Feedback requires B.C. page feedback 1.1 or later.' ),
         'reading-navigation' => array( 'title' => 'Reading navigation', 'icon' => 'menu', 'description' => 'On this page and In this section share a sticky desktop sidebar. The section menu appears after the article on mobile.' ),
         'section-menu' => array( 'title' => 'Section menu at page end', 'icon' => 'editor-ul', 'description' => 'Published section pages, paired with the Reading navigation block.' ),
     );
@@ -42,6 +42,9 @@ function bc_practice_page_information( $page, $updated, $audience ) {
     $editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
     if ( $audience && ( $editor || empty( $GLOBALS['bc_practice_audience'][ $page->ID ] ) ) ) {
         foreach ( array( 'bc_audience' => 'Written for', 'bc_applicability' => 'Applies to' ) as $taxonomy => $label ) {
+            if ( 'bc_audience' === $taxonomy && 'bc-topic-landing' === get_page_template_slug( $page->ID ) ) {
+                continue;
+            }
             $terms = get_the_terms( $page, $taxonomy );
             if ( ! $terms || is_wp_error( $terms ) ) {
                 continue;
@@ -173,12 +176,44 @@ function bc_practice_render_home_content( $attributes, $content, $block ) {
     return bc_practice_empty_preview( 'Choose a static home page under Settings → Reading. Its body content appears here.' );
 }
 
-function bc_practice_render_footer_feedback( $attributes = array(), $content = '', $block = null ) {
-    if ( ! function_exists( 'bc_pf_render_footer' ) ) {
+/** Related cards follow the queried page, independently of loops inside its content. */
+function bc_practice_render_related_pages() {
+    if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ! is_singular( 'page' ) ) {
         return '';
     }
-    $form = bc_pf_render_footer();
-    return $form ? '<div class="bc-footer-feedback"><div class="bc-page-shell">' . $form . '</div></div>' : '';
+    $page = get_post( get_queried_object_id() );
+    if ( ! $page || ! is_post_publicly_viewable( $page ) || ! empty( $page->post_password ) || ! empty( $GLOBALS['bc_practice_related_rendered'][ $page->ID ] ) ) {
+        return '';
+    }
+    $ids = get_post_meta( $page->ID, '_bc_related_pages', true );
+    $ids = is_array( $ids ) ? array_values( array_diff( array_unique( array_filter( array_map( 'absint', $ids ) ) ), array( $page->ID ) ) ) : array();
+    if ( ! $ids ) {
+        return '';
+    }
+    $pages = get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'post__in' => $ids, 'orderby' => 'post__in', 'posts_per_page' => count( $ids ), 'has_password' => false, 'no_found_rows' => true ) );
+    $cards = '';
+    foreach ( $pages as $related ) {
+        if ( ! is_post_publicly_viewable( $related ) ) {
+            continue;
+        }
+        $cards .= '<li class="bc-related-page-card"><h3><a href="' . esc_url( get_permalink( $related ) ) . '">' . esc_html( bc_practice_card_title( $related ) ) . '</a></h3>';
+        if ( '' !== trim( $related->post_excerpt ) ) {
+            $cards .= '<div class="bc-related-page-excerpt">' . wpautop( esc_html( $related->post_excerpt ) ) . '</div>';
+        }
+        $cards .= '</li>';
+    }
+    if ( ! $cards ) {
+        return '';
+    }
+    $GLOBALS['bc_practice_related_rendered'][ $page->ID ] = true;
+    $heading = wp_unique_id( 'bc-related-pages-' );
+    return '<section class="bc-related-pages" aria-labelledby="' . esc_attr( $heading ) . '"><div class="bc-page-shell"><h2 id="' . esc_attr( $heading ) . '">Related pages</h2><ul class="bc-related-page-grid">' . $cards . '</ul></div></section>';
+}
+
+function bc_practice_render_footer_feedback( $attributes = array(), $content = '', $block = null ) {
+    $form = function_exists( 'bc_pf_render_footer' ) ? bc_pf_render_footer() : '';
+    $strip = $form ? '<div class="bc-footer-feedback"><div class="bc-page-shell">' . $form . '</div></div>' : '';
+    return $strip . bc_practice_render_related_pages();
 }
 
 /** Saved footer customizations also receive the shared strip, without rewriting them. */

@@ -64,6 +64,12 @@ add_action( 'init', function () {
             'sanitize_callback' => function ( $value ) use ( $settings ) { return in_array( $value, $settings['enum'], true ) ? $value : $settings['default']; },
         ) );
     }
+    register_post_meta( 'page', '_bc_related_pages', array(
+        'type' => 'array', 'single' => true, 'default' => array(),
+        'show_in_rest' => array( 'schema' => array( 'type' => 'array', 'context' => array( 'edit' ), 'items' => array( 'type' => 'integer', 'minimum' => 1 ) ) ),
+        'auth_callback' => $permission,
+        'sanitize_callback' => function ( $value ) { return is_array( $value ) ? array_values( array_unique( array_filter( array_map( 'absint', $value ) ) ) ) : array(); },
+    ) );
     register_post_meta( 'page', '_bc_guide_start', array( 'type' => 'boolean', 'single' => true, 'default' => false, 'show_in_rest' => true, 'auth_callback' => $permission, 'sanitize_callback' => 'rest_sanitize_boolean' ) );
     foreach ( array( 'bc_audience' => array( 'Written for', 'Audience' ), 'bc_applicability' => array( 'Applies to', 'Applicability group' ) ) as $name => $labels ) {
         register_taxonomy( $name, 'page', array(
@@ -80,6 +86,6 @@ add_action( 'enqueue_block_editor_assets', function () {
     if ( ! $screen || 'page' !== $screen->post_type || 'post' !== $screen->base ) {
         return;
     }
-    wp_enqueue_script( 'bc-practice-page-settings', get_theme_file_uri( 'assets/js/page-settings.js' ), array( 'wp-plugins', 'wp-editor', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ), wp_get_theme()->get( 'Version' ), true );
+    wp_enqueue_script( 'bc-practice-page-settings', get_theme_file_uri( 'assets/js/page-settings.js' ), array( 'wp-plugins', 'wp-editor', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-core-data', 'wp-html-entities' ), wp_get_theme()->get( 'Version' ), true );
     wp_add_inline_script( 'bc-practice-page-settings', 'window.bcPracticeLegacyTemplates = ' . wp_json_encode( bc_practice_legacy_templates() ) . ';', 'before' );
 } );

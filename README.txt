@@ -1,7 +1,7 @@
-B.C. practice — WordPress block theme, version 1.11.1
+B.C. practice — WordPress block theme, version 1.12.0
 
 Update an existing GitHub-managed theme
-This patch expects version 1.11.0 (the editor usability patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
+This patch expects version 1.11.1 (the usability fixes patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only. The feedback plugin is a separate installation.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -26,7 +26,7 @@ Edit shared parts under Appearance > Editor. The header provides site identity, 
 
 With B.C. page feedback 1.1+, eligible published pages and posts receive one feedback strip above the footer information. This includes the static home page and browsing hubs. Existing customized Footer parts also receive the strip without rewriting their content. Protected pages, archives, search results and error pages are omitted. Footer feedback uses the queried page's ID, including when the page body contains a Query Loop.
 
-Update an existing feedback plugin by uploading bc-page-feedback-1.1.0.zip under Plugins > Add New Plugin > Upload Plugin and choosing to replace the installed version. Existing responses remain in the plugin's database table. Enable feedback collection under Page feedback > Settings. The theme manages placement; earlier inline copies are suppressed. With feedback 1.0, its earlier placement continues until the plugin is updated. Without the plugin, no feedback strip or empty container is rendered.
+Update an existing feedback plugin by uploading bc-page-feedback-1.2.0.zip under Plugins > Add New Plugin > Upload Plugin and choosing to replace the installed version. Existing responses remain in the plugin's database table. Enable feedback collection under Page feedback > Settings. The theme manages placement; earlier inline copies are suppressed. With feedback 1.0, its earlier placement continues until the plugin is updated. Without the plugin, no feedback strip or empty container is rendered.
 
 Audience and applicability
 Administrators maintain site-specific terms under Pages > Written for and Pages > Applies to. Both lists start empty. Editors can select multiple existing terms on a page. Written for identifies the intended reader; Applies to identifies the groups covered by the content. No default group, eligibility claim or inherited applicability is assumed. The title area displays only selected values. Home omits this information by default. Labels describe content; they do not restrict access or hide content.
@@ -127,3 +127,17 @@ Version history
 1.5.1: Compact mega-menu layout and large-text scrolling fallback.
 1.5.0: Page-driven drill-down mega menu.
 1.4.0: Reusable content components.
+
+Page-end refinements — version 1.12.0
+Mega-menu column titles link directly to their pages. Duplicate View all controls are removed; branch buttons continue opening the next column. Taller image titles and matching banner patterns use a 94% white background behind fully opaque text.
+
+Theme-provided Remove controls open a confirmation dialog before deleting an item and its content. Keep item, Escape and the close button cancel. Confirming removal shows a notice; native WordPress Undo remains available. WordPress’s own block menu and keyboard deletion commands retain their native behaviour.
+
+In a page editor’s Page settings sidebar, open Related pages. Search for published pages, select them, and use Move up/Move down to order the cards. Unselect removes a relationship without deleting the page. Saving the page saves its selections. The shared footer displays one distinct Related pages section after feedback, using selected pages’ current titles and explicit excerpts. Missing excerpts leave no empty description. The current page, drafts, private, deleted and password-protected pages are omitted. No selections means no section. Related pages can still display when feedback collection is disabled or the plugin is inactive. Existing manual Related topics patterns remain in page content; unneeded copies can be removed by the editor. Saved Footer customizations receive the same page-end sections without a layout reset.
+
+Topic landing page (navigation/browsing hubs) omits Written for, including saved copies of that layout. Explicit Applies to information remains available. Content and reference pages retain their audience information.
+
+Update B.C. page feedback to 1.2.0 for the shorter privacy hint, answer switching while the form is open, and Pages/Posts list counts restricted to New and In progress. The plugin has its own update package; a theme patch cannot change plugin files.
+
+Validation for version 1.12.0
+Checked in WordPress 6.6.10 and 7.1.3 with PHP 8.3.33, including real editor search/selection/order/save/reopen, removal confirmation and Undo, saved-footer placement, related-page exclusions and later title/excerpt updates, feedback switching and safe retry, native no-JavaScript switching, open-response report counts, plugin deactivation/reactivation, and 320–1440px layouts. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no violations in the tested main content, feedback and related sections. PHP syntax passed on 7.4.33 and 8.3.33; all 11 theme/plugin scripts passed JavaScript syntax checks. These checks do not replace usability or assistive-technology testing.

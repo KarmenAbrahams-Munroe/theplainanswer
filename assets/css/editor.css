@@ -14,3 +14,9 @@
 .bc-editor-icon-picker { padding: .75rem; min-width: 14rem; background: white; border: 1px solid #8a8a8a; border-radius: 4px; position: relative; z-index: 2; }
 /* Whole-card link hit areas must never cover editing fields. */
 .bc-quick-tile a::after, .bc-image-card a::after { display: none !important; }
+
+.bc-editor-confirm-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
+.bc-editor-related-list { margin: 1rem 0; padding: 0; list-style: none; }
+.bc-editor-related-list li { border-block-end: 1px solid #ddd; padding-block: .75rem; }
+.bc-editor-related-list strong { display: block; overflow-wrap: anywhere; }
+.bc-editor-related-actions { display: flex; flex-wrap: wrap; gap: .25rem; }

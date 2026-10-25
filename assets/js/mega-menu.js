@@ -121,8 +121,8 @@
             root.style.setProperty('--bc-mega-available', Math.max(180, window.innerHeight - Math.max(0, top) - 16) + 'px');
             var fixedHeight = 0;
             columns.querySelectorAll('.bc-mega-column').forEach(function (pane) {
-                var head = pane.querySelector('.bc-mega-column-head'), linkFooter = pane.querySelector('.bc-mega-column-footer');
-                fixedHeight = Math.max(fixedHeight, (head ? head.offsetHeight : 0) + (linkFooter ? linkFooter.offsetHeight : 0));
+                var head = pane.querySelector('.bc-mega-column-head');
+                fixedHeight = Math.max(fixedHeight, head ? head.offsetHeight : 0);
             });
             var minimumList = Math.max(44, parseFloat(window.getComputedStyle(root).fontSize) * 3.3);
             var available = panel.clientHeight - toolbar.offsetHeight - footer.offsetHeight;
@@ -164,7 +164,9 @@
                     columns.appendChild(pane);
                     continue;
                 }
-                var heading = element('h2', 'bc-mega-column-title', entry.owner.title);
+                var heading = element('h2', 'bc-mega-column-title');
+                if (entry.owner.url) heading.appendChild(makeLink(entry.owner, 'bc-mega-heading-link'));
+                else heading.textContent = entry.owner.title;
                 heading.id = prefix + 'heading-' + level;
                 heading.tabIndex = -1;
                 pane.setAttribute('aria-labelledby', heading.id);
@@ -172,17 +174,6 @@
                 head.appendChild(heading);
                 // The middle desktop column carries the introduction once; other heads stay compact.
                 if (!mobile.matches && slot === 1 && entry.owner.summary) head.appendChild(element('p', 'bc-mega-description', entry.owner.summary));
-                var overview = null;
-                if (entry.owner.url) {
-                    var overviewLabel = strings.viewAll.replace('%s', entry.owner.title);
-                    overview = makeLink(entry.owner, 'bc-mega-overview', overviewLabel);
-                    if (mobile.matches || slot === 2) {
-                        overview.textContent = strings.overview;
-                        overview.setAttribute('aria-label', overviewLabel);
-                    }
-                    overview.appendChild(arrow('right'));
-                    if (mobile.matches || slot === 2) head.appendChild(overview);
-                }
                 pane.appendChild(head);
                 var ul = element('ul', 'bc-mega-links');
                 ul.dataset.scrollKey = active + '-' + entry.owner.id + '-' + level;
@@ -205,11 +196,6 @@
                     ul.appendChild(li);
                 });
                 pane.appendChild(ul);
-                if (overview && !mobile.matches && slot < 2) {
-                    var columnFooter = element('div', 'bc-mega-column-footer');
-                    columnFooter.appendChild(overview);
-                    pane.appendChild(columnFooter);
-                }
                 columns.appendChild(pane);
             }
             updateVisibility();
