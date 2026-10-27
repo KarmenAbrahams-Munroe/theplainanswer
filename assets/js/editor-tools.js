@@ -14,7 +14,7 @@
     function paragraph() { return wp.blocks.createBlock('core/paragraph', { placeholder: __('Add your content…', 'bc-practice') }); }
     function icon() { return wp.blocks.createBlock('bc-practice/icon', { icon: 'info' }); }
     function panel() { return wp.blocks.createBlock('core/details', { className: 'bc-accordion-item', summary: '' }, [paragraph()]); }
-    function step(presentation) { return wp.blocks.createBlock('bc-practice/step', {}, (presentation === 'roadmap' ? [icon()] : []).concat([heading(), paragraph()])); }
+    function step(presentation, markers) { return wp.blocks.createBlock('bc-practice/step', {}, (presentation === 'roadmap' || markers === 'icons' ? [icon()] : []).concat([heading(), paragraph()])); }
     function resource() { return wp.blocks.createBlock('bc-practice/resource-panel', { title: '' }, [paragraph()]); }
     function copy(block) {
         return wp.blocks.cloneBlock(block, { anchor: undefined }, block.innerBlocks.map(copy));
@@ -48,12 +48,13 @@
         var confirmation = wp.element.useState(false), confirming = confirmation[0], setConfirming = confirmation[1];
         var data = wp.data.useSelect(function (select) {
             var editor = select(store), root = editor.getBlockRootClientId(props.clientId);
-            return { root: root, order: editor.getBlockOrder(root), siblings: editor.getBlocks(root).filter(function (block) { return block.name === props.name; }).map(function (block) { return block.clientId; }), selected: editor.isBlockSelected(props.clientId) || editor.hasSelectedInnerBlock(props.clientId, true), move: editor.canMoveBlocks([props.clientId], root), remove: editor.canRemoveBlocks([props.clientId]), insert: editor.canInsertBlockType(props.name, root) };
+            return { root: root, order: editor.getBlockOrder(root), siblings: editor.getBlocks(root).filter(function (block) { return block.name === props.name; }).map(function (block) { return block.clientId; }), selected: editor.isBlockSelected(props.clientId) || (!props.onlyWhenSelected && editor.hasSelectedInnerBlock(props.clientId, true)), move: editor.canMoveBlocks([props.clientId], root), remove: editor.canRemoveBlocks([props.clientId]), insert: editor.canInsertBlockType(props.name, root) };
         }, [props.clientId, props.name]);
         if (!data.selected) { return null; }
         var index = data.order.indexOf(props.clientId), siblingIndex = data.siblings.indexOf(props.clientId), dispatch = wp.data.dispatch(store);
         function move(offset) { var target = data.siblings[siblingIndex + offset]; if (!target) { return; } dispatch.moveBlocksToPosition([props.clientId], data.root, data.root, data.order.indexOf(target)); dispatch.selectBlock(props.clientId); }
-        return el('div', { className: 'bc-editor-item-actions', 'aria-label': props.label, onClick: function (event) { event.stopPropagation(); } },
+        return el('div', { className: 'bc-editor-item-actions', role: 'group', 'aria-label': props.label, onClick: function (event) { event.stopPropagation(); } },
+            props.showLabel && el('span', { className: 'bc-editor-action-label' }, props.label),
             el(wp.components.Button, { variant: 'tertiary', disabled: !data.move || siblingIndex <= 0, onClick: function () { move(-1); } }, __('Move up', 'bc-practice')),
             el(wp.components.Button, { variant: 'tertiary', disabled: !data.move || siblingIndex === data.siblings.length - 1, onClick: function () { move(1); } }, __('Move down', 'bc-practice')),
             el(wp.components.Button, { variant: 'tertiary', disabled: !data.insert, onClick: async function () { var block = copy(wp.data.select(store).getBlock(props.clientId)); await dispatch.insertBlocks([block], index + 1, data.root, false); if (wp.data.select(store).getBlock(block.clientId)) { focusNew(block); } } }, __('Duplicate', 'bc-practice')),
@@ -83,15 +84,17 @@
         if (kind === 'icons') { return function () { return group('bc-icon-text', [icon(), group('bc-icon-text-body', [heading(), paragraph()])]); }; }
         if (kind === 'images') { return function () { return group('bc-image-card', [wp.blocks.createBlock('core/image'), group('bc-image-card-body', [heading(), paragraph()])]); }; }
         if (kind === 'related') { return function () { return wp.blocks.createBlock('core/column', {}, [group('bc-component-card', [heading(), paragraph()])]); }; }
+        if (kind === 'linkRows') { return function () { return group('bc-link-row', [icon(), group('bc-link-row-body', [heading(), paragraph()])]); }; }
+        if (kind === 'features') { return function () { return group('bc-feature-item', [icon(), group('bc-feature-body', [heading(), paragraph(), wp.blocks.createBlock('core/list', { className: 'bc-checklist' }, [wp.blocks.createBlock('core/list-item', { content: '' })])])]); }; }
         return function () {
             var existing = wp.data.select(store).getBlocks(clientId), lists = existing.some(function (b) { return b.innerBlocks.some(function (c) { return c.name === 'core/list'; }); });
             return group('bc-text-column', [heading(), lists ? wp.blocks.createBlock('core/list', {}, [wp.blocks.createBlock('core/list-item', { content: '' })]) : paragraph()]);
         };
     }
     function collection(block, parent) {
-        var classes = { 'bc-accordion-group': ['accordion', 'Add accordion panel'], 'bc-quick-tiles': ['tiles', 'Add quick action'], 'bc-quick-links-list': ['links', 'Add quick link'], 'bc-icon-list': ['icons', 'Add icon and text'], 'bc-image-card-grid': ['images', 'Add image card'], 'bc-three-column-grid': ['columns', 'Add text column'] };
+        var classes = { 'bc-accordion-group': ['accordion', 'Add accordion panel'], 'bc-quick-tiles': ['tiles', 'Add quick action'], 'bc-quick-links-list': ['links', 'Add quick link'], 'bc-icon-list': ['icons', 'Add icon and text'], 'bc-image-card-grid': ['images', 'Add image card'], 'bc-three-column-grid': ['columns', 'Add text column'], 'bc-link-rows': ['linkRows', 'Add link row'], 'bc-feature-list': ['features', 'Add feature'] };
         if (block.name === 'core/group') { for (var name in classes) { if (hasClass(block, name)) { return classes[name]; } } }
-        if (block.name === 'core/columns' && parent && hasClass(parent, 'bc-component-related')) { return ['related', 'Add related topic']; }
+        if (block.name === 'core/columns' && parent && hasClass(parent, 'bc-component-related')) { return ['related', 'Add card']; }
         return null;
     }
     function PatternControls(props) {

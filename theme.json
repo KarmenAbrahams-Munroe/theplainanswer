@@ -362,7 +362,7 @@
   "customTemplates": [
     {
       "name": "bc-topic-landing",
-      "title": "Topic landing page",
+      "title": "Navigation page",
       "postTypes": [
         "page"
       ]

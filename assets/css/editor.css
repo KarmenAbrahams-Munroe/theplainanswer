@@ -1,3 +1,6 @@
+/* Pattern names stay readable outside their miniature previews. */
+.block-editor-block-patterns-list__item-title { display: block !important; white-space: normal; line-height: 1.4; font-size: 14px; font-weight: 600; padding: 10px 12px 0; color: #1e1e1e; }
+.block-editor-patterns__pattern-details { display: flex !important; }
 /* Editing controls are deliberately separate from saved component markup. */
 .bc-editor-add { clear: both; display: block; width: 100%; padding: .75rem 0; margin: .5rem 0; grid-column: 1 / -1; box-sizing: border-box; }
 .bc-editor-add .components-button { min-height: 40px; height: auto; white-space: normal; text-align: start; }
@@ -20,3 +23,19 @@
 .bc-editor-related-list li { border-block-end: 1px solid #ddd; padding-block: .75rem; }
 .bc-editor-related-list strong { display: block; overflow-wrap: anywhere; }
 .bc-editor-related-actions { display: flex; flex-wrap: wrap; gap: .25rem; }
+.block-editor-inserter__content .block-editor-block-patterns-list__item-title,
+.block-editor-inserter__preview-container .block-editor-block-patterns-list__item-title { display: block !important; white-space: normal; line-height: 1.4; font-size: 14px; font-weight: 600; padding: 10px 12px 0; color: #1e1e1e; }
+.block-editor-inserter__content .block-editor-patterns__pattern-details,
+.block-editor-inserter__preview-container .block-editor-patterns__pattern-details { display: flex !important; }
+.block-editor-block-patterns-list__item[aria-label]:not(:has(.block-editor-block-patterns-list__item-title))::after { content: attr(aria-label); display: block; white-space: normal; font-size: 14px; font-weight: 600; line-height: 1.4; color: #1e1e1e; padding: 10px 12px; text-align: start; }
+.block-editor-block-patterns-list__item [id^="block-editor-block-patterns-list__item-description-"] { position: static !important; width: auto !important; height: auto !important; clip: auto !important; clip-path: none !important; overflow: visible !important; white-space: normal !important; margin: 0 !important; padding: 5px 12px 10px !important; font-size: 12px; line-height: 1.4; color: #50575e; }
+.editor-styles-wrapper .bc-featured-update .block-editor-rich-text__editable { min-width: 0; }
+.editor-styles-wrapper .bc-link-row h3 a::after { pointer-events: none; }
+.editor-styles-wrapper .bc-event-day > .bc-editor-item-actions { grid-column: 1 / -1; }
+.editor-styles-wrapper .bc-steps-icons > .bc-step > .wp-block-bc-practice-icon { position: absolute; inset-inline-start: 0; top: 0; width: 2.25rem; height: 2.25rem; margin: 0; }
+.editor-styles-wrapper .bc-steps-icons > .bc-step > .wp-block-bc-practice-icon .bc-component-icon { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; background: #f1f8fe; border-radius: 50%; }
+.editor-styles-wrapper .bc-steps-icons > .bc-step > .wp-block-bc-practice-icon svg { width: 1.6rem; height: 1.6rem; }
+.editor-styles-wrapper .bc-steps-numbers > .bc-step > .wp-block-bc-practice-icon { display: none; }
+.editor-styles-wrapper :is(.bc-link-row, .bc-feature-item) > .wp-block-bc-practice-icon .bc-component-icon { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 4px; background: #f1f8fe; }
+.editor-styles-wrapper :is(.bc-link-row, .bc-feature-item) > .wp-block-bc-practice-icon svg { width: 2rem; height: 2rem; }
+.bc-editor-action-label { flex-basis: 100%; font-size: 13px; font-weight: 600; }

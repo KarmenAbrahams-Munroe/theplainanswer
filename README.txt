@@ -1,4 +1,28 @@
-B.C. practice — WordPress block theme, version 1.13.0
+B.C. practice — WordPress block theme, version 1.14.0
+
+Pattern library and editing — version 1.14.0
+The template previously labelled Topic landing page is now Navigation page. Its bc-topic-landing identifier and existing assignments are retained. Saved template customizations display the new label without changing their content.
+
+The library contains 47 insertable theme patterns: 42 for page/post content and five for template authors. Nine earlier entries remain hidden for compatibility. Existing inserted copies are not rewritten. Clear family names, task-specific keywords, earlier-name search terms and List View labels help editors find and identify patterns. Categories are Page starters; Banners and introductions; Text, lists and tables; Steps and processes; Accordions; Notices and callouts; Links and cards; News and events; Page information; and Site structure. Starter content is an additional native WordPress view of page starters.
+
+Steps: simple, connected, cards and horizontal use the same Steps block. Select the collection to change Layout or Markers (Numbers/Icons). Switching markers retains text, links, order and selected icons. Choose each icon to change it. Add step includes an icon when appropriate. Existing saved step markup continues to validate. Icon summaries have List/Two columns controls; text/list columns have a column-count control and optional separators. Introduction: image and text offers an optional image overlap, with images stacking in narrow spaces.
+
+New patterns include Featured update, Event agenda, Link rows: icons, Icon and checklist, Text summaries: two columns, Steps: simple and Introduction: image and text. Featured update exposes directly editable title, description and optional date fields. In block settings, add its link destination, choose Photo/Solid colour/Theme graphic, select or replace the image, and choose its missing-photo fallback. Images, text and dates remain available when changing the visual. No author name is displayed. The local graphic makes no external requests. It is a decorative theme asset, not a sample photograph.
+
+Event agenda groups sessions under one date heading. Use Add date group and Add session, edit the headings directly, and move/duplicate/remove items with their controls. Removal uses the existing confirmation dialog. Session content uses ordinary headings, paragraphs, images, lists and buttons; add a session image only when it helps. Link rows and feature checklists have labelled add controls and collection item actions. A checklist is informational, not an interactive form. Add real destinations to link-pattern headings before publishing.
+
+Pattern names remain visible outside inserter previews, including keyboard selection. Descriptions are shown where native markup supplies them. This is scoped to editor pattern-list classes; it does not place labels inside inserted page content. Core editor markup varies by WordPress version, so future WordPress upgrades should include an inserter-label check.
+
+Topic banner, Browse this topic, Topic navigation and the single Related topic card entry are retired from the inserter but remain registered for compatibility. General inline links use Link cards: text and its Add card control. The separate page-end Related pages selection stays in page settings. Standalone Page contents and Section contents patterns are for template authors. The shared-draft editor receives the same template-block restrictions as page/post editors.
+
+Data table
+The earlier Reference table starter is now Data table. It retains native WordPress cell editing, row/column tools, links and Undo. Select the table and open Table headings to edit its required title and optionally identify the first column as row headings. Column headings stay enabled. The title appears as a real caption on the published table, and heading cells retain column/row scope. The scroll region is keyboard focusable and preserves table semantics.
+
+Missing or blank captions/headings, inconsistent row widths and unsupported merged/nested structures produce guidance. Drafts can be saved while work is incomplete. Publication through the normal page/post REST editor and B.C. page workflow 0.1.0 is rejected while a managed table has structural errors. Rejection keeps the live page unchanged. Older tables receive guidance and an explicit Use Data table checks action that retains their data. Classic editing, imported raw HTML, other editor integrations and direct PHP/database writes require separate review. Editors still need meaningful headings and appropriate table content; structural checks do not certify accessibility.
+
+
+Validation for version 1.14.0
+Installed checks covered WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter. All new patterns and all 49 earlier pattern bodies parsed without invalid-block recovery. Checks covered visible native inserter labels, keyboard insertion, earlier-name search, template-only exclusions, saved Navigation page customizations, layout/marker changes without text loss, image retention/fallbacks, editable collection additions/reordering, and saved content reopening. Table checks covered ordinary cell edits, required headings/captions, row headings, added columns, explicit legacy conversion, invalid draft saves, blocked publication with unchanged live content/date, and corrected publication through both native editing and the unchanged shared-draft plugin. PHP syntax passed on 7.4.33 and 8.3.33; all ten theme scripts passed JavaScript syntax checks. New components passed 320–768px overflow checks and selected automated WCAG 2 A/AA and 2.1 AA main-content checks. Real hosting, other plugins and assistive technologies require separate testing.
 
 Optional shared-draft workflow — version 1.13.0
 Install B.C. page workflow 0.1.0 separately to test one shared draft per page, intentional Save draft checkpoints, authenticated saved-version previews, publication summaries, history/reset/restore and the Site pages editor drawer. Read the plugin's README.txt for its workflow, installation order, scope and host/cache requirements. This is a practice/staging release, not a production-readiness claim.
@@ -9,14 +33,14 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.12.0 (the page refinements patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.13.0 (the workflow integration patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
 
 Page layouts
 - Home: front-page.html automatically supplies the site home layout. Choose a static home page under Settings > Reading, then edit that page's content. If Reading uses latest posts, the layout shows a posts index instead.
-- Topic landing page: a browsing hub that automatically lists published child pages, their explicit excerpts and grandchild links. Extra page content follows the cards. The browsing layout has no section sidebar; dates are omitted by default.
+- Navigation page: a browsing hub that automatically lists published child pages, their explicit excerpts and grandchild links. Extra page content follows the cards. The browsing layout has no section sidebar; dates are omitted by default.
 - Pages: standard content with breadcrumbs, title/introduction, explicit audience information and Last updated. The title and reading content share a column. On this page and In this section share one sticky desktop sidebar, with one view visible at a time.
 - Guide and reference: the bc-long-reference template uses the same navigation framework and a narrower reading measure for long content. Explicitly ordered sections receive Previous/Next chapter links.
 - Search Results, Page: 404, Single Posts, All Archives and Index remain WordPress's technical templates. There are nine template files and two custom page-template choices. Home is assigned through Reading settings; standard content uses the default Pages template.
@@ -40,7 +64,7 @@ Audience and applicability
 Administrators maintain site-specific terms under Pages > Written for and Pages > Applies to. Both lists start empty. Editors can select multiple existing terms on a page. Written for identifies the intended reader; Applies to identifies the groups covered by the content. No default group, eligibility claim or inherited applicability is assumed. The title area displays only selected values. Home omits this information by default. Labels describe content; they do not restrict access or hide content.
 
 Last updated
-Content and reference layouts display the current page's saved modification date in the site date format/time zone. It is not a review date. The standalone pattern remains available for other placements; duplicate dates on the same page are suppressed. Home and topic landing layouts omit the date by default. Template authors can change these defaults in the Page title and introduction block's Page information controls.
+Content and reference layouts display the current page's saved modification date in the site date format/time zone. It is not a review date. The standalone pattern remains available for other placements; duplicate dates on the same page are suppressed. Home and navigation layouts omit the date by default. Template authors can change these defaults in the Page title and introduction block's Page information controls.
 
 Mega-menu visibility and guides
 The menu is generated from published page hierarchies, ordered by Page order, title and ID. In each page's settings choose:
@@ -49,7 +73,7 @@ The menu is generated from published page hierarchies, ordered by Page order, ti
 - Hide page and subpages: omit that branch from automatic menu hierarchies.
 A parent's boundary covers newly created descendants and also applies when a descendant is selected as a menu-section root. These settings affect the automatic mega menu. Direct links intentionally entered in the menu remain explicit links. Search, breadcrumbs, child-page listings and local guide navigation use the page hierarchy independently.
 
-For a multi-page guide, mark the overview page This page starts a guide. Choose Show page only when the mega menu should stop there. Use Topic landing page for the overview; its child-page cards are supplied automatically. Add optional body content if needed. Use Guide and reference for chapters. In this section is scoped to the closest marked guide; other content pages use their published parent’s section. Previous/next chapter links follow published pages in hierarchy and Page order, with title/ID ties resolved consistently. Draft/private chapters are omitted. Nested guides keep their own chapter sequence. Guide order is editorial page order, not publication date.
+For a multi-page guide, mark the overview page This page starts a guide. Choose Show page only when the mega menu should stop there. Use Navigation page for the overview; its child-page cards are supplied automatically. Add optional body content if needed. Use Guide and reference for chapters. In this section is scoped to the closest marked guide; other content pages use their published parent’s section. Previous/next chapter links follow published pages in hierarchy and Page order, with title/ID ties resolved consistently. Draft/private chapters are omitted. Nested guides keep their own chapter sequence. Guide order is editorial page order, not publication date.
 
 Reading navigation and page-end links — version 1.10.0
 On desktop, Pages and Guide and reference use a sidebar with On this page and In this section. On this page is the default reading view when at least two eligible headings exist. The reader selects another view explicitly; scrolling updates only the current-heading marker. The tabs remain above the selected list. The section’s actual parent-page title is a clickable first link inside In this section; it is not repeated above the tabs. Long lists use the available viewport height and can scroll independently. The sidebar also respects the article height, so a long section menu does not add a large blank region below a short article. A single available view has no redundant tab selector. At very short viewport heights (420px or below), navigation remains in normal flow so all controls can be reached.
@@ -59,23 +83,24 @@ At 900px and below, On this page is a native disclosure near the introduction. I
 Previous/Next links show destination titles and directional arrows. They follow the published pages in a section explicitly marked This page starts a guide. They remain inside that ordered section and omit unavailable directions. Use the page Order field to establish a deliberate sequence. Unordered topics do not gain an arbitrary next-page sequence.
 
 Automatic navigation cards — version 1.10.0
-The Topic landing page template supplies cards immediately after its title/introduction. An editor does not need to insert a listing block. Each child page supplies its title and explicit Excerpt; its published children supply the grandchild links. Excerpts are never copied from body content, and excerpts of password-protected pages are withheld. Draft/private pages are omitted. Titles and grandchild links have separate destinations.
+The Navigation page template supplies cards immediately after its title/introduction. An editor does not need to insert a listing block. Each child page supplies its title and explicit Excerpt; its published children supply the grandchild links. Excerpts are never copied from body content, and excerpts of password-protected pages are withheld. Draft/private pages are omitted. Titles and grandchild links have separate destinations.
 
 Cards use existing blue/gold tokens, a pale-blue summary area, a slim gold accent, fine borders and small corners. Grandchild links sit below a separator. The grid uses two columns where space permits and one column in narrow containers. Short cards keep their natural height; empty excerpts and missing grandchild lists produce no empty regions. Older inserted child-card or section-contents blocks are suppressed when the template already provides that navigation. No saved page text is rewritten. The standalone child-card block remains available for other page layouts.
 
-Pages, Guide and reference, and Topic landing page have updated theme-file layouts in this release. Saved Site Editor overrides still take precedence. Appearance > Theme setup lists those overrides for review; export/back up an override before resetting it to use the updated layout.
+Pages, Guide and reference, and Navigation page have updated theme-file layouts in this release. Saved Site Editor overrides still take precedence. Appearance > Theme setup lists those overrides for review; export/back up an override before resetting it to use the updated layout.
 
-Pattern library
-- Page starters: Home, Topic landing, Standard content, Guide and reference. These arrange body content; the template supplies the shared page frame.
-- Banners and introductions: four image/solid banner options, topic banner, split introduction.
-- Cards and links: image cards, quick-access links, quick-action tiles, task links, related topics and tabbed resource cards.
-- Text and reference: Heading and paragraph, icon/text groups, text/list columns, reference table and optional contextual contact panel.
-- Steps and processes: numbered steps, step cards and icon roadmap.
-- Accordions: individual accordion and an accordion group with Expand all / Collapse all.
-- Notices and callouts: information, warning, success, error, headed callout and Callout: paragraph only.
-- Page information and navigation: Last updated, Audience and applicability, In this section, topic navigation and inline/sticky On this page.
-- Site structure: header and mega-menu patterns for template editing.
-Patterns include descriptive search keywords and generic sample wording. Replace sample copy and add real link destinations before publishing. The five earlier page-starter slugs remain hidden compatibility aliases. Existing inserted blocks keep their saved copy; the theme does not rewrite authored pages.
+Pattern library categories
+- Page starters: home, navigation, standard content, and guide and reference.
+- Banners and introductions: compact/tall image and solid-colour banners; split-text and image/text introductions.
+- Text, lists and tables: Heading and paragraph, Icon and text, Icon summaries, Icon and checklist, text summaries, column lists, Data table, and Contact and support.
+- Steps and processes: simple, connected, cards, and horizontal layouts with number/icon markers.
+- Accordions: Accordion group and Accordion panel.
+- Notices and callouts: information, warning, success and error notices; callouts with a heading or text only.
+- Links and cards: compact lists, image/icon/text cards, icon rows, task links, and tabbed resource links.
+- News and events: Featured update and Event agenda.
+- Page information: Last updated and Audience information.
+- Site structure: header, mega menu, Page contents and Section contents for template editing.
+Patterns include descriptive search keywords and generic sample wording. Replace sample copy and add real link destinations before publishing. Hidden compatibility entries remain registered. Existing inserted copies keep their saved content.
 
 Usability corrections — version 1.11.1
 Plain reading-page introductions use the full title-column width. Body text keeps its existing reading measure. The desktop navigation starts with On this page / In this section, with single-line tab labels. In this section begins with the named, clickable parent page. Single-view navigation uses its view label in place of the tabs.
@@ -125,6 +150,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.14.0: Organized pattern families and native inserter labels; new content/event patterns and editable variations; managed data-table heading checks; Navigation page template label.
 1.13.0: Request-scoped integration with the optional B.C. page workflow plugin for private working records and saved page previews, including presentation settings, templates, images, audience fields and related-page selections.
 1.12.0: Direct mega-menu heading links, removal confirmations, translucent taller image titles, editor-selected page-end related cards and refined feedback placement.
 1.11.1: Native accordion-body editing and an Edit panel content action; full-width reading introductions; clearer parent links and tabs; corrected heading tracking; compact bulk accordion controls.
@@ -145,7 +171,7 @@ Theme-provided Remove controls open a confirmation dialog before deleting an ite
 
 In a page editor’s Page settings sidebar, open Related pages. Search for published pages, select them, and use Move up/Move down to order the cards. Unselect removes a relationship without deleting the page. Saving the page saves its selections. The shared footer displays one distinct Related pages section after feedback, using selected pages’ current titles and explicit excerpts. Missing excerpts leave no empty description. The current page, drafts, private, deleted and password-protected pages are omitted. No selections means no section. Related pages can still display when feedback collection is disabled or the plugin is inactive. Existing manual Related topics patterns remain in page content; unneeded copies can be removed by the editor. Saved Footer customizations receive the same page-end sections without a layout reset.
 
-Topic landing page (navigation/browsing hubs) omits Written for, including saved copies of that layout. Explicit Applies to information remains available. Content and reference pages retain their audience information.
+Navigation page (navigation/browsing hubs) omits Written for, including saved copies of that layout. Explicit Applies to information remains available. Content and reference pages retain their audience information.
 
 Update B.C. page feedback to 1.2.0 for the shorter privacy hint, answer switching while the form is open, and Pages/Posts list counts restricted to New and In progress. The plugin has its own update package; a theme patch cannot change plugin files.
 

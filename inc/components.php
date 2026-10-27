@@ -73,8 +73,8 @@ add_action( 'init', function () {
     wp_register_script( 'bc-practice-editor-tools', get_theme_file_uri( 'assets/js/editor-tools.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-hooks', 'wp-notices' ), $version, true );
     wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'bc-practice-editor-tools' ), $version, true );
     register_block_type( 'bc-practice/steps', array(
-        'api_version' => 3, 'title' => __( 'Numbered steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
-        'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'connected', 'cards', 'roadmap' ), 'default' => 'connected' ) ),
+        'api_version' => 3, 'title' => __( 'Steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
+        'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'simple', 'connected', 'cards', 'roadmap' ), 'default' => 'connected' ), 'markers' => array( 'type' => 'string', 'enum' => array( '', 'numbers', 'icons' ), 'default' => '' ) ),
         'supports' => array( 'html' => false ), 'editor_script' => 'bc-practice-component-blocks',
     ) );
     register_block_type( 'bc-practice/resource-tabs', array(
@@ -141,3 +141,5 @@ function bc_practice_render_last_updated( $attributes, $content, $block ) {
     }
     return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-last-updated' ) ) . '>' . bc_practice_component_svg( 'calendar' ) . '<p>' . esc_html__( 'Last updated:', 'bc-practice' ) . ' ' . $date . '</p></div>';
 }
+
+require_once get_theme_file_path( 'inc/pattern-components.php' );

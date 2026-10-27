@@ -1,12 +1,12 @@
 <?php
 /**
- * Title: On this page: inline
+ * Title: Page contents: inline
  * Slug: bc-practice/on-this-page-inline
- * Categories: bc-page-information
- * Keywords: navigation, contents, metadata, page information
- * Post Types: page
- * Description: Automatic Heading 2 links. Place below the page introduction.
+ * Categories: bc-site-structure
+ * Keywords: on this page, contents, inline, automatic, template, on this page: inline
+ * Post Types: wp_template, wp_template_part
+ * Description: Advanced template tool: automatic links to page headings. Standard page templates already supply reading navigation.
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/page-contents /--></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Page contents: inline"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/page-contents /--></div><!-- /wp:group -->

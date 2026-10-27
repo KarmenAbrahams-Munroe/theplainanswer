@@ -74,7 +74,7 @@ function bc_practice_setup_screen() {
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
-    echo '<div class="wrap"><h1>Theme setup</h1><p>Page layouts: Home (the static front page), Topic landing page, Pages (standard content), and Guide and reference. Page-title appearance is a separate page setting.</p>';
+    echo '<div class="wrap"><h1>Theme setup</h1><p>Page layouts: Home (the static front page), Navigation page, Pages (standard content), and Guide and reference. Page-title appearance is a separate page setting.</p>';
     echo '<p><a href="' . esc_url( admin_url( 'options-reading.php' ) ) . '">Choose the static home page</a>. Administrators can maintain audience terms under <a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=bc_audience&post_type=page' ) ) . '">Pages → Written for</a> and <a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=bc_applicability&post_type=page' ) ) . '">Pages → Applies to</a>. Both lists start empty.</p>';
     if ( isset( $_GET['updated'] ) && is_scalar( $_GET['updated'] ) ) {
         echo '<div class="notice notice-success inline"><p>Updated ' . absint( $_GET['updated'] ) . ' compatible assignments. Saved layouts and page content were preserved.</p></div>';
@@ -95,7 +95,7 @@ function bc_practice_setup_screen() {
     } else {
         echo '<p>No earlier template assignments need updating.</p>';
     }
-    echo '<p>Version 1.10 updates Pages, Guide and reference, and Topic landing page. The new reading layouts align titles with article content and provide a sticky two-view sidebar. Topic landing page supplies navigation cards automatically. Saved layout overrides remain in control until reviewed.</p>';
+    echo '<p>Version 1.10 updates Pages, Guide and reference, and Navigation page. The new reading layouts align titles with article content and provide a sticky two-view sidebar. Navigation page supplies navigation cards automatically. Saved layout overrides remain in control until reviewed.</p>';
     echo '<h2>Saved Site Editor layouts</h2><p>These customizations take precedence over theme files. Review or export a customization before using the Site Editor’s reset controls to adopt the updated layout.</p><ul>';
     $saved = false;
     foreach ( array( 'wp_template', 'wp_template_part' ) as $type ) {
