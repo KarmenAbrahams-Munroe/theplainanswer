@@ -65,16 +65,6 @@ ul.bc-preparation-list { list-style-type: '\25a1  '; padding-inline-start: 1.4re
 .bc-navigation-style-rows .bc-navigation-card h2 { font-size: 1.25rem; }
 .bc-navigation-style-rows .bc-navigation-card .bc-auto-topic-heading { min-height: 0; }
 .bc-navigation-style-rows .bc-navigation-card .bc-grandchild-links { padding: .5rem 1rem .5rem 4.75rem; }
-/* Pane descriptions and contrasting surfaces distinguish headings from the page hierarchy. */
-.bc-reading-context { margin: .25rem .75rem .75rem; font-size: .875rem; line-height: 1.45; color: var(--wp--preset--color--body-text); }
-.bc-reading-section-pane { background: var(--wp--preset--color--pale-blue); }
-.bc-reading-navigation[data-reading-view=section] .bc-reading-tools { background: var(--wp--preset--color--primary); }
-.bc-reading-navigation[data-reading-view=section] .bc-reading-tools h2, .bc-reading-navigation[data-reading-view=section] .bc-reading-tabs button { color: white; }
-.bc-reading-navigation[data-reading-view=section] .bc-reading-tabs button:hover { background: rgb(255 255 255 / 12%); }
-.bc-reading-navigation[data-reading-view=section] .bc-reading-tabs button[aria-selected=true] { border-block-end-color: var(--wp--preset--color--gold); }
-.bc-reading-navigation[data-reading-view=section] .bc-reading-tabs button:focus-visible { outline-color: var(--wp--preset--color--gold); }
-.bc-section-menu > summary { background: var(--wp--preset--color--primary); color: white; border-color: var(--wp--preset--color--primary); }
-.bc-section-menu[open] > summary { background: var(--wp--preset--color--primary); }
 /* Disabling both menus removes the reserved rail and lets the title reach the viewport edges. */
 body.bc-reading-off .bc-page-shell { width: 100%; max-width: none; padding-inline: 0; }
 body.bc-reading-off .bc-page-shell > :not(.bc-page-title):not(.bc-reading-layout) { max-width: 80rem; box-sizing: border-box; margin-inline: auto; padding-inline: clamp(1rem, 3vw, 2rem); }

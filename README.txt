@@ -1,5 +1,18 @@
-B.C. practice — WordPress block theme, version 1.16.0
+B.C. practice — WordPress block theme, version 1.17.0
 
+
+
+Reading navigation — version 1.17.0
+The desktop sidebar has a pale-blue In this section disclosure button above a separate On this page panel with a navy heading bar. The section menu opens temporarily over the index and closes through its disclosure button, Close menu, Escape, an outside pointer action, or keyboard focus leaving the menu. The index keeps its scroll position and current-heading tracker while covered. No tabs or instructional paragraphs are displayed.
+
+The named parent page is a larger, bold, underlined heading link. Branch controls have a compact chevron and a 44px target. Long section menus keep the parent heading visible, reveal the current page when opened, and scroll within the available viewport. The close control remains reachable. Menus can open upward when space below is limited. At very short desktop heights they use normal document flow. Opening a menu does not stretch an article in the regular desktop layout.
+
+At 900px and below, On this page remains a native disclosure near the introduction. In this section moves after the article and Previous/Next links. The small top link opens that page-end disclosure. The same section node moves between locations; focused links and controls remain reachable. Native disclosures and ordinary links work without JavaScript. Page settings can still turn either menu off independently. Section-only pages use the same compact menu control; page-only pages show the index alone.
+
+This patch expects theme version 1.16.0. Saved template customizations continue to use the existing dynamic blocks; no template migration or companion plugin update is needed.
+
+Validation for version 1.17.0
+Installed checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33. Checks covered the separate page-index panel and section disclosure; linked parent headings; compact 44px branch controls; keyboard opening, Escape, Close menu, outside-pointer and Tab-out behaviour; stable reading position and current-heading tracking; long scrollable indexes and 40-page guides; current-page visibility under the sticky parent heading; article-height preservation; independent visibility settings; mobile document order and breakpoint focus; 320–901px reflow; short-height fallback; no-JavaScript disclosures/links; print; saved template preservation; existing pattern/template parsing; dynamic editor previews; and selected automated WCAG 2 A/AA and 2.1 AA main-content checks. Additional WordPress 7.1.3 checks covered upward menu placement, sticky-sidebar keyboard position, focus visibility below the parent heading and a customized layout missing the section block. PHP syntax passed on 7.4.33 and 8.3.33; JavaScript syntax passed. These checks do not replace usability or assistive-technology testing.
 
 
 Comparison cards — version 1.16.0
@@ -35,7 +48,7 @@ Select Link list: compact and open Pattern layout > Link columns to choose one o
 
 Four new native patterns are available: Before you start (Text, lists and tables), Link cards: image and sublinks, Link cards: icons and sublinks, and Link panels: icons (Links and cards). The preparation checklist is informational; its square bullets are ordinary list markers. Navigation patterns retain native image, heading, paragraph, list and link editing, with labelled Add controls. Select the navigation collection or its whole pattern for column choices. Enter actual link destinations before publication.
 
-In Page presentation and navigation, Show On this page and Show In this section control the two reading menus independently. Both remain enabled by default. The section view has a distinct navy header, pale-blue surface and explanatory text; the page view identifies heading links within the current page. Existing manual tab selection, sticky positioning, heading tracking and mobile placement are retained. Disabling both menus removes their rail and gives title appearances an edge-to-edge container, with title text aligned to the reading content. Body text retains its reading width.
+In Page presentation and navigation, Show On this page and Show In this section control the two reading menus independently. Both remain enabled by default. The current desktop design uses a separate section-menu control and navy-headed page index; see Reading navigation above. Sticky positioning, heading tracking and mobile placement are retained. Disabling both menus removes their rail and gives title appearances an edge-to-edge container, with title text aligned to the reading content. Body text retains its reading width.
 
 Navigation card style selects Standard cards, Image cards, Icon cards, Icon panels or Compact icon rows for automatic child-page cards. All retain explicit child excerpts and published grandchild links. Image cards use each child page's Featured image; missing or protected images produce no empty placeholder. Page icon selects the icon used when that page is listed by its parent. The new manual patterns support curated navigation independently of the page hierarchy.
 
@@ -86,7 +99,7 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.15.2 (the tall image-title panel follow-up). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.16.0 (the comparison cards update). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -94,7 +107,7 @@ Install a complete theme ZIP through Appearance > Themes > Add New Theme > Uploa
 Page layouts
 - Home: front-page.html automatically supplies the site home layout. Choose a static home page under Settings > Reading, then edit that page's content. If Reading uses latest posts, the layout shows a posts index instead.
 - Navigation page: a browsing hub that automatically lists published child pages, their explicit excerpts and grandchild links. Extra page content follows the cards. The browsing layout has no section sidebar; dates are omitted by default.
-- Pages: standard content with breadcrumbs, title/introduction, explicit audience information and Last updated. The title and reading content share a column. On this page and In this section share one sticky desktop sidebar, with one view visible at a time.
+- Pages: standard content with breadcrumbs, title/introduction, explicit audience information and Last updated. The title and reading content share a column. On this page and In this section share one sticky desktop sidebar, with a separate section-menu control and a navy-headed page index.
 - Guide and reference: the bc-long-reference template uses the same navigation framework and a narrower reading measure for long content. Explicitly ordered sections receive Previous/Next chapter links.
 - Search Results, Page: 404, Single Posts, All Archives and Index remain WordPress's technical templates. There are nine template files and two custom page-template choices. Home is assigned through Reading settings; standard content uses the default Pages template.
 
@@ -129,7 +142,7 @@ A parent's boundary covers newly created descendants and also applies when a des
 For a multi-page guide, mark the overview page This page starts a guide. Choose Show page only when the mega menu should stop there. Use Navigation page for the overview; its child-page cards are supplied automatically. Add optional body content if needed. Use Guide and reference for chapters. In this section is scoped to the closest marked guide; other content pages use their published parent’s section. Previous/next chapter links follow published pages in hierarchy and Page order, with title/ID ties resolved consistently. Draft/private chapters are omitted. Nested guides keep their own chapter sequence. Guide order is editorial page order, not publication date.
 
 Reading navigation and page-end links — version 1.10.0
-On desktop, Pages and Guide and reference use a sidebar with On this page and In this section. On this page is the default reading view when at least two eligible headings exist. The reader selects another view explicitly; scrolling updates only the current-heading marker. The tabs remain above the selected list. The section’s actual parent-page title is a clickable first link inside In this section; it is not repeated above the tabs. Long lists use the available viewport height and can scroll independently. The sidebar also respects the article height, so a long section menu does not add a large blank region below a short article. A single available view has no redundant tab selector. At very short viewport heights (420px or below), navigation remains in normal flow so all controls can be reached.
+On desktop, Pages and Guide and reference use a sticky sidebar with a compact In this section control and a separate On this page panel. Section pages open in a temporary overlay; the index returns when it closes. Scrolling updates the current-heading marker independently. The parent-page title is a prominent linked heading inside the section menu. Long lists scroll within the viewport. The sidebar respects article height; its menu overlay does not add a blank region below a short article. At viewport heights of 420px or below, navigation uses normal flow so all controls remain reachable.
 
 At 900px and below, On this page is a native disclosure near the introduction. In this section appears after the article and any Previous/Next links, before feedback and the footer. A small In this section link near the top opens that page-end menu. The same section-list node moves between these locations on breakpoint changes, with keyboard focus retained; duplicate link lists are not generated. Without JavaScript, native disclosures and ordinary links remain available. Print omits the navigation controls and preserves article content.
 
@@ -156,7 +169,7 @@ Pattern library categories
 Patterns include descriptive search keywords and generic sample wording. Replace sample copy and add real link destinations before publishing. Hidden compatibility entries remain registered. Existing inserted copies keep their saved content.
 
 Usability corrections — version 1.11.1
-Plain reading-page introductions use the full title-column width. Body text keeps its existing reading measure. The desktop navigation starts with On this page / In this section, with single-line tab labels. In this section begins with the named, clickable parent page. Single-view navigation uses its view label in place of the tabs.
+Plain reading-page introductions use the full title-column width. Body text keeps its existing reading measure. The desktop sidebar uses a section-menu disclosure and a separate navy-headed page index. The named parent page is a prominent link inside the menu. Page settings can show either menu independently.
 
 Heading tracking accounts for both the scrolling container’s padding and each target’s scroll margin, including the signed-in admin-bar offset. At the end of the page it can identify a final section whose heading cannot scroll to the top. Expand all / Collapse all use compact underlined buttons separated by a decorative pipe. Keyboard activation, focus outlines and status messages are retained.
 
@@ -203,6 +216,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.17.0: Separate page-index panel and section-menu disclosure, prominent parent links, bounded menu scrolling and keyboard/mobile focus handling.
 1.16.0: Paired comparison cards with optional icons and native text/list editing.
 1.15.2: Content-sized tall image-title panels with a desktop width cap and full-width mobile layout.
 1.15.1: Full text-column excerpts and a neutral compact image-banner border.

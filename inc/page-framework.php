@@ -11,7 +11,7 @@ function bc_practice_framework_blocks() {
         'guide-navigation' => array( 'title' => 'Previous and next chapter', 'icon' => 'leftright', 'description' => 'Previous and next pages within an explicitly marked guide.' ),
         'home-content' => array( 'title' => 'Home page content', 'icon' => 'admin-home', 'description' => 'The static home page body, or the posts index when Reading settings use latest posts.' ),
         'footer-feedback' => array( 'title' => 'Footer page feedback', 'icon' => 'feedback', 'description' => 'Page-linked feedback followed by selected related pages above the site footer. Feedback requires B.C. page feedback 1.1 or later.' ),
-        'reading-navigation' => array( 'title' => 'Reading navigation', 'icon' => 'menu', 'description' => 'On this page and In this section share a sticky desktop sidebar. The section menu appears after the article on mobile.' ),
+        'reading-navigation' => array( 'title' => 'Reading navigation', 'icon' => 'menu', 'description' => 'A sticky page index with a separate section menu. The section menu appears after the article on mobile.' ),
         'section-menu' => array( 'title' => 'Section menu at page end', 'icon' => 'editor-ul', 'description' => 'Published section pages, paired with the Reading navigation block.' ),
     );
 }
