@@ -87,7 +87,6 @@ body.bc-reading-off .bc-page-title .bc-banner-image-compact > .bc-banner-copy { 
 body.bc-reading-off .bc-page-title .bc-title-image-tall { padding-inline: max(clamp(1rem, 3vw, 2rem), calc((100vw - var(--bc-reading-width, 80rem)) / 2 + clamp(1rem, 3vw, 2rem))); }
 body.bc-reading-off .bc-page-title.bc-page-hero { box-sizing: border-box; padding-inline: max(clamp(1rem, 3vw, 2rem), calc((100vw - var(--bc-reading-width, 80rem)) / 2 + clamp(1rem, 3vw, 2rem))); }
 body.bc-reading-off .bc-page-title.bc-banner-frame > .bc-page-information { box-sizing: border-box; max-width: var(--bc-reading-width, 80rem); margin-inline: auto; padding-inline: clamp(1rem, 3vw, 2rem); }
-body.bc-reading-off .bc-title-image-tall .bc-banner-copy { width: 100%; max-width: none; }
 @container (max-width: 40rem) { .bc-navigation-manual { grid-template-columns: minmax(0, 1fr); } }
 @container (max-width: 36rem) { .bc-quick-links-list.bc-quick-links-two-column { grid-template-columns: minmax(0, 1fr); } }
 @container (max-width: 42rem) { .bc-media-overlap .bc-feature-images .wp-block-image + .wp-block-image { width: 65%; margin-block-start: -18%; border: 4px solid white; } }

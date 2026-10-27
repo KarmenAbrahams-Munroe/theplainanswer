@@ -21,7 +21,7 @@
 .bc-banner-image-compact:not(:has(> .bc-banner-media)) { grid-template-columns: minmax(0, 1fr); }
 .bc-banner-image-tall.wp-block-cover { min-height: 26.25rem; padding: 1.75rem; background: var(--bcds-surface-color-background-light-blue); border: 1px solid var(--bcds-surface-color-border-default); overflow: clip; }
 .bc-banner-image-tall > .wp-block-cover__inner-container { width: 100%; color: var(--bcds-typography-color-primary); }
-.bc-banner-image-tall .bc-banner-copy { width: 60%; max-width: 46rem; margin: 0; background: rgb(255 255 255 / 94%); border-inline-start: 6px solid var(--bcds-theme-primary-gold); border-radius: 4px; }
+.bc-banner-image-tall .bc-banner-copy { width: fit-content; max-width: min(100%, 46rem); margin: 0; background: rgb(255 255 255 / 94%); border-inline-start: 6px solid var(--bcds-theme-primary-gold); border-radius: 4px; }
 .bc-banner-solid { display: flex; align-items: center; background: var(--bcds-surface-color-primary-default); border-bottom: 4px solid var(--bcds-theme-primary-gold); }
 .bc-banner-solid.bc-banner-compact { min-height: 13.75rem; }
 .bc-banner-solid.bc-banner-tall { min-height: 26.25rem; }

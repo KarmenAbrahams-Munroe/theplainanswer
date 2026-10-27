@@ -1,6 +1,14 @@
-B.C. practice — WordPress block theme, version 1.15.1
+B.C. practice — WordPress block theme, version 1.15.2
 
 
+
+Tall image-title panel — version 1.15.2
+Desktop tall image titles and tall image promo banners size their white text panel to its content, capped at 46rem and the available container width. Disabling both reading menus keeps this cap. Narrow layouts still use the full available panel width and place the image above the text. The existing translucent surface, gold side accent and title alignment are retained.
+
+This follow-up patch expects theme version 1.15.1.
+
+Validation for version 1.15.2
+Installed checks passed on WordPress 6.6.10 and 7.1.3. Checks covered the MyHR home-page example, navigation/content/guide titles with menus on/off, long text, title-only panels, the 46rem desktop cap, 320–1828px reflow, full-width mobile panels, image stacking, retained translucent backgrounds and side accents, print output, native editor rendering and pattern validation, and selected automated WCAG 2 A/AA and 2.1 AA main-content checks. This release changes CSS and theme documentation/version only.
 
 Compact image-banner follow-up — version 1.15.1
 The compact image banner uses a thin neutral border. Its introduction and native paragraph blocks fill the available text column without a separate character-width cap. Page excerpts flow single saved line breaks as ordinary whitespace; blank lines still separate paragraphs. Excerpt content remains stored as entered. This applies to the shared page-title block and the earlier page-introduction block. Other banner appearances retain their existing accents.
@@ -68,7 +76,7 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.15.0 (the component refinements update). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.15.1 (the compact image-banner follow-up). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -185,6 +193,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.15.2: Content-sized tall image-title panels with a desktop width cap and full-width mobile layout.
 1.15.1: Full text-column excerpts and a neutral compact image-banner border.
 1.15.0: Compact component spacing, clearer section rhythm, simpler featured updates, two-column quick links, one-image introductions, preparation/navigation patterns and optional page navigation with full-width titles.
 1.14.2: In-flow nested insertion controls, aligned horizontal step markers, and consistent resource-card widths between tabs.

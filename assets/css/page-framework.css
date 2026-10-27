@@ -28,7 +28,7 @@
 .bc-template-home .bc-page-hero { margin-block-end: 2rem; }
 .bc-title-image-tall { position: relative; min-height: 26.25rem; display: flex; align-items: center; padding: 1.75rem; overflow: hidden; border: 1px solid var(--bcds-surface-color-border-default); background: var(--bcds-surface-color-background-light-blue); }
 .bc-title-image-tall > img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; }
-.bc-title-image-tall .bc-banner-copy { position: relative; width: 60%; max-width: 46rem; background: rgb(255 255 255 / 94%); border-inline-start: 6px solid var(--bcds-theme-primary-gold); border-radius: 4px; }
+.bc-title-image-tall .bc-banner-copy { position: relative; width: fit-content; max-width: min(100%, 46rem); background: rgb(255 255 255 / 94%); border-inline-start: 6px solid var(--bcds-theme-primary-gold); border-radius: 4px; }
 .bc-guide-contents { border-block: 1px solid var(--bcds-surface-color-border-default); padding-block: 1.25rem; }
 .bc-guide-contents h2 { margin-block: 0 .75rem; font-size: 1.5rem; }
 .bc-guide-contents ul { padding-inline-start: 1.25rem; }
