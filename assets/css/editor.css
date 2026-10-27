@@ -28,7 +28,8 @@
 .block-editor-inserter__content .block-editor-patterns__pattern-details,
 .block-editor-inserter__preview-container .block-editor-patterns__pattern-details { display: flex !important; }
 .block-editor-block-patterns-list__item[aria-label]:not(:has(.block-editor-block-patterns-list__item-title))::after { content: attr(aria-label); display: block; white-space: normal; font-size: 14px; font-weight: 600; line-height: 1.4; color: #1e1e1e; padding: 10px 12px; text-align: start; }
-.block-editor-block-patterns-list__item [id^="block-editor-block-patterns-list__item-description-"] { position: static !important; width: auto !important; height: auto !important; clip: auto !important; clip-path: none !important; overflow: visible !important; white-space: normal !important; margin: 0 !important; padding: 5px 12px 10px !important; font-size: 12px; line-height: 1.4; color: #50575e; }
+/* Keep the inserter compact: show preview names without description text. */
+.block-editor-block-patterns-list__item [id^="block-editor-block-patterns-list__item-description-"] { display: none !important; }
 .editor-styles-wrapper .bc-featured-update .block-editor-rich-text__editable { min-width: 0; }
 .editor-styles-wrapper .bc-link-row h3 a::after { pointer-events: none; }
 .editor-styles-wrapper .bc-event-day > .bc-editor-item-actions { grid-column: 1 / -1; }

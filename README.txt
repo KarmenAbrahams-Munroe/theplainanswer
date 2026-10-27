@@ -1,4 +1,4 @@
-B.C. practice — WordPress block theme, version 1.14.0
+B.C. practice — WordPress block theme, version 1.14.1
 
 Pattern library and editing — version 1.14.0
 The template previously labelled Topic landing page is now Navigation page. Its bc-topic-landing identifier and existing assignments are retained. Saved template customizations display the new label without changing their content.
@@ -11,7 +11,7 @@ New patterns include Featured update, Event agenda, Link rows: icons, Icon and c
 
 Event agenda groups sessions under one date heading. Use Add date group and Add session, edit the headings directly, and move/duplicate/remove items with their controls. Removal uses the existing confirmation dialog. Session content uses ordinary headings, paragraphs, images, lists and buttons; add a session image only when it helps. Link rows and feature checklists have labelled add controls and collection item actions. A checklist is informational, not an interactive form. Add real destinations to link-pattern headings before publishing.
 
-Pattern names remain visible outside inserter previews, including keyboard selection. Descriptions are shown where native markup supplies them. This is scoped to editor pattern-list classes; it does not place labels inside inserted page content. Core editor markup varies by WordPress version, so future WordPress upgrades should include an inserter-label check.
+Pattern names remain visible outside inserter previews, including keyboard selection. Description text is hidden in the inserter; preview names stay visible. This is scoped to editor pattern-list classes; it does not place labels inside inserted page content. Core editor markup varies by WordPress version, so future WordPress upgrades should include an inserter-label check.
 
 Topic banner, Browse this topic, Topic navigation and the single Related topic card entry are retired from the inserter but remain registered for compatibility. General inline links use Link cards: text and its Add card control. The separate page-end Related pages selection stays in page settings. Standalone Page contents and Section contents patterns are for template authors. The shared-draft editor receives the same template-block restrictions as page/post editors.
 
@@ -33,7 +33,7 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.13.0 (the workflow integration patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.14.0 (the pattern library patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -150,6 +150,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.14.1: Hide pattern descriptions in inserter previews while keeping pattern names visible.
 1.14.0: Organized pattern families and native inserter labels; new content/event patterns and editable variations; managed data-table heading checks; Navigation page template label.
 1.13.0: Request-scoped integration with the optional B.C. page workflow plugin for private working records and saved page previews, including presentation settings, templates, images, audience fields and related-page selections.
 1.12.0: Direct mega-menu heading links, removal confirmations, translucent taller image titles, editor-selected page-end related cards and refined feedback placement.
