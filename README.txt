@@ -1,6 +1,14 @@
-B.C. practice — WordPress block theme, version 1.15.0
+B.C. practice — WordPress block theme, version 1.15.1
 
 
+
+Compact image-banner follow-up — version 1.15.1
+The compact image banner uses a thin neutral border. Its introduction and native paragraph blocks fill the available text column without a separate character-width cap. Page excerpts flow single saved line breaks as ordinary whitespace; blank lines still separate paragraphs. Excerpt content remains stored as entered. This applies to the shared page-title block and the earlier page-introduction block. Other banner appearances retain their existing accents.
+
+This follow-up patch expects theme version 1.15.0. The workflow plugin does not need another update.
+
+Validation for version 1.15.1
+Installed checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33. Checks covered flowing single line breaks, preserved blank-line paragraphs and stored excerpt text, escaped output, compact title widths in navigation/content/guide layouts with menus on/off, 320–1828px reflow, neutral banner borders, retained header and other-banner accents, missing-image/empty-excerpt fallbacks, print output, native editor pattern validation and selected automated WCAG 2 A/AA and 2.1 AA main-content checks. PHP syntax passed on 7.4.33 and 8.3.33.
 
 Component refinements and navigation options — version 1.15.0
 Link rows use compact spacing and aligned headings/icons. Simple steps use a stronger horizontal separator and markers aligned with their headings. Icon and checklist aligns its icons with the text. Featured update starts with Text only; Photo, Solid colour and a quieter Theme graphic remain available. Optional dates and selected images survive changes of visual style.
@@ -60,7 +68,7 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.14.2 (the component layout follow-up). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.15.0 (the component refinements update). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -177,6 +185,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.15.1: Full text-column excerpts and a neutral compact image-banner border.
 1.15.0: Compact component spacing, clearer section rhythm, simpler featured updates, two-column quick links, one-image introductions, preparation/navigation patterns and optional page navigation with full-width titles.
 1.14.2: In-flow nested insertion controls, aligned horizontal step markers, and consistent resource-card widths between tabs.
 1.14.1: Hide pattern descriptions in inserter previews while keeping pattern names visible.

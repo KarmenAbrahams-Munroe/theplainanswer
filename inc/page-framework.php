@@ -77,7 +77,7 @@ function bc_practice_render_page_title( $attributes, $content, $block ) {
     }
     $copy = '<h1 class="wp-block-post-title">' . esc_html( bc_practice_card_title( $page ) ) . '</h1>';
     if ( ! post_password_required( $page ) && '' !== trim( $page->post_excerpt ) ) {
-        $copy .= '<div class="bc-page-introduction">' . wpautop( esc_html( $page->post_excerpt ) ) . '</div>';
+        $copy .= '<div class="bc-page-introduction">' . wpautop( esc_html( $page->post_excerpt ), false ) . '</div>';
     }
     $information = bc_practice_page_information( $page, $attributes['showUpdated'] ?? true, $attributes['showAudience'] ?? true );
     $style = bc_practice_title_style( $page->ID );

@@ -84,7 +84,7 @@ function bc_practice_render_page_introduction( $attributes, $content, $block ) {
     if ( ! $page || '' === trim( $page->post_excerpt ) ) {
         return bc_practice_empty_preview( 'Add a short introduction in the page Excerpt field.' );
     }
-    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-page-introduction' ) ) . '>' . wpautop( esc_html( $page->post_excerpt ) ) . '</div>';
+    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-page-introduction' ) ) . '>' . wpautop( esc_html( $page->post_excerpt ), false ) . '</div>';
 }
 
 /** Render links and separate disclosure buttons; all branches work without JS. */
