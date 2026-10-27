@@ -1,4 +1,14 @@
-B.C. practice — WordPress block theme, version 1.14.1
+B.C. practice — WordPress block theme, version 1.14.2
+
+
+Component layout corrections — version 1.14.2
+Agenda controls now occupy separate rows beneath their own session/date collections. Nested content insertion buttons remain compact and reserve their own height. Horizontal step icons align with the centre of each step; the editor no longer leaves an unused grid column or draws a connector after the last step. Narrow layouts and processes with six or more steps retain the vertical arrangement.
+
+Resource links: tabs uses matching card tracks across resource groups, with up to three columns where space permits. A group with two cards occupies two tracks instead of enlarging its cards to fill the space used by three. Images retain the existing aspect ratio, and body text can increase card height naturally. Standalone Link cards: image keeps its existing responsive grid. Existing inserted patterns receive the layout corrections through CSS; saved block content is unchanged.
+
+
+Validation for version 1.14.2
+Installed checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33. Checks covered adding/editing agenda sessions and dates, non-overlapping insertion controls, centred five-step roadmaps, narrow/six-step vertical layouts, saved content reopening without invalid blocks, matching resource-card/image widths between two- and three-card groups, keyboard tab activation, 320–1680px page reflow, print visibility and selected automated WCAG 2 A/AA and 2.1 AA main-content checks. Current and earlier pattern markup continued to parse without invalid-block recovery.
 
 Pattern library and editing — version 1.14.0
 The template previously labelled Topic landing page is now Navigation page. Its bc-topic-landing identifier and existing assignments are retained. Saved template customizations display the new label without changing their content.
@@ -33,7 +43,7 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.14.0 (the pattern library patch). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.14.1 (the pattern label follow-up). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -150,6 +160,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.14.2: In-flow nested insertion controls, aligned horizontal step markers, and consistent resource-card widths between tabs.
 1.14.1: Hide pattern descriptions in inserter previews while keeping pattern names visible.
 1.14.0: Organized pattern families and native inserter labels; new content/event patterns and editable variations; managed data-table heading checks; Navigation page template label.
 1.13.0: Request-scoped integration with the optional B.C. page workflow plugin for private working records and saved page previews, including presentation settings, templates, images, audience fields and related-page selections.

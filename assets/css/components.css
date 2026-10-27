@@ -118,6 +118,8 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 .bc-pattern-section > h2 { margin-top: 0; }
 .bc-pattern-section > p { max-width: 72ch; }
 .bc-image-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1.5rem; align-items: stretch; }
+/* Keep resource card tracks the same width across tabs, with at most three columns. */
+.bc-resource-tabs .bc-image-card-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, max(16rem, calc((100% - 3rem) / 3))), 1fr)); }
 .wp-block-group.bc-image-card-grid > * { margin-block: 0; min-width: 0; }
 .bc-image-card { position: relative; border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; background: var(--bcds-surface-color-secondary-default); overflow: clip; }
 .wp-block-group.bc-image-card > .wp-block-image { margin: 0; }

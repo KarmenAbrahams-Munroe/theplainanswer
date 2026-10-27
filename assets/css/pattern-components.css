@@ -12,7 +12,7 @@
 .bc-steps-icons > .bc-step > .bc-component-icon svg { width: 1.6rem; height: 1.6rem; }
 .bc-steps-numbers > .bc-step > .bc-component-icon { display: none; }
 .bc-steps-cards.bc-steps-icons > .bc-step > .bc-component-icon { width: 3rem; height: 3rem; border-radius: 3px 0 4px 0; }
-@container (min-width: 48rem) {
+@container (min-width: 50rem) {
     .bc-steps-roadmap.bc-steps-icons:not(:has(> .bc-step:nth-child(6))) > .bc-step > .bc-component-icon { inset-inline-start: calc(50% - 1.125rem); width: 2.25rem; height: 2.25rem; }
 }
 .bc-featured-update { display: flex; flex-wrap: wrap; overflow: hidden; min-width: 0; border: 1px solid var(--wp--preset--color--border); border-block-start: 4px solid var(--wp--preset--color--gold); border-radius: 4px; background: var(--wp--preset--color--pale-blue); }

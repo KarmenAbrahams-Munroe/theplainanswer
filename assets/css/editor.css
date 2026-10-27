@@ -40,3 +40,20 @@
 .editor-styles-wrapper :is(.bc-link-row, .bc-feature-item) > .wp-block-bc-practice-icon .bc-component-icon { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 4px; background: #f1f8fe; }
 .editor-styles-wrapper :is(.bc-link-row, .bc-feature-item) > .wp-block-bc-practice-icon svg { width: 2rem; height: 2rem; }
 .bc-editor-action-label { flex-basis: 100%; font-size: 13px; font-weight: 600; }
+
+/* Nested insertion controls occupy their own space beneath their content. */
+.editor-styles-wrapper :is(.bc-agenda, .bc-event-sessions, .bc-event-session, .bc-step, .bc-tab-panel-content > .block-editor-inner-blocks > .block-editor-block-list__layout) > .block-list-appender {
+    position: static; inset: auto; display: flow-root; width: 100%; margin-block: 1rem 0; clear: both; grid-column: 1 / -1;
+}
+.editor-styles-wrapper .bc-agenda .bc-editor-add { margin: 0; padding-block: .5rem; }
+.editor-styles-wrapper .bc-agenda > .block-list-appender { padding-block-start: .5rem; border-block-start: 1px dashed var(--wp--preset--color--border); }
+/* A full-width appender would keep unused auto-fit roadmap columns open. */
+.editor-styles-wrapper .bc-steps-roadmap > .block-list-appender { grid-column: 1; }
+.editor-styles-wrapper .bc-steps > .bc-step:not(:has(~ .bc-step))::after { content: none; }
+@container (min-width: 50rem) {
+    .editor-styles-wrapper .bc-steps-roadmap.bc-steps-icons:not(:has(> .bc-step:nth-child(6))) > .bc-step > .wp-block-bc-practice-icon {
+        inset-inline-start: calc(50% - 1.125rem); top: 0;
+    }
+}
+
+.editor-styles-wrapper :is(.bc-event-session, .bc-step) > .block-list-appender .block-editor-button-block-appender { width: 44px; min-width: 44px; min-height: 44px; padding: 0; }
