@@ -1,6 +1,16 @@
-B.C. practice — WordPress block theme, version 1.15.2
+B.C. practice — WordPress block theme, version 1.16.0
 
 
+
+Comparison cards — version 1.16.0
+Find Comparison: two options and Comparison: with icons under Text, lists and tables. Both use the same paired-card layout. Each card contains a heading, paragraph, subheading and list, all editable with ordinary WordPress blocks. Add, remove or rearrange content inside a card using the native editor. Sample content is generic and should be replaced before publication.
+
+Select the whole pattern or Comparison cards group, then open Block > Pattern layout > Show icons. Turning icons off retains the selected icons; turning them on restores a missing icon when it can be inserted. Select each visible icon to change it. Headings explain the meaning independently of the icons. Cards have equal widths, align their heading areas where subgrid is supported, and expand with their content. They stack in containers at or below 42rem, keeping the first card before the second. These are content comparisons; no eligibility calculation or whole-card link is added.
+
+This patch expects theme version 1.15.2.
+
+Validation for version 1.16.0
+Installed checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33. All 62 theme pattern bodies validated. Checks covered pattern categories, paired widths/heights, aligned headers with unequal content, optional icons, 18px body text, 320–768px reflow and reading order, print visibility, selected automated WCAG 2 A/AA and 2.1 AA main-content checks, whole-pattern and collection settings, searchable icon selection, retained/restored icons, native paragraph/list additions, and saving/reopening without invalid-block recovery. PHP syntax passed on 7.4.33 and 8.3.33; the modified editor script passed JavaScript syntax checks.
 
 Tall image-title panel — version 1.15.2
 Desktop tall image titles and tall image promo banners size their white text panel to its content, capped at 46rem and the available container width. Disabling both reading menus keeps this cap. Narrow layouts still use the full available panel width and place the image above the text. The existing translucent surface, gold side accent and title alignment are retained.
@@ -46,7 +56,7 @@ Installed checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33. Checks co
 Pattern library and editing
 The template previously labelled Topic landing page is now Navigation page. Its bc-topic-landing identifier and existing assignments are retained. Saved template customizations display the new label without changing their content.
 
-The library contains 51 insertable theme patterns: 46 for page/post content and five for template authors. Nine earlier entries remain hidden for compatibility. Existing inserted copies are not rewritten. Clear family names, task-specific keywords, earlier-name search terms and List View labels help editors find and identify patterns. Categories are Page starters; Banners and introductions; Text, lists and tables; Steps and processes; Accordions; Notices and callouts; Links and cards; News and events; Page information; and Site structure. Starter content is an additional native WordPress view of page starters.
+The library contains 53 insertable theme patterns: 48 for page/post content and five for template authors. Nine earlier entries remain hidden for compatibility. Existing inserted copies are not rewritten. Clear family names, task-specific keywords, earlier-name search terms and List View labels help editors find and identify patterns. Categories are Page starters; Banners and introductions; Text, lists and tables; Steps and processes; Accordions; Notices and callouts; Links and cards; News and events; Page information; and Site structure. Starter content is an additional native WordPress view of page starters.
 
 Steps: simple, connected, cards and horizontal use the same Steps block. Select the collection to change Layout or Markers (Numbers/Icons). Switching markers retains text, links, order and selected icons. Choose each icon to change it. Add step includes an icon when appropriate. Existing saved step markup continues to validate. Icon summaries have List/Two columns controls; text/list columns have a column-count control and optional separators. Introduction: image and text offers Overlapping images or One image. Choosing one image preserves the second image for switching back. The overlapping arrangement also adapts to narrow spaces.
 
@@ -76,7 +86,7 @@ Validation for version 1.13.0
 Installed workflow checks passed on WordPress 6.6.10 and 7.1.3 with PHP 8.3.33 and Playground's SQLite adapter, including published-page isolation during draft saves, intentional publication of body/settings, saved template/image previews, canonical child cards, authenticated preview access, notes/reset/history/recovery, new pages, page switching, injected failure rollback and plugin deactivation/reactivation. PHP syntax passed on 7.4.33 and 8.3.33. Selected mobile/editor accessibility checks passed. Real MySQL/MariaDB hosting, production caches, assistive technologies and third-party plugin interactions still require testing.
 
 Update an existing GitHub-managed theme
-This patch expects version 1.15.1 (the compact image-banner follow-up). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
+This patch expects version 1.15.2 (the tall image-title panel follow-up). From the theme repository, run git apply --check on the patch, then git apply. Review, commit and deploy through the normal GitHub workflow. The patch contains theme files only and does not change functions.php. The page workflow and feedback plugins are separate installations.
 
 First installation
 Install a complete theme ZIP through Appearance > Themes > Add New Theme > Upload Theme. A patch is not an installable theme ZIP. Requirements: WordPress 6.6+ and PHP 7.4+.
@@ -135,7 +145,7 @@ Pages, Guide and reference, and Navigation page have updated theme-file layouts 
 Pattern library categories
 - Page starters: home, navigation, standard content, and guide and reference.
 - Banners and introductions: compact/tall image and solid-colour banners; split-text and image/text introductions.
-- Text, lists and tables: Heading and paragraph, Icon and text, Icon summaries, Icon and checklist, text summaries, column lists, Data table, and Contact and support.
+- Text, lists and tables: Heading and paragraph, Icon and text, Icon summaries, Icon and checklist, text summaries, column lists, Comparison cards, Data table, and Contact and support.
 - Steps and processes: simple, connected, cards, and horizontal layouts with number/icon markers.
 - Accordions: Accordion group and Accordion panel.
 - Notices and callouts: information, warning, success and error notices; callouts with a heading or text only.
@@ -193,6 +203,7 @@ Earlier validation for version 1.9.0
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all seven theme scripts passed JavaScript syntax checks. Installed checks covered editor block validity and saved page settings, template migration/restoration and saved customizations, five title appearances, audience metadata, guide contents and menu boundaries, composed-pattern heading indexes and cycle guards, responsive spacing and 320–768px reflow, keyboard controls, native feedback submission, no-JavaScript and print output. Footer checks covered default/saved footers, correct queried-page association, disabled collection, post feedback and existing reports. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content/feedback violations.
 
 Version history
+1.16.0: Paired comparison cards with optional icons and native text/list editing.
 1.15.2: Content-sized tall image-title panels with a desktop width cap and full-width mobile layout.
 1.15.1: Full text-column excerpts and a neutral compact image-banner border.
 1.15.0: Compact component spacing, clearer section rhythm, simpler featured updates, two-column quick links, one-image introductions, preparation/navigation patterns and optional page navigation with full-width titles.

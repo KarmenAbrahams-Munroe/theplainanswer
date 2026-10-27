@@ -73,11 +73,25 @@
         var target = wp.data.useSelect(function (select) {
             if (!props.isSelected || !has(props.attributes, 'bc-pattern')) return null;
             var found = null;
-            function walk(blocks) { for (var i = 0; i < blocks.length && !found; i++) { var b = blocks[i]; if (b.name === 'core/group' && ['bc-quick-links-list','bc-media-feature','bc-icon-list','bc-three-column-grid','bc-navigation-manual'].some(function (name) { return has(b.attributes,name); })) found = {id:b.clientId,attributes:b.attributes}; else walk(b.innerBlocks); } }
+            function walk(blocks) { for (var i = 0; i < blocks.length && !found; i++) { var b = blocks[i]; if (b.name === 'core/group' && ['bc-quick-links-list','bc-media-feature','bc-icon-list','bc-three-column-grid','bc-navigation-manual','bc-comparison-cards'].some(function (name) { return has(b.attributes,name); })) found = {id:b.clientId,attributes:b.attributes}; else walk(b.innerBlocks); } }
             walk(select(store).getBlocks(props.clientId)); return found;
         }, [props.clientId,props.isSelected,props.attributes.className]);
         var a = target ? target.attributes : props.attributes, options = [];
         function change(patch) { if (target) wp.data.dispatch(store).updateBlockAttributes(target.id,patch); else props.setAttributes(patch); }
+        if (has(a, 'bc-comparison-cards')) {
+            options.push(el(wp.components.ToggleControl, { key: 'comparison-icons', label: 'Show icons', checked: has(a, 'bc-comparison-icons'), onChange: async function (value) {
+                change({ className: classes(a, ['bc-comparison-icons'], value ? ['bc-comparison-icons'] : []) });
+                if (!value) return;
+                var editor = wp.data.select(store), id = target ? target.id : props.clientId;
+                var headers = editor.getBlocks(id).map(function (card) { return card.innerBlocks.find(function (b) { return b.name === 'core/group' && has(b.attributes, 'bc-comparison-header'); }); }).filter(Boolean);
+                for (var i = 0; i < headers.length; i++) {
+                    var header = headers[i];
+                    if (!header.innerBlocks.some(function (b) { return b.name === 'bc-practice/icon'; }) && editor.canInsertBlockType('bc-practice/icon', header.clientId)) {
+                        await wp.data.dispatch(store).insertBlocks([wp.blocks.createBlock('bc-practice/icon', {icon:'info'})], 0, header.clientId, false);
+                    }
+                }
+            }, help: 'Choose an icon to change it. Turning icons off keeps them for later. Keep headings clear so the meaning is also available in text.' }));
+        }
         if (has(a, 'bc-quick-links-list')) {
             options.push(el(wp.components.SelectControl, { key: 'link-columns', label: 'Link columns', value: has(a, 'bc-quick-links-two-column') ? '2' : '1', options: [{ label: 'One column', value: '1' }, { label: 'Two columns', value: '2' }], onChange: function (value) { change({ className: classes(a, ['bc-quick-links-two-column'], value === '2' ? ['bc-quick-links-two-column'] : []) }); }, help: 'Links return to one column in narrow spaces. Read across each row, then down.' }));
         }

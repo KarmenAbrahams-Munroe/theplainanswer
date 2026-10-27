@@ -88,3 +88,35 @@ ul.bc-checklist { list-style: none; padding: 0; display: grid; grid-template-col
     .bc-data-table table { min-width: 0; }
     .bc-event-date { background: #fff; color: #000; }
 }
+
+/* Paired comparisons use ordinary headings, paragraphs and lists. */
+.bc-comparison-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: stretch; }
+.wp-block-group.bc-comparison-cards > * { margin-block: 0; }
+.bc-comparison-card { display: grid; grid-template-rows: auto 1fr; min-width: 0; border: 1px solid var(--wp--preset--color--border); border-block-start: 4px solid var(--wp--preset--color--primary); border-radius: 4px; background: white; overflow-wrap: anywhere; }
+.wp-block-group.bc-comparison-card > * { margin-block: 0; }
+.bc-comparison-header { padding: 1.25rem; background: var(--wp--preset--color--pale-blue); border-start-start-radius: 3px; border-start-end-radius: 3px; }
+.wp-block-group.bc-comparison-header > * { margin-block: 0; }
+.bc-comparison-header > h3 { margin: 0; padding: 0; font-size: 1.375rem; line-height: 1.4; color: var(--wp--preset--color--primary); }
+.bc-comparison-cards:not(.bc-comparison-icons) .bc-comparison-header > :is(.bc-component-icon, .wp-block-bc-practice-icon) { display: none !important; }
+.bc-comparison-icons .bc-comparison-header:has(> .bc-component-icon, > .wp-block-bc-practice-icon) { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: .75rem; align-items: center; }
+.bc-comparison-header > .bc-component-icon, .bc-comparison-header > .wp-block-bc-practice-icon .bc-component-icon { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; margin: 0; background: white; border-radius: 50%; }
+.bc-comparison-header .bc-component-icon svg { width: 1.75rem; height: 1.75rem; }
+.bc-comparison-body { min-width: 0; padding: 1.25rem; font-size: 1.125rem; line-height: 1.6; }
+.wp-block-group.bc-comparison-body > * { margin-block: 0; }
+.wp-block-group.bc-comparison-body > * + * { margin-block-start: 1rem; }
+.bc-comparison-body > h4 { padding: 0; font-size: 1.125rem; line-height: 1.5; }
+.bc-comparison-body > ul, .bc-comparison-body > ol { padding-inline-start: 1.4rem; }
+.bc-comparison-body li + li { margin-block-start: .5rem; }
+.editor-styles-wrapper .bc-comparison-cards > .block-list-appender { grid-column: 1 / -1; }
+@supports (grid-template-rows: subgrid) {
+    .bc-comparison-cards { row-gap: 0; }
+    .bc-comparison-card { grid-template-rows: subgrid; grid-row: span 2; }
+}
+@container (max-width: 42rem) {
+    .bc-comparison-cards { grid-template-columns: minmax(0, 1fr); row-gap: 1rem; }
+    .bc-comparison-card { grid-row: auto; grid-template-rows: auto auto; }
+}
+@media print {
+    .bc-comparison-card { break-inside: avoid; }
+    .bc-comparison-header { background: white; border-block-end: 1px solid var(--wp--preset--color--border); }
+}
