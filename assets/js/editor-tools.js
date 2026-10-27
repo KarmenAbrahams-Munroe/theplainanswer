@@ -84,6 +84,11 @@
         if (kind === 'icons') { return function () { return group('bc-icon-text', [icon(), group('bc-icon-text-body', [heading(), paragraph()])]); }; }
         if (kind === 'images') { return function () { return group('bc-image-card', [wp.blocks.createBlock('core/image'), group('bc-image-card-body', [heading(), paragraph()])]); }; }
         if (kind === 'related') { return function () { return wp.blocks.createBlock('core/column', {}, [group('bc-component-card', [heading(), paragraph()])]); }; }
+        if (kind === 'navImages' || kind === 'navIcons' || kind === 'navPanels') { return function () {
+            var visual = kind === 'navImages' ? wp.blocks.createBlock('core/image') : icon();
+            var content = [heading(), paragraph(), kind === 'navPanels' ? paragraph() : wp.blocks.createBlock('core/list', {className:'bc-navigation-sublinks'}, [wp.blocks.createBlock('core/list-item',{content:''})])];
+            return group('bc-navigation-manual-card', [visual, group('bc-navigation-manual-body',content)]);
+        }; }
         if (kind === 'linkRows') { return function () { return group('bc-link-row', [icon(), group('bc-link-row-body', [heading(), paragraph()])]); }; }
         if (kind === 'features') { return function () { return group('bc-feature-item', [icon(), group('bc-feature-body', [heading(), paragraph(), wp.blocks.createBlock('core/list', { className: 'bc-checklist' }, [wp.blocks.createBlock('core/list-item', { content: '' })])])]); }; }
         return function () {
@@ -92,7 +97,7 @@
         };
     }
     function collection(block, parent) {
-        var classes = { 'bc-accordion-group': ['accordion', 'Add accordion panel'], 'bc-quick-tiles': ['tiles', 'Add quick action'], 'bc-quick-links-list': ['links', 'Add quick link'], 'bc-icon-list': ['icons', 'Add icon and text'], 'bc-image-card-grid': ['images', 'Add image card'], 'bc-three-column-grid': ['columns', 'Add text column'], 'bc-link-rows': ['linkRows', 'Add link row'], 'bc-feature-list': ['features', 'Add feature'] };
+        var classes = { 'bc-accordion-group': ['accordion', 'Add accordion panel'], 'bc-quick-tiles': ['tiles', 'Add quick action'], 'bc-quick-links-list': ['links', 'Add quick link'], 'bc-icon-list': ['icons', 'Add icon and text'], 'bc-image-card-grid': ['images', 'Add image card'], 'bc-three-column-grid': ['columns', 'Add text column'], 'bc-link-rows': ['linkRows', 'Add link row'], 'bc-feature-list': ['features', 'Add feature'], 'bc-navigation-image-grid': ['navImages', 'Add image card'], 'bc-navigation-icons-grid': ['navIcons', 'Add icon card'], 'bc-navigation-panels-grid': ['navPanels', 'Add panel'] };
         if (block.name === 'core/group') { for (var name in classes) { if (hasClass(block, name)) { return classes[name]; } } }
         if (block.name === 'core/columns' && parent && hasClass(parent, 'bc-component-related')) { return ['related', 'Add card']; }
         return null;

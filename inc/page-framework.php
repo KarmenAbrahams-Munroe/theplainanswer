@@ -105,6 +105,7 @@ function bc_practice_guide_pages( $root ) {
 
 function bc_practice_render_guide_contents( $attributes, $content, $block ) {
     $page = bc_practice_context_page( $block );
+    if ( $page && ! bc_practice_navigation_panels( $page->ID )['section'] ) { return ''; }
     if ( $page && ( ! empty( $GLOBALS['bc_practice_automatic_cards'][ $page->ID ] ) || ! empty( $GLOBALS['bc_practice_reading_layout'][ $page->ID ] ) ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
         return '';
     }

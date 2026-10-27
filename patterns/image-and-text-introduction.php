@@ -3,9 +3,9 @@
  * Title: Introduction: image and text
  * Slug: bc-practice/image-and-text-introduction
  * Categories: bc-banners
- * Keywords: image, photo, introduction, split, overlapping
+ * Keywords: image, photo, introduction, split, overlapping, single image
  * Post Types: page, post
- * Description: Images beside an editable introduction. Replace the images and choose whether they overlap.
+ * Description: Images beside an editable introduction. Choose overlapping images or one image.
  * Viewport Width: 1200
  * Inserter: yes
  */

@@ -10,7 +10,7 @@ add_action( 'init', function () {
         'attributes' => array(
             'title' => array( 'type' => 'string', 'default' => '' ), 'description' => array( 'type' => 'string', 'default' => '' ),
             'url' => array( 'type' => 'string', 'default' => '' ), 'date' => array( 'type' => 'string', 'default' => '' ),
-            'showDate' => array( 'type' => 'boolean', 'default' => false ), 'visual' => array( 'type' => 'string', 'enum' => array( 'photo', 'solid', 'graphic' ), 'default' => 'graphic' ),
+            'showDate' => array( 'type' => 'boolean', 'default' => false ), 'visual' => array( 'type' => 'string', 'enum' => array( 'none', 'photo', 'solid', 'graphic' ), 'default' => 'none' ),
             'fallback' => array( 'type' => 'string', 'enum' => array( 'solid', 'graphic' ), 'default' => 'graphic' ),
             'imageId' => array( 'type' => 'number', 'default' => 0 ), 'imageAlt' => array( 'type' => 'string', 'default' => '' ),
         ),
@@ -33,11 +33,11 @@ add_action( 'enqueue_block_assets', function () {
 } );
 
 function bc_practice_render_featured_update( $a ) {
-    $visual = $a['visual'] ?? 'graphic'; $media = '';
+    $visual = $a['visual'] ?? 'none'; $media = '';
     if ( 'photo' === $visual && ! empty( $a['imageId'] ) && wp_attachment_is_image( $a['imageId'] ) ) {
         $media = wp_get_attachment_image( $a['imageId'], 'large', false, array( 'alt' => $a['imageAlt'] ?? '', 'class' => 'bc-featured-photo' ) );
     }
-    if ( ! $media ) {
+    if ( ! $media && 'none' !== $visual ) {
         $visual = 'photo' === $visual ? ( $a['fallback'] ?? 'graphic' ) : $visual;
         if ( 'graphic' === $visual ) { $media = '<img src="' . esc_url( get_theme_file_uri( 'assets/images/update-graphic.svg' ) ) . '" alt="" loading="lazy" />'; }
     }
@@ -46,7 +46,7 @@ function bc_practice_render_featured_update( $a ) {
     $date = ! empty( $a['showDate'] ) && ! empty( $a['date'] ) ? '<p class="bc-featured-date">' . esc_html( html_entity_decode( wp_strip_all_tags( $a['date'] ), ENT_QUOTES, 'UTF-8' ) ) . '</p>' : '';
     $wrapper = array( 'class' => 'bc-featured-update' );
     if ( ! empty( $a['anchor'] ) ) { $wrapper['id'] = $a['anchor']; }
-    return '<div ' . get_block_wrapper_attributes( $wrapper ) . '><div class="bc-featured-visual bc-featured-visual-' . esc_attr( $visual ) . '"' . ( 'solid' === $visual ? ' aria-hidden="true"' : '' ) . '>' . $media . '</div><div class="bc-featured-copy"><h3 class="bc-featured-title">' . $title . '</h3>' . $date . '<p>' . wp_kses_post( $a['description'] ?? '' ) . '</p></div></div>';
+    return '<div ' . get_block_wrapper_attributes( $wrapper ) . '>' . ( 'none' !== $visual ? '<div class="bc-featured-visual bc-featured-visual-' . esc_attr( $visual ) . '"' . ( 'solid' === $visual ? ' aria-hidden="true"' : '' ) . '>' . $media . '</div>' : '' ) . '<div class="bc-featured-copy"><h3 class="bc-featured-title">' . $title . '</h3>' . $date . '<p>' . wp_kses_post( $a['description'] ?? '' ) . '</p></div></div>';
 }
 
 /** Native table HTML is retained in saved content, so existing editor tools keep working. */
@@ -145,3 +145,5 @@ add_filter( 'render_block_core/table', function ( $html, $block ) {
     if ( $processor->next_tag( 'FIGURE' ) ) { $processor->add_class( 'bc-data-table' ); $processor->set_attribute( 'tabindex', '0' ); $processor->set_attribute( 'role', 'region' ); $processor->set_attribute( 'aria-label', $label ); }
     return $processor->get_updated_html();
 }, 10, 2 );
+
+require_once get_theme_file_path( 'inc/refinements.php' );

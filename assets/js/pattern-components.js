@@ -19,7 +19,7 @@
         var blockProps = be.useBlockProps({ className: 'bc-featured-update' });
         return el(wp.element.Fragment, {}, !preview && el(be.InspectorControls, {}, el(wp.components.PanelBody, { title: 'Featured update' },
             el(wp.components.TextControl, { label: 'Link destination', type: 'url', value: a.url, onChange: function (value) { props.setAttributes({ url: value }); }, help: 'The title becomes the link. Add a complete web address or a site-relative address.' }),
-            el(wp.components.SelectControl, { label: 'Visual', value: a.visual, options: [{ label: 'Photo', value: 'photo' }, { label: 'Solid colour', value: 'solid' }, { label: 'Theme graphic', value: 'graphic' }], onChange: function (value) { props.setAttributes({ visual: value }); } }),
+            el(wp.components.SelectControl, { label: 'Visual', value: a.visual, options: [{ label: 'Text only', value: 'none' }, { label: 'Photo', value: 'photo' }, { label: 'Solid colour', value: 'solid' }, { label: 'Theme graphic', value: 'graphic' }], onChange: function (value) { props.setAttributes({ visual: value }); } }),
             a.visual === 'photo' && el(wp.element.Fragment, {},
                 el(be.MediaUploadCheck, {}, el(be.MediaUpload, { allowedTypes: ['image'], value: a.imageId, onSelect: function (value) { props.setAttributes({ imageId: value.id, imageAlt: value.alt || '' }); }, render: function (open) { return el(wp.components.Button, { variant: 'secondary', onClick: open.open }, a.imageId ? 'Replace image' : 'Choose image'); } })),
                 a.imageId > 0 && el(wp.components.Button, { variant: 'tertiary', onClick: function () { props.setAttributes({ imageId: 0 }); } }, 'Remove image'),
@@ -28,7 +28,7 @@
             ),
             el(wp.components.ToggleControl, { label: 'Show date', checked: a.showDate, onChange: function (value) { props.setAttributes({ showDate: value }); }, help: 'Enter a relevant date in the card. No author name is displayed.' })
         )), el('div', blockProps,
-            el('div', { className: 'bc-featured-visual bc-featured-visual-' + visual }, image),
+            visual !== 'none' && el('div', { className: 'bc-featured-visual bc-featured-visual-' + visual }, image),
             el('div', { className: 'bc-featured-copy' },
                 preview ? el('h3', { className: 'bc-featured-title' }, a.url ? el('a', { href: a.url }, text(a.title)) : text(a.title)) : el(be.RichText, { tagName: 'h3', className: 'bc-featured-title', value: a.title, allowedFormats: [], role: 'textbox', 'aria-label': 'Update title', placeholder: 'Update title', onChange: function (value) { props.setAttributes({ title: value }); } }),
                 a.showDate && (preview ? el('p', { className: 'bc-featured-date' }, text(a.date)) : el(be.RichText, { tagName: 'p', className: 'bc-featured-date', value: a.date, allowedFormats: [], role: 'textbox', 'aria-label': 'Update date', placeholder: 'Add a date', onChange: function (value) { props.setAttributes({ date: value }); } })),
@@ -37,8 +37,8 @@
         ));
     }
     wp.blocks.registerBlockType('bc-practice/featured-update', {
-        apiVersion: 3, title: 'Featured update', category: 'bc-components', icon: 'megaphone', description: 'One linked update with a photo, solid colour or theme graphic.',
-        attributes: { title: { type: 'string', default: '' }, description: { type: 'string', default: '' }, url: { type: 'string', default: '' }, date: { type: 'string', default: '' }, showDate: { type: 'boolean', default: false }, visual: { type: 'string', enum: ['photo', 'solid', 'graphic'], default: 'graphic' }, fallback: { type: 'string', enum: ['solid', 'graphic'], default: 'graphic' }, imageId: { type: 'number', default: 0 }, imageAlt: { type: 'string', default: '' } },
+        apiVersion: 3, title: 'Featured update', category: 'bc-components', icon: 'megaphone', description: 'One linked update with text only, a photo, solid colour or theme graphic.',
+        attributes: { title: { type: 'string', default: '' }, description: { type: 'string', default: '' }, url: { type: 'string', default: '' }, date: { type: 'string', default: '' }, showDate: { type: 'boolean', default: false }, visual: { type: 'string', enum: ['none', 'photo', 'solid', 'graphic'], default: 'none' }, fallback: { type: 'string', enum: ['solid', 'graphic'], default: 'graphic' }, imageId: { type: 'number', default: 0 }, imageAlt: { type: 'string', default: '' } },
         supports: { html: false, anchor: true }, edit: Featured, save: function () { return null; }
     });
     wp.blocks.registerBlockType('bc-practice/agenda', {
@@ -70,16 +70,29 @@
     });
 
     function GroupOptions(props) {
-        var a = props.attributes, options = [];
+        var target = wp.data.useSelect(function (select) {
+            if (!props.isSelected || !has(props.attributes, 'bc-pattern')) return null;
+            var found = null;
+            function walk(blocks) { for (var i = 0; i < blocks.length && !found; i++) { var b = blocks[i]; if (b.name === 'core/group' && ['bc-quick-links-list','bc-media-feature','bc-icon-list','bc-three-column-grid','bc-navigation-manual'].some(function (name) { return has(b.attributes,name); })) found = {id:b.clientId,attributes:b.attributes}; else walk(b.innerBlocks); } }
+            walk(select(store).getBlocks(props.clientId)); return found;
+        }, [props.clientId,props.isSelected,props.attributes.className]);
+        var a = target ? target.attributes : props.attributes, options = [];
+        function change(patch) { if (target) wp.data.dispatch(store).updateBlockAttributes(target.id,patch); else props.setAttributes(patch); }
+        if (has(a, 'bc-quick-links-list')) {
+            options.push(el(wp.components.SelectControl, { key: 'link-columns', label: 'Link columns', value: has(a, 'bc-quick-links-two-column') ? '2' : '1', options: [{ label: 'One column', value: '1' }, { label: 'Two columns', value: '2' }], onChange: function (value) { change({ className: classes(a, ['bc-quick-links-two-column'], value === '2' ? ['bc-quick-links-two-column'] : []) }); }, help: 'Links return to one column in narrow spaces. Read across each row, then down.' }));
+        }
+        if (has(a, 'bc-navigation-manual')) {
+            options.push(el(wp.components.SelectControl, {key:'navigation-columns',label:'Navigation columns',value:has(a,'bc-navigation-columns-3')?'3':has(a,'bc-navigation-columns-auto')?'auto':'2',options:[{label:'Two columns',value:'2'},{label:'Three columns',value:'3'},{label:'Fit available space',value:'auto'}],onChange:function(value){change({className:classes(a,['bc-navigation-columns-3','bc-navigation-columns-auto'],value==='2'?[]:['bc-navigation-columns-'+value])});},help:'Cards stack in narrow spaces.'}));
+        }
         if (has(a, 'bc-icon-list')) {
-            options.push(el(wp.components.SelectControl, { key: 'icons', label: 'Icon summary layout', value: has(a, 'bc-icon-columns') ? 'columns' : 'list', options: [{ label: 'List', value: 'list' }, { label: 'Two columns', value: 'columns' }], onChange: function (value) { props.setAttributes({ className: classes(a, ['bc-icon-columns'], value === 'columns' ? ['bc-icon-columns'] : []) }); } }));
+            options.push(el(wp.components.SelectControl, { key: 'icons', label: 'Icon summary layout', value: has(a, 'bc-icon-columns') ? 'columns' : 'list', options: [{ label: 'List', value: 'list' }, { label: 'Two columns', value: 'columns' }], onChange: function (value) { change({ className: classes(a, ['bc-icon-columns'], value === 'columns' ? ['bc-icon-columns'] : []) }); } }));
         }
         if (has(a, 'bc-three-column-grid')) {
-            options.push(el(wp.components.SelectControl, { key: 'columns', label: 'Columns', value: has(a, 'bc-text-columns-2') ? '2' : has(a, 'bc-text-columns-3') ? '3' : 'auto', options: [{ label: 'Fit available space', value: 'auto' }, { label: 'Two columns', value: '2' }, { label: 'Three columns', value: '3' }], onChange: function (value) { props.setAttributes({ className: classes(a, ['bc-text-columns-2', 'bc-text-columns-3'], value === 'auto' ? [] : ['bc-text-columns-' + value]) }); }, help: 'Columns stack in narrow spaces.' }));
-            options.push(el(wp.components.ToggleControl, { key: 'rules', label: 'Show separators above items', checked: has(a, 'bc-text-ruled'), onChange: function (value) { props.setAttributes({ className: classes(a, ['bc-text-ruled'], value ? ['bc-text-ruled'] : []) }); } }));
+            options.push(el(wp.components.SelectControl, { key: 'columns', label: 'Columns', value: has(a, 'bc-text-columns-2') ? '2' : has(a, 'bc-text-columns-3') ? '3' : 'auto', options: [{ label: 'Fit available space', value: 'auto' }, { label: 'Two columns', value: '2' }, { label: 'Three columns', value: '3' }], onChange: function (value) { change({ className: classes(a, ['bc-text-columns-2', 'bc-text-columns-3'], value === 'auto' ? [] : ['bc-text-columns-' + value]) }); }, help: 'Columns stack in narrow spaces.' }));
+            options.push(el(wp.components.ToggleControl, { key: 'rules', label: 'Show separators above items', checked: has(a, 'bc-text-ruled'), onChange: function (value) { change({ className: classes(a, ['bc-text-ruled'], value ? ['bc-text-ruled'] : []) }); } }));
         }
         if (has(a, 'bc-media-feature')) {
-            options.push(el(wp.components.ToggleControl, { key: 'overlap', label: 'Overlap the second image', checked: has(a, 'bc-media-overlap'), onChange: function (value) { props.setAttributes({ className: classes(a, ['bc-media-overlap'], value ? ['bc-media-overlap'] : []) }); }, help: 'Both images remain editable. They stack on small screens.' }));
+            options.push(el(wp.components.SelectControl, { key: 'images', label: 'Images', value: has(a, 'bc-media-overlap') ? 'overlap' : 'single', options: [{ label: 'Overlapping images', value: 'overlap' }, { label: 'One image', value: 'single' }], onChange: function (value) { change({ className: classes(a, ['bc-media-overlap', 'bc-media-single'], [value === 'overlap' ? 'bc-media-overlap' : 'bc-media-single']) }); }, help: 'One image shows the first image. The second is retained for switching back to overlapping images.' }));
         }
         return props.isSelected && options.length ? el(be.InspectorControls, {}, el(wp.components.PanelBody, { title: 'Pattern layout' }, options)) : null;
     }

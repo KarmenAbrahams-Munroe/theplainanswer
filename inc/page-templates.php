@@ -118,6 +118,7 @@ function bc_practice_navigation_chevron() {
 
 function bc_practice_render_topic_navigation( $attributes, $content, $block ) {
     $page = bc_practice_context_page( $block );
+    if ( $page && ! bc_practice_navigation_panels( $page->ID )['section'] ) { return ''; }
     if ( $page && ! empty( $GLOBALS['bc_practice_reading_layout'][ $page->ID ] ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
         return '';
     }
@@ -192,16 +193,21 @@ function bc_practice_render_child_page_cards( $attributes, $content, $block ) {
             $groups[ $grandchild->post_parent ][] = $grandchild;
         }
     }
+    $presentation = bc_practice_navigation_card_style( $page->ID );
+    if ( 'standard' !== $presentation ) { update_meta_cache( 'post', $child_ids ); }
     $cards = '';
     foreach ( $children as $child ) {
         $heading_id = wp_unique_id( 'bc-child-page-' . $child->ID . '-' );
         $arrow = '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
-        $cards .= '<section class="bc-topic-card bc-navigation-card" aria-labelledby="' . esc_attr( $heading_id ) . '"><div class="bc-topic-card-summary"><h2 id="' . esc_attr( $heading_id ) . '"><a class="bc-auto-topic-heading" href="' . esc_url( get_permalink( $child ) ) . '"><span>' . esc_html( bc_practice_card_title( $child ) ) . '</span>' . $arrow . '</a></h2>';
+        $visual = '';
+        if ( 'image' === $presentation && empty( $child->post_password ) ) { $visual = get_the_post_thumbnail( $child, 'large', array( 'alt' => '', 'class' => 'bc-navigation-card-image' ) ); }
+        if ( in_array( $presentation, array( 'icons', 'panels', 'rows' ), true ) ) { $visual = '<div class="bc-navigation-card-icon">' . bc_practice_component_svg( bc_practice_page_meta( $child->ID, '_bc_page_icon' ) ?: 'document' ) . '</div>'; }
+        $cards .= '<section class="bc-topic-card bc-navigation-card" aria-labelledby="' . esc_attr( $heading_id ) . '">' . ( 'image' === $presentation ? $visual : '' ) . '<div class="bc-topic-card-summary">' . ( 'image' !== $presentation ? $visual : '' ) . '<div class="bc-topic-card-copy"><h2 id="' . esc_attr( $heading_id ) . '"><a class="bc-auto-topic-heading" href="' . esc_url( get_permalink( $child ) ) . '"><span>' . esc_html( bc_practice_card_title( $child ) ) . '</span>' . $arrow . '</a></h2>';
         $excerpt = empty( $child->post_password ) ? trim( wp_strip_all_tags( $child->post_excerpt, true ) ) : '';
         if ( '' !== $excerpt ) {
             $cards .= '<p class="bc-topic-card-excerpt">' . esc_html( $excerpt ) . '</p>';
         }
-        $cards .= '</div>';
+        $cards .= '</div></div>';
         if ( $groups[ $child->ID ] ) {
             $cards .= '<ul class="bc-grandchild-links">';
             foreach ( $groups[ $child->ID ] as $grandchild ) {
@@ -211,7 +217,7 @@ function bc_practice_render_child_page_cards( $attributes, $content, $block ) {
         }
         $cards .= '</section>';
     }
-    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-child-page-cards bc-navigation-cards-frame' ) ) . '><div class="bc-navigation-cards">' . $cards . '</div></div>';
+    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-child-page-cards bc-navigation-cards-frame bc-navigation-style-' . $presentation ) ) . '><div class="bc-navigation-cards">' . $cards . '</div></div>';
 }
 
 /** Resolve registered patterns and published synced blocks with cycle guards. */
@@ -344,6 +350,7 @@ function bc_practice_prepared_content( $content ) {
 
 function bc_practice_render_page_contents( $attributes, $content, $block ) {
     $page = bc_practice_context_page( $block );
+    if ( $page && ! bc_practice_navigation_panels( $page->ID )['page'] ) { return ''; }
     if ( $page && ! empty( $GLOBALS['bc_practice_reading_layout'][ $page->ID ] ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
         return '';
     }

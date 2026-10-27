@@ -86,6 +86,7 @@
         function select(key) {
             if (!paneFor(key)) { return; }
             selected = key;
+            host.dataset.readingView = key;
             tabs.forEach(function (tab) {
                 var current = tab.dataset.readingTab === key;
                 tab.setAttribute('aria-selected', String(current));
