@@ -33,10 +33,10 @@
             if (other < 0 || other >= next.length) { return; }
             next[index] = ids[other]; next[other] = ids[index]; props.update('_bc_related_pages', next);
         }
-        return el(Panel, { name: 'bc-related-pages', title: 'Related pages', initialOpen: true },
+        return el(Panel, { name: 'bc-related-pages', title: 'Related pages', className: 'bc-page-sidebar-panel bc-page-related-panel' },
             el('p', {}, 'Choose pages to show as cards below page feedback. Cards use each page’s current title and Page introduction (excerpt).'),
             el(wp.components.ComboboxControl, {
-                label: 'Add a related page', value: null, options: options,
+                label: 'Add a related page', value: null, options: options, __next40pxDefaultSize: true, __nextHasNoMarginBottom: true,
                 onFilterValueChange: setInput,
                 onChange: function (value) {
                     var id = Number(value);
@@ -69,35 +69,57 @@
             wp.data.dispatch('core/editor').editPost({ meta: next });
         }
         var titleStyle = data.meta._bc_title_style || (window.bcPracticeLegacyTemplates || {})[data.template] || 'plain';
-        return el(wp.element.Fragment, {}, el(Panel, { name: 'bc-page-settings', title: 'Page presentation and navigation', initialOpen: true },
-            el(wp.components.SelectControl, {
-                label: 'Page-title appearance', value: titleStyle,
-                options: [{ label: 'Plain', value: 'plain' }, { label: 'Compact image', value: 'image-compact' }, { label: 'Taller image', value: 'image-tall' }, { label: 'Compact solid colour', value: 'solid-compact' }, { label: 'Taller solid colour', value: 'solid-tall' }],
-                help: 'Image titles use this page’s Featured image.',
-                onChange: function (value) { update('_bc_title_style', value); }
-            }),
-            el(wp.components.TextareaControl, {
-                label: 'Page introduction (excerpt)', value: data.excerpt,
-                help: 'Appears below this page’s title and on its card on the parent navigation page.',
-                onChange: function (value) { wp.data.dispatch('core/editor').editPost({ excerpt: value }); }
-            }),
-            el(wp.components.ToggleControl, { label: 'Show On this page', checked: ['both','page'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1, disabled: window.bcPracticeNavigationOptions && !window.bcPracticeNavigationOptions.ready, onChange: function (value) { var section = ['both','section'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1; update('_bc_navigation_panels', value ? (section ? 'both' : 'page') : (section ? 'section' : 'none')); }, help: 'Links to this page’s H2 headings in content and guide templates.' }),
-            el(wp.components.ToggleControl, { label: 'Show In this section', checked: ['both','section'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1, disabled: window.bcPracticeNavigationOptions && !window.bcPracticeNavigationOptions.ready, onChange: function (value) { var page = ['both','page'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1; update('_bc_navigation_panels', value ? (page ? 'both' : 'section') : (page ? 'page' : 'none')); }, help: 'Links to other pages in this section. Turning both menus off gives the title a full-width layout.' }),
-            el(wp.components.SelectControl, { label: 'Navigation card style', value: data.meta._bc_navigation_cards || 'standard', options: Object.keys((window.bcPracticeNavigationOptions || {}).styles || {}).map(function (key) { return {value:key,label:window.bcPracticeNavigationOptions.styles[key]}; }), disabled: window.bcPracticeNavigationOptions && !window.bcPracticeNavigationOptions.ready, onChange: function (value) { update('_bc_navigation_cards',value); }, help: 'Appearance of the automatic child-page cards on this page.' }),
-            el(wp.components.SelectControl, { label: 'Page icon', value: data.meta._bc_page_icon || 'document', options: (window.bcPracticeNavigationOptions || {}).icons || [], disabled: window.bcPracticeNavigationOptions && !window.bcPracticeNavigationOptions.ready, onChange: function (value) { update('_bc_page_icon',value); }, help: 'Used when the parent page displays icon cards, panels or rows.' }),
-            window.bcPracticeNavigationOptions && !window.bcPracticeNavigationOptions.ready && el(wp.components.Notice,{status:'warning',isDismissible:false},'Update B.C. page workflow to 0.1.1 to save these new options in shared drafts.'),
-            el(wp.components.SelectControl, {
-                label: 'Mega-menu visibility', value: data.meta._bc_menu_visibility || 'branch',
-                options: [{ label: 'Show page and subpages', value: 'branch' }, { label: 'Show page only', value: 'page' }, { label: 'Hide page and subpages', value: 'hidden' }],
-                help: 'A parent’s menu boundary also covers new subpages. Guide navigation, search and breadcrumbs use the full page hierarchy.',
-                onChange: function (value) { update('_bc_menu_visibility', value); }
-            }),
-            el(wp.components.ToggleControl, {
-                label: 'This page starts a guide', checked: !!data.meta._bc_guide_start,
-                help: 'Scopes In this section and enables ordered Previous/Next links. Chapters follow Page order, then title.',
-                onChange: function (value) { update('_bc_guide_start', value); }
-            })
-        ), el(RelatedPages, { id: data.id, meta: data.meta, update: update }));
+        var options = window.bcPracticeNavigationOptions || {};
+        var disabled = window.bcPracticeNavigationOptions && !options.ready;
+        function panel(name, title, children) {
+            return el(Panel, { name: name, title: title, className: 'bc-page-sidebar-panel' }, el('div', { className: 'bc-page-sidebar-fields' }, children));
+        }
+        function select(props) {
+            return el(wp.components.SelectControl, Object.assign({ __next40pxDefaultSize: true, __nextHasNoMarginBottom: true }, props));
+        }
+        function compatibilityNotice() {
+            return disabled && el(wp.components.Notice, { status: 'warning', isDismissible: false }, 'Update B.C. page workflow to 0.1.1 or later to save these options in shared drafts.');
+        }
+        return el(wp.element.Fragment, {},
+            panel('bc-page-settings', 'Page title and introduction', el(wp.element.Fragment, {},
+                select({
+                    label: 'Page title style', value: titleStyle,
+                    options: [{ label: 'Plain', value: 'plain' }, { label: 'Compact image', value: 'image-compact' }, { label: 'Taller image', value: 'image-tall' }, { label: 'Compact solid colour', value: 'solid-compact' }, { label: 'Taller solid colour', value: 'solid-tall' }],
+                    help: titleStyle.indexOf('image-') === 0 ? 'Uses this page’s featured image.' : undefined,
+                    onChange: function (value) { update('_bc_title_style', value); }
+                }),
+                el(wp.components.TextareaControl, {
+                    label: 'Page introduction (excerpt)', value: data.excerpt, rows: 4, __nextHasNoMarginBottom: true,
+                    help: 'Shown below the title and on navigation cards.',
+                    onChange: function (value) { wp.data.dispatch('core/editor').editPost({ excerpt: value }); }
+                })
+            )),
+            panel('bc-page-navigation', 'Page navigation', el(wp.element.Fragment, {},
+                compatibilityNotice(),
+                el(wp.components.ToggleControl, { label: 'Show On this page', __nextHasNoMarginBottom: true, checked: ['both','page'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1, disabled: disabled, onChange: function (value) { var section = ['both','section'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1; update('_bc_navigation_panels', value ? (section ? 'both' : 'page') : (section ? 'section' : 'none')); }, help: 'Links to this page’s H2 headings in content and guide layouts.' }),
+                el(wp.components.ToggleControl, { label: 'Show In this section', __nextHasNoMarginBottom: true, checked: ['both','section'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1, disabled: disabled, onChange: function (value) { var page = ['both','page'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1; update('_bc_navigation_panels', value ? (page ? 'both' : 'section') : (page ? 'page' : 'none')); }, help: 'Links to other pages in this section.' }),
+                el('p', { className: 'bc-page-sidebar-help' }, 'Turn off both menus for a full-width title.')
+            )),
+            panel('bc-page-cards', 'Navigation cards', el(wp.element.Fragment, {},
+                compatibilityNotice(),
+                select({ label: 'Navigation card style', value: data.meta._bc_navigation_cards || 'standard', options: Object.keys(options.styles || {}).map(function (key) { return {value:key,label:options.styles[key]}; }), disabled: disabled, onChange: function (value) { update('_bc_navigation_cards', value); }, help: 'For this page’s automatic child-page cards.' }),
+                select({ label: 'Page icon', value: data.meta._bc_page_icon || 'document', options: options.icons || [], disabled: disabled, onChange: function (value) { update('_bc_page_icon', value); }, help: 'Used on icon cards, panels and rows linking to this page.' })
+            )),
+            panel('bc-page-menu-guide', 'Site menu and guides', el(wp.element.Fragment, {},
+                select({
+                    label: 'Mega-menu visibility', value: data.meta._bc_menu_visibility || 'branch',
+                    options: [{ label: 'Show page and subpages', value: 'branch' }, { label: 'Show page only', value: 'page' }, { label: 'Hide page and subpages', value: 'hidden' }],
+                    help: 'Subpages inherit this setting. Search, breadcrumbs and guide links keep the full hierarchy.',
+                    onChange: function (value) { update('_bc_menu_visibility', value); }
+                }),
+                el(wp.components.ToggleControl, {
+                    label: 'This page starts a guide', __nextHasNoMarginBottom: true, checked: !!data.meta._bc_guide_start,
+                    help: 'Groups chapters in In this section. Previous/Next links follow Page order, then title.',
+                    onChange: function (value) { update('_bc_guide_start', value); }
+                })
+            )),
+            el(RelatedPages, { id: data.id, meta: data.meta, update: update })
+        );
     }
     wp.plugins.registerPlugin('bc-practice-page-settings', { render: PageSettings, icon: 'admin-page' });
 })(window.wp);

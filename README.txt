@@ -1,6 +1,13 @@
-B.C. practice — WordPress block theme, version 1.17.0
+B.C. practice — WordPress block theme, version 1.17.1
 
 
+Theme sidebar — version 1.17.1
+Page settings are grouped into Page title and introduction, Page navigation, Navigation cards, and Site menu and guides. Related pages remains a separate group. The controls use sentence-case labels, compact help text and consistent spacing. Image-title guidance appears when an image title style is selected. WordPress handles the panels’ expand/collapse preferences.
+
+This patch expects theme version 1.17.0. It changes the editor sidebar and the theme version/documentation. Saved page settings, metadata names and front-end rendering remain compatible. No template migration or workflow-plugin update is required.
+
+Validation for version 1.17.1
+Installed editor checks passed on WordPress 6.6.10 and 7.1.3. Checks covered all title styles, introduction editing, all four navigation-switch combinations, five card styles, icon selection, menu visibility, guide settings and related-page selection. Existing drafts, history and live content survived the update. Settings saved and reopened privately through B.C. page workflow 0.2.1 and saved normally with that plugin inactive. Draft preview, phone-width reflow and selected sidebar WCAG 2 A/AA and 2.1 AA checks passed. JavaScript syntax passed. This is an editor presentation update; PHP rendering and page metadata registration are unchanged.
 
 Reading navigation — version 1.17.0
 The desktop sidebar has a pale-blue In this section disclosure button above a separate On this page panel with a navy heading bar. The section menu opens temporarily over the index and closes through its disclosure button, Close menu, Escape, an outside pointer action, or keyboard focus leaving the menu. The index keeps its scroll position and current-heading tracker while covered. No tabs or instructional paragraphs are displayed.

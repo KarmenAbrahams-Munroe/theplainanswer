@@ -57,3 +57,28 @@
 }
 
 .editor-styles-wrapper :is(.bc-event-session, .bc-step) > .block-list-appender .block-editor-button-block-appender { width: 44px; min-width: 44px; min-height: 44px; padding: 0; }
+
+/* Theme page settings use the same compact rhythm as the workflow sidebar. */
+.bc-page-sidebar-panel { font-size: 13px; line-height: 1.5; }
+.bc-page-sidebar-panel > .components-panel__body-title .components-button { font-size: 13px; line-height: 1.4; }
+.bc-page-sidebar-fields { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.bc-page-sidebar-panel .components-base-control,
+.bc-page-sidebar-panel .components-base-control__field { margin: 0; }
+.wp-admin .bc-page-sidebar-panel label.components-base-control__label,
+.wp-admin .bc-page-sidebar-panel .components-base-control__field label.components-input-control__label {
+    display: block; margin-block-end: 6px; font-size: 12px; font-weight: 600; line-height: 1.5; text-transform: none;
+}
+.bc-page-sidebar-panel :is(.components-text-control__input, .components-textarea-control__input, .components-select-control__input, .components-combobox-control__input) { min-width: 0; max-width: 100%; font-size: 13px; }
+.bc-page-sidebar-panel :is(.components-text-control__input, .components-select-control__input) { min-height: 40px; box-sizing: border-box; }
+.bc-page-sidebar-panel .components-textarea-control__input { line-height: 1.5; resize: vertical; }
+.bc-page-sidebar-panel .components-base-control__help,
+.bc-page-sidebar-help { margin: 6px 0 0; color: #50575e; font-size: 12px; line-height: 1.5; }
+.bc-page-sidebar-fields > .bc-page-sidebar-help { margin: 0; }
+.bc-page-sidebar-panel .components-toggle-control .components-flex { min-height: 28px; align-items: center; }
+.wp-admin .bc-page-sidebar-panel .components-toggle-control label { margin: 0; font-size: 13px; font-weight: 400; line-height: 1.5; text-transform: none; }
+.bc-page-sidebar-panel .components-toggle-control .components-form-toggle { flex-shrink: 0; }
+.bc-page-sidebar-panel .components-notice { margin: 0; }
+.bc-page-sidebar-panel .components-notice__content { font-size: 12px; line-height: 1.5; }
+.bc-page-related-panel > p { margin: 0 0 12px; color: #50575e; font-size: 12px; line-height: 1.5; }
+.bc-page-related-panel > .components-base-control { margin-block: 18px; }
+.bc-page-related-panel .bc-editor-related-list { margin-block: 12px; font-size: 13px; }
