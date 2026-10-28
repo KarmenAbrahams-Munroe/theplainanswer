@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function bc_practice_component_icons() {
-    return array(
+    $icons = array(
         'info' => array( 'label' => __( 'Information', 'bc-practice' ), 'paths' => '<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/>' ),
         'warning' => array( 'label' => __( 'Warning', 'bc-practice' ), 'paths' => '<path d="M12 3 2 21h20L12 3Zm0 6v5m0 3v1"/>' ),
         'check' => array( 'label' => __( 'Check mark', 'bc-practice' ), 'paths' => '<circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/>' ),
@@ -49,12 +49,14 @@ function bc_practice_component_icons() {
         'star' => array( 'label' => __( 'Star / favourite', 'bc-practice' ), 'paths' => '<path d="m12 2 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1 3-7Z"/>' ),
         'refresh' => array( 'label' => __( 'Refresh / update', 'bc-practice' ), 'paths' => '<path d="M21 8a9 9 0 0 0-16-3L2 8m0-6v6h6m-5 8a9 9 0 0 0 16 3l3-3m0 6v-6h-6"/>' ),
     );
+    uasort( $icons, function ( $a, $b ) { return strnatcasecmp( $a['label'], $b['label'] ); } );
+    return $icons;
 }
 
 function bc_practice_component_blocks() {
     $options = array();
     foreach ( bc_practice_component_icons() as $value => $icon ) {
-        $options[] = array( 'value' => $value, 'label' => $icon['label'] );
+        $options[] = array( 'value' => $value, 'label' => $icon['label'], 'paths' => $icon['paths'] );
     }
     return array(
         'icon' => array( 'title' => __( 'Component icon', 'bc-practice' ), 'icon' => 'info', 'description' => __( 'A decorative icon accompanying a heading or message.', 'bc-practice' ), 'category' => 'bc-components', 'iconOptions' => $options, 'attributes' => array( 'icon' => array( 'type' => 'string', 'enum' => array_keys( bc_practice_component_icons() ), 'default' => 'info' ) ) ),

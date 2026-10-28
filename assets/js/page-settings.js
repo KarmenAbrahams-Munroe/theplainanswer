@@ -103,7 +103,7 @@
             panel('bc-page-cards', 'Navigation cards', el(wp.element.Fragment, {},
                 compatibilityNotice(),
                 select({ label: 'Navigation card style', value: data.meta._bc_navigation_cards || 'standard', options: Object.keys(options.styles || {}).map(function (key) { return {value:key,label:options.styles[key]}; }), disabled: disabled, onChange: function (value) { update('_bc_navigation_cards', value); }, help: 'For this page’s automatic child-page cards.' }),
-                select({ label: 'Page icon', value: data.meta._bc_page_icon || 'document', options: options.icons || [], disabled: disabled, onChange: function (value) { update('_bc_page_icon', value); }, help: 'Used on icon cards, panels and rows linking to this page.' })
+                el(window.bcPracticeEditorTools.IconPicker, { label: 'Page icon', value: data.meta._bc_page_icon || 'document', options: options.icons || [], disabled: disabled, onChange: function (value) { update('_bc_page_icon', value); }, help: 'Used on icon cards, panels and rows linking to this page.' })
             )),
             panel('bc-page-menu-guide', 'Site menu and guides', el(wp.element.Fragment, {},
                 select({

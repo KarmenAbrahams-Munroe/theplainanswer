@@ -1,5 +1,11 @@
-B.C. practice — WordPress block theme, version 1.17.1
+B.C. practice — WordPress block theme, version 1.17.2
 
+
+Icon selectors — version 1.17.2
+The shared icon library is ordered alphabetically by its displayed labels. Page icons, component icon sidebars and Change icon menus use the same searchable picker, with a small decorative SVG beside each option. Text labels, keyboard navigation and existing saved icon identifiers are retained. This patch expects theme version 1.17.1.
+
+Validation for version 1.17.2
+Installed checks passed on WordPress 6.6.10 and 7.1.3 for all 44 alphabetized icons, SVG option previews, search, keyboard selection, block and toolbar pickers, retained saved icons, private saving/reopening, disabled controls, valid block parsing, mobile reflow and selected automated accessibility checks. The picker adds an aria-controls relationship where older core controls supply aria-owns alone. Unsupported disabled comboboxes fall back to a disabled native select. PHP syntax passed on 7.4.33 and 8.3.33; JavaScript syntax passed.
 
 Theme sidebar — version 1.17.1
 Page settings are grouped into Page title and introduction, Page navigation, Navigation cards, and Site menu and guides. Related pages remains a separate group. The controls use sentence-case labels, compact help text and consistent spacing. Image-title guidance appears when an image title style is selected. WordPress handles the panels’ expand/collapse preferences.

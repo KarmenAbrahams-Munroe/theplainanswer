@@ -2,6 +2,48 @@
     'use strict';
     var el = wp.element.createElement, __ = wp.i18n.__;
     var store = 'core/block-editor';
+    function IconPicker(props) {
+        var state = wp.element.useState(''), search = state[0], setSearch = state[1];
+        var host = wp.element.useRef(null);
+        // Older core pickers expose aria-owns; also supply the ARIA 1.2 controls link.
+        wp.element.useEffect(function () {
+            var injected = null;
+            function syncControls() {
+                var input = host.current && host.current.querySelector('[role="combobox"]');
+                if (!input) { return; }
+                var owned = input.getAttribute('aria-owns'), controls = input.getAttribute('aria-controls');
+                if (owned && (!controls || controls === injected)) {
+                    if (controls !== owned) { input.setAttribute('aria-controls', owned); }
+                    injected = owned;
+                } else if (!owned && injected && controls === injected) {
+                    input.removeAttribute('aria-controls'); injected = null;
+                }
+            }
+            var observer = new MutationObserver(syncControls);
+            observer.observe(host.current, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-owns', 'aria-expanded'] });
+            syncControls(); return function () { observer.disconnect(); };
+        }, []);
+        var options = (props.options || []).filter(function (option) { return (option.label + ' ' + option.value).toLowerCase().indexOf(search.trim().toLowerCase()) !== -1; });
+        // Core comboboxes in older WordPress releases do not honour disabled.
+        if (props.disabled) {
+            return el('div', { className: 'bc-editor-icon-control', ref: host }, el(wp.components.SelectControl, {
+                label: props.label || __('Icon', 'bc-practice'), value: props.value, options: props.options || [], disabled: true,
+                __next40pxDefaultSize: true, __nextHasNoMarginBottom: true, help: props.help
+            }));
+        }
+        return el('div', { className: 'bc-editor-icon-control', ref: host }, el(wp.components.ComboboxControl, {
+            label: props.label || __('Icon', 'bc-practice'), value: props.value, options: options, allowReset: false,
+            __next40pxDefaultSize: true, __nextHasNoMarginBottom: true, disabled: props.disabled,
+            onFilterValueChange: setSearch,
+            onChange: function (value) { if (value) { props.onChange(value); setSearch(''); } },
+            __experimentalRenderItem: function (args) {
+                return el('span', { className: 'bc-editor-icon-option' },
+                    args.item.paths && el('svg', { viewBox: '0 0 24 24', width: 20, height: 20, fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true, focusable: 'false', dangerouslySetInnerHTML: { __html: args.item.paths } }),
+                    el('span', {}, args.item.label));
+            },
+            help: props.help || __('Type to search the shared icon library.', 'bc-practice')
+        }));
+    }
     function usePreview() {
         return wp.data.useSelect(function (select) {
             var settings = select(store).getSettings();
@@ -172,5 +214,5 @@
             return el(BlockEdit, props);
         };
     });
-    window.bcPracticeEditorTools = { Appender: Appender, ItemActions: ItemActions, step: step, resource: resource, usePreview: usePreview };
+    window.bcPracticeEditorTools = { IconPicker: IconPicker, Appender: Appender, ItemActions: ItemActions, step: step, resource: resource, usePreview: usePreview };
 })(window.wp);

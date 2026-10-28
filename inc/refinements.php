@@ -27,7 +27,7 @@ add_action( 'enqueue_block_assets', function () {
     wp_enqueue_style( 'bc-practice-refinements', get_theme_file_uri( 'assets/css/refinements.css' ), array( 'bc-practice-pattern-components', 'bc-practice-reading-navigation' ), wp_get_theme()->get( 'Version' ) );
 } );
 add_action( 'enqueue_block_editor_assets', function () {
-    $icons = array(); foreach ( bc_practice_component_icons() as $key => $icon ) { $icons[] = array( 'value' => $key, 'label' => $icon['label'] ); }
+    $icons = array(); foreach ( bc_practice_component_icons() as $key => $icon ) { $icons[] = array( 'value' => $key, 'label' => $icon['label'], 'paths' => $icon['paths'] ); }
     wp_add_inline_script( 'bc-practice-page-settings', 'window.bcPracticeNavigationOptions = ' . wp_json_encode( array( 'styles' => bc_practice_navigation_card_styles(), 'icons' => $icons, 'ready' => ! defined( 'BCW_VERSION' ) || version_compare( BCW_VERSION, '0.1.1', '>=' ) ) ) . ';', 'before' );
 }, 20 );
 add_filter( 'body_class', function ( $classes ) {

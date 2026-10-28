@@ -90,7 +90,7 @@ add_action( 'enqueue_block_editor_assets', function () {
     if ( ! $screen || ! in_array( $screen->post_type, apply_filters( 'bc_practice_page_editor_types', array( 'page' ) ), true ) || 'post' !== $screen->base ) {
         return;
     }
-    wp_enqueue_script( 'bc-practice-page-settings', get_theme_file_uri( 'assets/js/page-settings.js' ), array( 'wp-plugins', 'wp-editor', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-core-data', 'wp-html-entities' ), wp_get_theme()->get( 'Version' ), true );
+    wp_enqueue_script( 'bc-practice-page-settings', get_theme_file_uri( 'assets/js/page-settings.js' ), array( 'bc-practice-editor-tools', 'wp-plugins', 'wp-editor', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-core-data', 'wp-html-entities' ), wp_get_theme()->get( 'Version' ), true );
     wp_add_inline_script( 'bc-practice-page-settings', 'window.bcPracticePageEditorTypes = ' . wp_json_encode( apply_filters( 'bc_practice_page_editor_types', array( 'page' ) ) ) . ';', 'before' );
     wp_add_inline_script( 'bc-practice-page-settings', 'window.bcPracticeLegacyTemplates = ' . wp_json_encode( bc_practice_legacy_templates() ) . ';', 'before' );
 } );

@@ -82,3 +82,8 @@
 .bc-page-related-panel > p { margin: 0 0 12px; color: #50575e; font-size: 12px; line-height: 1.5; }
 .bc-page-related-panel > .components-base-control { margin-block: 18px; }
 .bc-page-related-panel .bc-editor-related-list { margin-block: 12px; font-size: 13px; }
+
+/* Decorative previews accompany text labels in the native searchable picker. */
+.bc-editor-icon-option { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 28px; font-size: 13px; line-height: 1.5; }
+.bc-editor-icon-option > svg { display: block; flex: 0 0 20px; width: 20px; height: 20px; }
+.bc-editor-icon-option > span { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
