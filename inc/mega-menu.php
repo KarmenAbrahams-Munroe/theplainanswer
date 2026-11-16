@@ -38,19 +38,29 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_script( 'bc-practice-mega-menu', get_theme_file_uri( 'assets/js/mega-menu.js' ), array(), wp_get_theme()->get( 'Version' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 } );
 
-/** One public-page query per render request; no persistent hierarchy cache. */
+/**
+ * Reuse the native hierarchy query used by section and guide navigation.
+ * WordPress can share its cached query IDs and complete post objects instead
+ * of fetching a second set of every page body for the same response.
+ */
 function bc_practice_mega_pages() {
-    static $pages = null;
-    if ( null === $pages ) {
-        $pages = get_posts( array(
-            'post_type' => 'page', 'post_status' => 'publish', 'posts_per_page' => -1,
-            'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC', 'ID' => 'ASC' ),
-            'no_found_rows' => true, 'ignore_sticky_posts' => true,
-            'update_post_meta_cache' => true, 'update_post_term_cache' => false,
-            'suppress_filters' => false,
+    static $cache = array();
+    $key = get_current_blog_id() . ':' . get_current_user_id() . ':' . get_locale() . ':' . wp_cache_get_last_changed( 'posts' );
+    if ( ! isset( $cache[ $key ] ) ) {
+        $pages = get_pages( array(
+            'post_status' => 'publish', 'hierarchical' => false,
+            'sort_column' => 'menu_order,post_title,ID', 'sort_order' => 'ASC',
         ) );
+        // Visibility checks need page metadata. Keep this batched instead of
+        // issuing a separate query for each entry or bypassing native filters.
+        if ( $pages ) {
+            update_meta_cache( 'post', wp_list_pluck( $pages, 'ID' ) );
+        }
+        // No rendered-output cache: titles, metadata and links remain native.
+        // Replace old entries after an in-request page change or site switch.
+        $cache = array( $key => $pages );
     }
-    return $pages;
+    return $cache[ $key ];
 }
 
 function bc_practice_mega_summary( $page ) {

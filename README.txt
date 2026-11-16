@@ -1,4 +1,16 @@
-B.C. practice — WordPress block theme, version 1.17.2
+B.C. practice — WordPress block theme, version 1.17.3
+
+Mega-menu memory refinement — version 1.17.3
+The mega menu uses the same native published-page hierarchy query as section and guide navigation. WordPress can reuse the cached query IDs and complete page objects, avoiding a second full-page query in the same response. Page bodies remain intact in the normal object cache. Visibility metadata is loaded in one batch so menu items do not each require a separate metadata query. Ordering, excerpts, visibility boundaries, links and browser behaviour are retained.
+
+The menu's request-local cache is scoped to the site, user, locale and WordPress post-change marker. Saved page changes refresh its records within the same request. There is no persistent rendered-menu cache or new background task. Normal WordPress query, title, metadata and permalink filters remain in use. This focused release does not change editor controls, templates or the workflow plugin. It is a performance improvement; it does not establish or fix the cause of a hosting out-of-memory event.
+
+This patch expects theme version 1.17.2.
+
+Validation for version 1.17.3
+Installed upgrade checks passed on WordPress 6.6.11 and 7.1.4 with PHP 8.3.33. Checks covered identical menu data with plain and pretty permalinks, hidden pages and guide boundaries, protected excerpts, native query/title/metadata/URL filters, shared hierarchy-query reuse, complete cached page bodies, changes within a request, an external-cache code-path simulation, retained drafts and history, authenticated saved previews and public content after previewing. Browser checks passed for desktop drill-down, Escape/focus return, 390px reflow, the native no-JavaScript fallback and selected automated menu accessibility checks. PHP syntax passed on 7.4.33 and 8.3.33.
+
+A paired local public-page benchmark on WordPress 7.1.4/PHP 8.3.33 with SQLite, approximately 25 KB of content and eight small metadata fields per sample page, recorded peak PHP allocations of 46.5 to 46.5 MiB at 30 pages, 62.5 to 54.5 MiB at 300 pages, and 112.5 to 84.5 MiB at 1,000 pages. Repeat requests recorded 22 to 21 database queries. These are whole-request allocations for the old and new menu functions in the same fixture, not theme-only memory or pod measurements. Actual host memory use, concurrency, MySQL and production cache integrations require host-side validation. This release still loads the published-page index; it removes duplicate loading instead of introducing a persistent rendered-menu cache.
 
 
 Icon selectors — version 1.17.2
