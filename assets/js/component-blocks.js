@@ -150,4 +150,73 @@
             );
         }
     });
+    wp.blocks.registerBlockType('bc-practice/audience-tabs', {
+        apiVersion: 3,
+        title: __('Audience tabs', 'bc-practice'),
+        description: __('Labelled tabs containing editable text, blocks and patterns.', 'bc-practice'),
+        category: 'bc-components', icon: 'index-card',
+        keywords: [__('audience', 'bc-practice'), __('tabs', 'bc-practice'), __('content', 'bc-practice')],
+        attributes: { label: { type: 'string', default: 'Audience guidance' }, presentation: { type: 'string', enum: ['underlined', 'framed'], default: 'underlined' } },
+        supports: { html: false, anchor: true },
+        edit: editable(function (props) {
+            var inner = useInnerBlocksProps(useBlockProps({ className: 'bc-audience-tabs bc-audience-tabs-' + props.attributes.presentation }), {
+                allowedBlocks: ['bc-practice/audience-panel'],
+                template: [['bc-practice/audience-panel', { title: 'Audience one' }], ['bc-practice/audience-panel', { title: 'Audience two' }]],
+                renderAppender: function () { return el(tools.Appender, { clientId: props.clientId, name: 'bc-practice/audience-panel', label: __('Add tab', 'bc-practice'), create: function () { return wp.blocks.createBlock('bc-practice/audience-panel', { title: '' }, [wp.blocks.createBlock('core/paragraph', { placeholder: __('Add content or insert a pattern for this audience.', 'bc-practice') })]); } }); }
+            });
+            return el(wp.element.Fragment, {},
+                el(wp.blockEditor.InspectorControls, {},
+                    el(wp.components.PanelBody, { title: __('Audience tabs', 'bc-practice') },
+                        el(wp.components.SelectControl, {
+                            label: __('Tab appearance', 'bc-practice'), value: props.attributes.presentation,
+                            options: [{ label: __('Underlined', 'bc-practice'), value: 'underlined' }, { label: __('Framed', 'bc-practice'), value: 'framed' }],
+                            onChange: function (value) { props.setAttributes({ presentation: value }); }
+                        }),
+                        el(wp.components.TextControl, {
+                            label: __('Tab group label', 'bc-practice'), value: props.attributes.label,
+                            onChange: function (value) { props.setAttributes({ label: value }); },
+                            help: __('Describe this set of tabs for people using assistive technology.', 'bc-practice')
+                        }),
+                        el('p', {}, __('All tabs stay open while editing. Edit each Tab label and add blocks or patterns beneath it. Preview the page to try switching tabs.', 'bc-practice')),
+                        el('p', {}, __('Use H3 headings inside tabs. Put information for every audience above the tabs.', 'bc-practice'))
+                    )
+                ),
+                el('div', inner)
+            );
+        }),
+        save: function (props) {
+            return el('div', useBlockProps.save({ className: 'bc-audience-tabs bc-audience-tabs-' + props.attributes.presentation, 'data-tab-label': props.attributes.label }), el(wp.blockEditor.InnerBlocks.Content));
+        }
+    });
+
+    wp.blocks.registerBlockType('bc-practice/audience-panel', {
+        apiVersion: 3, title: __('Audience tab', 'bc-practice'), category: 'bc-components', icon: 'excerpt-view',
+        parent: ['bc-practice/audience-tabs'],
+        attributes: { title: { type: 'string', source: 'html', selector: '.bc-audience-panel-title', default: '' } },
+        supports: { html: false, anchor: true, reusable: false },
+        edit: editable(function (props) {
+            return el('section', useBlockProps({ className: 'bc-audience-panel' }),
+                el('div', { className: 'bc-audience-editor-header' },
+                    el('span', { className: 'bc-audience-editor-label', 'aria-hidden': true }, __('Tab label', 'bc-practice')),
+                    el(wp.blockEditor.RichText, {
+                        tagName: 'h3', className: 'bc-audience-panel-title', value: props.attributes.title,
+                        identifier: 'title', 'aria-label': __('Tab label', 'bc-practice'),
+                        allowedFormats: [], placeholder: __('Name this tab', 'bc-practice'),
+                        onChange: function (title) { props.setAttributes({ title: title }); }
+                    }),
+                    el(tools.ItemActions, { clientId: props.clientId, name: 'bc-practice/audience-panel', label: __('Tab controls', 'bc-practice') })
+                ),
+                el('div', { className: 'bc-audience-panel-content bc-pattern-flow' }, el(wp.blockEditor.InnerBlocks, {
+                    template: [['core/paragraph', { placeholder: __('Add content or insert a pattern for this audience.', 'bc-practice') }]],
+                    templateLock: false, renderAppender: wp.blockEditor.InnerBlocks.ButtonBlockAppender
+                }))
+            );
+        }),
+        save: function (props) {
+            return el('section', useBlockProps.save({ className: 'bc-audience-panel' }),
+                el(wp.blockEditor.RichText.Content, { tagName: 'h3', className: 'bc-audience-panel-title', value: props.attributes.title }),
+                el('div', { className: 'bc-audience-panel-content bc-pattern-flow' }, el(wp.blockEditor.InnerBlocks.Content))
+            );
+        }
+    });
 })(window.wp);

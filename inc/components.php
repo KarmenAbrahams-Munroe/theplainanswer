@@ -90,6 +90,21 @@ add_action( 'init', function () {
         'parent' => array( 'bc-practice/resource-tabs' ), 'supports' => array( 'html' => false, 'anchor' => true, 'reusable' => false ),
         'editor_script' => 'bc-practice-component-blocks',
     ) );
+    wp_register_script( 'bc-practice-audience-tabs', get_theme_file_uri( 'assets/js/audience-tabs.js' ), array(), $version, array( 'strategy' => 'defer', 'in_footer' => true ) );
+    wp_localize_script( 'bc-practice-audience-tabs', 'bcPracticeAudienceTabsLabels', array( 'group' => __( 'Audience guidance', 'bc-practice' ), 'tab' => __( 'Tab', 'bc-practice' ) ) );
+    wp_register_style( 'bc-practice-audience-tabs', get_theme_file_uri( 'assets/css/audience-tabs.css' ), array( 'bc-practice-components' ), $version );
+    register_block_type( 'bc-practice/audience-tabs', array(
+        'api_version' => 3, 'title' => __( 'Audience tabs', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'index-card',
+        'attributes' => array( 'label' => array( 'type' => 'string', 'default' => 'Audience guidance' ), 'presentation' => array( 'type' => 'string', 'enum' => array( 'underlined', 'framed' ), 'default' => 'underlined' ) ),
+        'supports' => array( 'html' => false, 'anchor' => true ), 'editor_script' => 'bc-practice-component-blocks',
+        'style' => 'bc-practice-audience-tabs', 'view_script' => 'bc-practice-audience-tabs',
+    ) );
+    register_block_type( 'bc-practice/audience-panel', array(
+        'api_version' => 3, 'title' => __( 'Audience tab', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'excerpt-view',
+        'attributes' => array( 'title' => array( 'type' => 'string', 'source' => 'html', 'selector' => '.bc-audience-panel-title', 'default' => '' ) ),
+        'parent' => array( 'bc-practice/audience-tabs' ), 'supports' => array( 'html' => false, 'anchor' => true, 'reusable' => false ),
+        'editor_script' => 'bc-practice-component-blocks',
+    ) );
     register_block_type( 'bc-practice/step', array(
         'api_version' => 3, 'title' => __( 'Step', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
         'parent' => array( 'bc-practice/steps' ), 'supports' => array( 'html' => false, 'reusable' => false ),

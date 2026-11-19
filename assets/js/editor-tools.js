@@ -64,7 +64,7 @@
     function focusNew(block) {
         var target = block;
         function find(b) {
-            if (b.name === 'core/heading' || b.name === 'core/paragraph' || b.name === 'core/details' || b.name === 'bc-practice/resource-panel') { return b; }
+            if (b.name === 'core/heading' || b.name === 'core/paragraph' || b.name === 'core/details' || b.name === 'bc-practice/resource-panel' || b.name === 'bc-practice/audience-panel') { return b; }
             for (var i = 0; i < b.innerBlocks.length; i++) { var found = find(b.innerBlocks[i]); if (found) { return found; } }
             return null;
         }

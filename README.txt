@@ -1,4 +1,18 @@
-B.C. practice — WordPress block theme, version 1.17.3
+B.C. practice — WordPress block theme, version 1.18.0
+
+Audience tabs — version 1.18.0
+Insert Audience tabs from Text, lists and tables in the pattern library, or insert the Audience tabs block. In Block settings, Tab appearance offers Underlined (the default) and Framed. Changing appearance preserves labels, content and order. The pattern uses generic Applicants and Reviewers examples that should be renamed for the page's audiences.
+
+Each Audience tab has a directly editable Tab label and an ordinary block area. Add text, lists, headings, callouts, steps, tables, accordions or other existing patterns using the normal inserter. All panels remain open in the editor. Add tab inserts a new panel and selects its label. The selected tab's controls move, duplicate or remove the whole panel; removal asks for confirmation and Undo remains available. Duplicating removes copied anchor identifiers. Use H3 headings inside panels, keep shared guidance above the tab group, and avoid putting tab groups inside other tab groups.
+
+Published tabs support pointer and keyboard input. Tab enters the active tab; arrow keys move focus, Home/End move to the first/last tab, and Enter/Space select it. Tab then moves into the selected panel. Narrow containers stack the labels above the content and use Up/Down keys. A single panel stays a normal content section. Fragment links into inactive panels reveal the relevant tab. Print output and pages without JavaScript show every panel with its label. Multiple groups remain independent. Styles and the frontend script are registered with the block; no background task or database table is added.
+
+This patch expects theme version 1.17.3. Existing Resource links: tabs and their saved blocks retain their markup and behaviour. No workflow-plugin update or template migration is needed.
+
+Validation for version 1.18.0
+Installed upgrades passed on WordPress 6.6.12 and 7.1.5 with PHP 8.3.33. Existing resource-tab markup, shared drafts and history survived the update. All 63 theme pattern bodies parsed as valid editor blocks. Editor checks covered directly editing labels and body text, returning to edit body text again, changing appearances without changing inner content, adding/reordering/duplicating tabs, cleared duplicate anchors, removal confirmation/cancellation, Undo, inserting and editing an existing callout pattern inside a panel, and the native content inserter. Shared workflow draft save/preview/reopen and native WordPress saving without the workflow plugin passed.
+
+Front-end checks passed for both styles, active panels and ARIA relationships, manual keyboard activation and focus, independent groups with unique IDs, initial and changed fragment links, one-panel and JavaScript-disabled fallbacks, 18px labels, nested callout/steps/accordion/table patterns, selected automated WCAG 2 A/AA and 2.1 AA checks, print output and restored screen selection. Reflow checks covered 320, 390 and 768px viewports, a 280px container, long labels, vertical keyboard movement and forced-colour visibility. The view script was absent on a page without the component. PHP syntax passed on 7.4.33 and 8.3.33; all changed scripts passed JavaScript syntax checks. These checks do not replace testing with assistive technology and the production hosting environment.
 
 Mega-menu memory refinement — version 1.17.3
 The mega menu uses the same native published-page hierarchy query as section and guide navigation. WordPress can reuse the cached query IDs and complete page objects, avoiding a second full-page query in the same response. Page bodies remain intact in the normal object cache. Visibility metadata is loaded in one batch so menu items do not each require a separate metadata query. Ordering, excerpts, visibility boundaries, links and browser behaviour are retained.
