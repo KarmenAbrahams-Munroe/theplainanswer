@@ -65,3 +65,64 @@
         printState = null;
     });
 })();
+
+(function () {
+    'use strict';
+    var sequence = 0, instances = [];
+    function uniqueId(prefix) {
+        var id;
+        do { id = prefix + (++sequence); } while (document.getElementById(id));
+        return id;
+    }
+    document.querySelectorAll('.bc-resource-tabs').forEach(function (root) {
+        var panels = Array.from(root.children).filter(function (child) { return child.classList.contains('bc-tab-panel'); });
+        if (panels.length < 2) return;
+        var list = document.createElement('div');
+        list.className = 'bc-resource-tablist';
+        list.setAttribute('role', 'tablist');
+        list.setAttribute('aria-label', (root.dataset.tabLabel || '').trim() || 'Resource categories');
+        var tabs = panels.map(function (panel, index) {
+            var heading = Array.from(panel.children).find(function (child) { return child.classList.contains('bc-tab-panel-title'); });
+            var tab = document.createElement('button');
+            tab.type = 'button'; tab.className = 'bc-resource-tab'; tab.id = uniqueId('bc-resource-tab-');
+            tab.textContent = (heading && heading.textContent.trim()) || 'Resource group ' + (index + 1);
+            if (!panel.id) panel.id = uniqueId('bc-resource-panel-');
+            tab.setAttribute('role', 'tab'); tab.setAttribute('aria-controls', panel.id);
+            panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', tab.id); panel.tabIndex = 0;
+            list.appendChild(tab); return tab;
+        });
+        function activate(index) {
+            tabs.forEach(function (tab, i) {
+                tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1;
+                panels[i].hidden = i !== index;
+            });
+        }
+        tabs.forEach(function (tab, index) {
+            tab.addEventListener('click', function () { activate(index); });
+            tab.addEventListener('keydown', function (event) {
+                var next;
+                if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+                else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+                else if (event.key === 'Home') next = 0;
+                else if (event.key === 'End') next = tabs.length - 1;
+                else return;
+                event.preventDefault(); tabs[next].focus();
+            });
+        });
+        root.insertBefore(list, root.firstChild); root.classList.add('is-enhanced'); activate(0);
+        instances.push({ panels: panels, activate: activate });
+    });
+    function revealFragment() {
+        var target;
+        try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (error) { return; }
+        if (!target) return;
+        var changed = false;
+        instances.forEach(function (instance) {
+            instance.panels.forEach(function (panel, index) {
+                if (panel.hidden && panel.contains(target)) { instance.activate(index); changed = true; }
+            });
+        });
+        if (changed) window.requestAnimationFrame(function () { target.scrollIntoView({ block: 'start', behavior: 'instant' }); });
+    }
+    revealFragment(); window.addEventListener('hashchange', revealFragment);
+})();

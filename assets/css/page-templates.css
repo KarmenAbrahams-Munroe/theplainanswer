@@ -34,7 +34,7 @@
 .bc-related-topics > h2 { font-size: 1.5rem; }
 .bc-related-card { border-radius: 6px; box-shadow: none; padding: 1.5rem; height: 100%; }
 .bc-related-card h3 { font-size: 1.125rem; margin-top: 0; }
-.bc-related-card p { font-size: .95rem; }
+.bc-related-card p { font-size: inherit; }
 .bc-detail-layout { display: grid; grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); padding-block: .25rem 4rem; align-items: start; }
 .bc-detail-sidebar { position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow: auto; scrollbar-gutter: stable; }
 .bc-detail-column { min-width: 0; max-width: 54rem; }
@@ -56,7 +56,7 @@
 .bc-resource-panel { border-block: 3px solid var(--bcds-theme-primary-gold); padding: 1.25rem 1.5rem; background: var(--bcds-surface-color-background-light-gray); border-radius: 5px; }
 .bc-resource-panel h2 { margin-top: 0; font-size: 1.25rem; }
 .bc-detail-body .wp-block-table { max-width: 100%; overflow-x: auto; }
-.bc-detail-body .wp-block-table th { background: var(--bcds-surface-color-primary-default); color: white; font-size: .95rem; text-align: left; }
+.bc-detail-body .wp-block-table th { background: var(--bcds-surface-color-primary-default); color: white; font-size: inherit; text-align: left; }
 .bc-detail-body .wp-block-table td { vertical-align: top; }
 .bc-detail-body .wp-block-table figcaption { color: var(--bcds-typography-color-secondary); font-size: .875rem; text-align: left; }
 .bc-detail-body .wp-block-details { border-block: 1px solid var(--bcds-surface-color-border-default); padding: 1rem 0; }

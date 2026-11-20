@@ -3,6 +3,7 @@
   "version": 3,
   "settings": {
     "appearanceTools": true,
+    "coreStyles": false,
     "useRootPaddingAwareAlignments": true,
     "layout": {
       "contentSize": "64rem",
@@ -192,7 +193,7 @@
     },
     "typography": {
       "fontFamily": "var:preset|font-family|bc-sans",
-      "fontSize": "var:preset|font-size|medium",
+      "fontSize": "var:preset|font-size|large",
       "fontWeight": "400",
       "lineHeight": "1.6"
     },
@@ -318,6 +319,26 @@
             "left": "1.5rem"
           }
         }
+      },
+      "core/paragraph": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "core/list": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "core/details": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "core/table": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
       }
     }
   },
@@ -331,26 +352,24 @@
       "name": "footer",
       "title": "Footer",
       "area": "footer"
+    },
+    {
+      "name": "site-notice",
+      "title": "Site notice",
+      "area": "uncategorized"
     }
   ],
   "customTemplates": [
     {
       "name": "bc-topic-landing",
-      "title": "Topic landing page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "bc-detail-content",
-      "title": "Detailed content page",
+      "title": "Navigation page",
       "postTypes": [
         "page"
       ]
     },
     {
       "name": "bc-long-reference",
-      "title": "Long reference page",
+      "title": "Guide and reference",
       "postTypes": [
         "page"
       ]

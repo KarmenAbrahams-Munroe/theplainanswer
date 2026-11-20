@@ -12,13 +12,13 @@ function bc_practice_template_blocks() {
         'page-introduction' => array( 'title' => 'Page introduction', 'icon' => 'editor-paragraph', 'description' => 'Shows the introduction entered in the page Excerpt field.' ),
         'topic-navigation' => array( 'title' => 'Topic navigation', 'icon' => 'menu', 'description' => 'Shows the page hierarchy for this topic.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'sidebar', 'disclosure' ), 'default' => 'sidebar' ) ) ),
         'page-contents' => array( 'title' => 'On this page', 'icon' => 'editor-ul', 'description' => 'Links to the level-two headings in this page.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'inline', 'sticky' ), 'default' => 'inline' ) ) ),
-        'child-page-cards' => array( 'title' => 'Child page cards', 'icon' => 'index-card', 'description' => 'Creates linked cards from this page’s children, with links to their children.' ),
-    ), bc_practice_component_blocks() );
+        'child-page-cards' => array( 'title' => 'Child page cards', 'icon' => 'index-card', 'description' => 'Creates linked cards from published child pages, their explicit excerpts and grandchild links.', 'attributes' => array( 'automatic' => array( 'type' => 'boolean', 'default' => false ) ) ),
+    ), bc_practice_component_blocks(), bc_practice_framework_blocks() );
 }
 
 add_action( 'init', function () {
     $version = wp_get_theme()->get( 'Version' );
-    wp_register_script( 'bc-practice-template-blocks', get_theme_file_uri( 'assets/js/template-blocks.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render' ), $version, true );
+    wp_register_script( 'bc-practice-template-blocks', get_theme_file_uri( 'assets/js/template-blocks.js' ), array( 'bc-practice-editor-tools', 'wp-server-side-render' ), $version, true );
     wp_add_inline_script( 'bc-practice-template-blocks', 'window.bcPracticeTemplateBlocks = ' . wp_json_encode( bc_practice_template_blocks() ) . ';', 'before' );
     foreach ( bc_practice_template_blocks() as $slug => $settings ) {
         register_block_type( 'bc-practice/' . $slug, array(
@@ -49,6 +49,7 @@ add_action( 'enqueue_block_assets', function () {
 function bc_practice_context_page( $block ) {
     $id = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : get_the_ID();
     $page = get_post( $id );
+    $page = apply_filters( 'bc_practice_context_page', $page, $block );
     return $page && 'page' === $page->post_type ? $page : null;
 }
 
@@ -83,12 +84,12 @@ function bc_practice_render_page_introduction( $attributes, $content, $block ) {
     if ( ! $page || '' === trim( $page->post_excerpt ) ) {
         return bc_practice_empty_preview( 'Add a short introduction in the page Excerpt field.' );
     }
-    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-page-introduction' ) ) . '>' . wpautop( esc_html( $page->post_excerpt ) ) . '</div>';
+    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-page-introduction' ) ) . '>' . wpautop( esc_html( $page->post_excerpt ), false ) . '</div>';
 }
 
 /** Render links and separate disclosure buttons; all branches work without JS. */
 function bc_practice_topic_items( $parent, $groups, $page, $ancestors, $depth = 0 ) {
-    if ( $depth >= 4 || empty( $groups[ $parent ] ) ) {
+    if ( $depth >= 20 || empty( $groups[ $parent ] ) ) {
         return '';
     }
     $html = '';
@@ -117,11 +118,16 @@ function bc_practice_navigation_chevron() {
 
 function bc_practice_render_topic_navigation( $attributes, $content, $block ) {
     $page = bc_practice_context_page( $block );
+    if ( $page && ! bc_practice_navigation_panels( $page->ID )['section'] ) { return ''; }
+    if ( $page && ! empty( $GLOBALS['bc_practice_reading_layout'][ $page->ID ] ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+        return '';
+    }
     if ( ! $page ) {
         return bc_practice_empty_preview( 'Topic navigation will use the page Parent setting.' );
     }
     $ancestors = array_values( array_filter( array_map( 'intval', get_post_ancestors( $page ) ), function ( $id ) { return 'publish' === get_post_status( $id ); } ) );
-    $root = $ancestors ? end( $ancestors ) : $page->ID;
+    $topic_ancestors = array_values( array_filter( $ancestors, function ( $id ) { return (int) $id !== (int) get_option( 'page_on_front' ); } ) );
+    $root = bc_practice_guide_root( $page->ID ) ?: ( $topic_ancestors ? end( $topic_ancestors ) : $page->ID );
     $pages = get_pages( array( 'child_of' => $root, 'sort_column' => 'menu_order,post_title,ID', 'post_status' => 'publish' ) );
     $groups = array();
     foreach ( $pages as $item ) {
@@ -155,6 +161,15 @@ function bc_practice_render_child_page_cards( $attributes, $content, $block ) {
     if ( ! $page ) {
         return bc_practice_empty_preview( 'Save this page to preview its child page cards.' );
     }
+    $editor = defined( 'REST_REQUEST' ) && REST_REQUEST;
+    if ( ! $editor ) {
+        if ( empty( $attributes['automatic'] ) && ! empty( $GLOBALS['bc_practice_automatic_cards'][ $page->ID ] ) ) {
+            return '';
+        }
+        if ( ! empty( $attributes['automatic'] ) ) {
+            $GLOBALS['bc_practice_automatic_cards'][ $page->ID ] = true;
+        }
+    }
     $query_args = array(
         'post_type' => 'page',
         'post_status' => 'publish',
@@ -178,11 +193,21 @@ function bc_practice_render_child_page_cards( $attributes, $content, $block ) {
             $groups[ $grandchild->post_parent ][] = $grandchild;
         }
     }
+    $presentation = bc_practice_navigation_card_style( $page->ID );
+    if ( 'standard' !== $presentation ) { update_meta_cache( 'post', $child_ids ); }
     $cards = '';
     foreach ( $children as $child ) {
         $heading_id = wp_unique_id( 'bc-child-page-' . $child->ID . '-' );
-        $arrow = '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
-        $cards .= '<section class="bc-topic-card" aria-labelledby="' . esc_attr( $heading_id ) . '"><h2 id="' . esc_attr( $heading_id ) . '"><a class="bc-auto-topic-heading" href="' . esc_url( get_permalink( $child ) ) . '"><span>' . esc_html( bc_practice_card_title( $child ) ) . '</span>' . $arrow . '</a></h2>';
+        $arrow = '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+        $visual = '';
+        if ( 'image' === $presentation && empty( $child->post_password ) ) { $visual = get_the_post_thumbnail( $child, 'large', array( 'alt' => '', 'class' => 'bc-navigation-card-image' ) ); }
+        if ( in_array( $presentation, array( 'icons', 'panels', 'rows' ), true ) ) { $visual = '<div class="bc-navigation-card-icon">' . bc_practice_component_svg( bc_practice_page_meta( $child->ID, '_bc_page_icon' ) ?: 'document' ) . '</div>'; }
+        $cards .= '<section class="bc-topic-card bc-navigation-card" aria-labelledby="' . esc_attr( $heading_id ) . '">' . ( 'image' === $presentation ? $visual : '' ) . '<div class="bc-topic-card-summary">' . ( 'image' !== $presentation ? $visual : '' ) . '<div class="bc-topic-card-copy"><h2 id="' . esc_attr( $heading_id ) . '"><a class="bc-auto-topic-heading" href="' . esc_url( get_permalink( $child ) ) . '"><span>' . esc_html( bc_practice_card_title( $child ) ) . '</span>' . $arrow . '</a></h2>';
+        $excerpt = empty( $child->post_password ) ? trim( wp_strip_all_tags( $child->post_excerpt, true ) ) : '';
+        if ( '' !== $excerpt ) {
+            $cards .= '<p class="bc-topic-card-excerpt">' . esc_html( $excerpt ) . '</p>';
+        }
+        $cards .= '</div></div>';
         if ( $groups[ $child->ID ] ) {
             $cards .= '<ul class="bc-grandchild-links">';
             foreach ( $groups[ $child->ID ] as $grandchild ) {
@@ -192,16 +217,29 @@ function bc_practice_render_child_page_cards( $attributes, $content, $block ) {
         }
         $cards .= '</section>';
     }
-    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-child-page-cards bc-topic-stack' ) ) . '>' . $cards . '</div>';
+    return '<div ' . get_block_wrapper_attributes( array( 'class' => 'bc-child-page-cards bc-navigation-cards-frame bc-navigation-style-' . $presentation ) ) . '><div class="bc-navigation-cards">' . $cards . '</div></div>';
 }
 
-/** Resolve published synced patterns, preserving a cycle/depth guard. */
+/** Resolve registered patterns and published synced blocks with cycle guards. */
 function bc_practice_expand_content_blocks( $blocks, $seen = array(), $depth = 0 ) {
     if ( $depth > 20 ) {
         return array();
     }
     $expanded = array();
     foreach ( $blocks as $item ) {
+        if ( 'core/pattern' === $item['blockName'] ) {
+            $slug = $item['attrs']['slug'] ?? '';
+            $key = is_string( $slug ) ? 'pattern:' . $slug : '';
+            $registry = WP_Block_Patterns_Registry::get_instance();
+            if ( ! $key || isset( $seen[ $key ] ) || ! $registry->is_registered( $slug ) ) {
+                continue;
+            }
+            $pattern = $registry->get_registered( $slug );
+            $next_seen = $seen;
+            $next_seen[ $key ] = true;
+            $expanded = array_merge( $expanded, bc_practice_expand_content_blocks( parse_blocks( $pattern['content'] ), $next_seen, $depth + 1 ) );
+            continue;
+        }
         if ( 'core/block' === $item['blockName'] && ! empty( $item['attrs']['ref'] ) ) {
             // Preserve WordPress's per-instance overrides and their binding context.
             // These references render natively and are omitted from the heading map.
@@ -312,6 +350,10 @@ function bc_practice_prepared_content( $content ) {
 
 function bc_practice_render_page_contents( $attributes, $content, $block ) {
     $page = bc_practice_context_page( $block );
+    if ( $page && ! bc_practice_navigation_panels( $page->ID )['page'] ) { return ''; }
+    if ( $page && ! empty( $GLOBALS['bc_practice_reading_layout'][ $page->ID ] ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+        return '';
+    }
     if ( ! $page ) {
         return bc_practice_empty_preview( 'On this page will list this page’s Heading 2 sections.' );
     }

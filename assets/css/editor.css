@@ -1,0 +1,95 @@
+/* Pattern names stay readable outside their miniature previews. */
+.block-editor-block-patterns-list__item-title { display: block !important; white-space: normal; line-height: 1.4; font-size: 14px; font-weight: 600; padding: 10px 12px 0; color: #1e1e1e; }
+.block-editor-patterns__pattern-details { display: flex !important; }
+/* Editing controls are deliberately separate from saved component markup. */
+.bc-editor-add { clear: both; display: block; width: 100%; padding: .75rem 0; margin: .5rem 0; grid-column: 1 / -1; box-sizing: border-box; }
+.bc-editor-add .components-button { min-height: 40px; height: auto; white-space: normal; text-align: start; }
+.bc-steps > .block-list-appender, .bc-resource-tabs > .block-list-appender, .bc-audience-tabs > .block-list-appender { position: static; width: 100%; grid-column: 1 / -1; }
+.bc-accordion-group > .block-list-appender, .bc-quick-tiles > .block-list-appender, .bc-quick-links-list > .block-list-appender, .bc-icon-list > .block-list-appender, .bc-image-card-grid > .block-list-appender, .bc-three-column-grid > .block-list-appender, .bc-component-related > .wp-block-columns > .block-list-appender { display: none; }
+.bc-editor-item-actions { display: flex; flex-wrap: wrap; gap: .25rem; border-top: 1px dashed #8a8a8a; padding: .5rem 0; margin-top: 1rem; clear: both; grid-column: 1 / -1; }
+.bc-editor-item-actions .components-button { height: auto; min-height: 36px; padding: .4rem .6rem; }
+.bc-editor-accordion-panel.wp-block-details { border: 1px solid #8a8a8a; border-radius: 4px; padding: 1rem; margin-block: 1rem; }
+.bc-editor-accordion-panel.wp-block-details > * { margin-inline: 0; }
+.bc-editor-accordion-heading { padding: .6rem .75rem; background: white; border: 1px solid #8a8a8a; border-radius: 3px; font-size: 1.125rem; font-weight: 700; color: #013366; }
+.bc-editor-field-label { display: block; font-size: .9375rem; margin-bottom: .35rem; color: #2d2d2d; }
+.bc-editor-accordion-content { padding: .5rem .75rem; }
+.bc-editor-generated, .bc-editor-source { padding: .75rem; border: 1px dashed #8a8a8a; background: #f1f8fe; color: #2d2d2d; font-size: .9375rem; line-height: 1.5; }
+.bc-editor-icon-picker { padding: .75rem; min-width: 14rem; background: white; border: 1px solid #8a8a8a; border-radius: 4px; position: relative; z-index: 2; }
+/* Whole-card link hit areas must never cover editing fields. */
+.bc-quick-tile a::after, .bc-image-card a::after { display: none !important; }
+
+.bc-editor-confirm-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
+.bc-editor-related-list { margin: 1rem 0; padding: 0; list-style: none; }
+.bc-editor-related-list li { border-block-end: 1px solid #ddd; padding-block: .75rem; }
+.bc-editor-related-list strong { display: block; overflow-wrap: anywhere; }
+.bc-editor-related-actions { display: flex; flex-wrap: wrap; gap: .25rem; }
+.block-editor-inserter__content .block-editor-block-patterns-list__item-title,
+.block-editor-inserter__preview-container .block-editor-block-patterns-list__item-title { display: block !important; white-space: normal; line-height: 1.4; font-size: 14px; font-weight: 600; padding: 10px 12px 0; color: #1e1e1e; }
+.block-editor-inserter__content .block-editor-patterns__pattern-details,
+.block-editor-inserter__preview-container .block-editor-patterns__pattern-details { display: flex !important; }
+.block-editor-block-patterns-list__item[aria-label]:not(:has(.block-editor-block-patterns-list__item-title))::after { content: attr(aria-label); display: block; white-space: normal; font-size: 14px; font-weight: 600; line-height: 1.4; color: #1e1e1e; padding: 10px 12px; text-align: start; }
+/* Keep the inserter compact: show preview names without description text. */
+.block-editor-block-patterns-list__item [id^="block-editor-block-patterns-list__item-description-"] { display: none !important; }
+.editor-styles-wrapper .bc-featured-update .block-editor-rich-text__editable { min-width: 0; }
+.editor-styles-wrapper .bc-link-row h3 a::after { pointer-events: none; }
+.editor-styles-wrapper .bc-event-day > .bc-editor-item-actions { grid-column: 1 / -1; }
+.editor-styles-wrapper .bc-steps-icons > .bc-step > .wp-block-bc-practice-icon { position: absolute; inset-inline-start: 0; top: 0; width: 2.25rem; height: 2.25rem; margin: 0; }
+.editor-styles-wrapper .bc-steps-icons > .bc-step > .wp-block-bc-practice-icon .bc-component-icon { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; background: #f1f8fe; border-radius: 50%; }
+.editor-styles-wrapper .bc-steps-icons > .bc-step > .wp-block-bc-practice-icon svg { width: 1.6rem; height: 1.6rem; }
+.editor-styles-wrapper .bc-steps-numbers > .bc-step > .wp-block-bc-practice-icon { display: none; }
+.editor-styles-wrapper :is(.bc-link-row, .bc-feature-item) > .wp-block-bc-practice-icon .bc-component-icon { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 4px; background: #f1f8fe; }
+.editor-styles-wrapper :is(.bc-link-row, .bc-feature-item) > .wp-block-bc-practice-icon svg { width: 2rem; height: 2rem; }
+.bc-editor-action-label { flex-basis: 100%; font-size: 13px; font-weight: 600; }
+
+/* Nested insertion controls occupy their own space beneath their content. */
+.editor-styles-wrapper :is(.bc-agenda, .bc-event-sessions, .bc-event-session, .bc-step, .bc-tab-panel-content > .block-editor-inner-blocks > .block-editor-block-list__layout) > .block-list-appender {
+    position: static; inset: auto; display: flow-root; width: 100%; margin-block: 1rem 0; clear: both; grid-column: 1 / -1;
+}
+.editor-styles-wrapper .bc-agenda .bc-editor-add { margin: 0; padding-block: .5rem; }
+.editor-styles-wrapper .bc-agenda > .block-list-appender { padding-block-start: .5rem; border-block-start: 1px dashed var(--wp--preset--color--border); }
+/* A full-width appender would keep unused auto-fit roadmap columns open. */
+.editor-styles-wrapper .bc-steps-roadmap > .block-list-appender { grid-column: 1; }
+.editor-styles-wrapper .bc-steps > .bc-step:not(:has(~ .bc-step))::after { content: none; }
+@container (min-width: 50rem) {
+    .editor-styles-wrapper .bc-steps-roadmap.bc-steps-icons:not(:has(> .bc-step:nth-child(6))) > .bc-step > .wp-block-bc-practice-icon {
+        inset-inline-start: calc(50% - 1.125rem); top: 0;
+    }
+}
+
+.editor-styles-wrapper :is(.bc-event-session, .bc-step) > .block-list-appender .block-editor-button-block-appender { width: 44px; min-width: 44px; min-height: 44px; padding: 0; }
+
+/* Theme page settings use the same compact rhythm as the workflow sidebar. */
+.bc-page-sidebar-panel { font-size: 13px; line-height: 1.5; }
+.bc-page-sidebar-panel > .components-panel__body-title .components-button { font-size: 13px; line-height: 1.4; }
+.bc-page-sidebar-fields { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.bc-page-sidebar-panel .components-base-control,
+.bc-page-sidebar-panel .components-base-control__field { margin: 0; }
+.wp-admin .bc-page-sidebar-panel label.components-base-control__label,
+.wp-admin .bc-page-sidebar-panel .components-base-control__field label.components-input-control__label {
+    display: block; margin-block-end: 6px; font-size: 12px; font-weight: 600; line-height: 1.5; text-transform: none;
+}
+.bc-page-sidebar-panel :is(.components-text-control__input, .components-textarea-control__input, .components-select-control__input, .components-combobox-control__input) { min-width: 0; max-width: 100%; font-size: 13px; }
+.bc-page-sidebar-panel :is(.components-text-control__input, .components-select-control__input) { min-height: 40px; box-sizing: border-box; }
+.bc-page-sidebar-panel .components-textarea-control__input { line-height: 1.5; resize: vertical; }
+.bc-page-sidebar-panel .components-base-control__help,
+.bc-page-sidebar-help { margin: 6px 0 0; color: #50575e; font-size: 12px; line-height: 1.5; }
+.bc-page-sidebar-fields > .bc-page-sidebar-help { margin: 0; }
+.bc-page-sidebar-panel .components-toggle-control .components-flex { min-height: 28px; align-items: center; }
+.wp-admin .bc-page-sidebar-panel .components-toggle-control label { margin: 0; font-size: 13px; font-weight: 400; line-height: 1.5; text-transform: none; }
+.bc-page-sidebar-panel .components-toggle-control .components-form-toggle { flex-shrink: 0; }
+.bc-page-sidebar-panel .components-notice { margin: 0; }
+.bc-page-sidebar-panel .components-notice__content { font-size: 12px; line-height: 1.5; }
+.bc-page-related-panel > p { margin: 0 0 12px; color: #50575e; font-size: 12px; line-height: 1.5; }
+.bc-page-related-panel > .components-base-control { margin-block: 18px; }
+.bc-page-related-panel .bc-editor-related-list { margin-block: 12px; font-size: 13px; }
+
+/* Decorative previews accompany text labels in the native searchable picker. */
+.bc-editor-icon-option { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 28px; font-size: 13px; line-height: 1.5; }
+.bc-editor-icon-option > svg { display: block; flex: 0 0 20px; width: 20px; height: 20px; }
+.bc-editor-icon-option > span { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+.editor-styles-wrapper .bc-audience-tabs { container-type: normal; }
+.editor-styles-wrapper .bc-audience-panel { border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; padding: 1rem; margin-block: 1rem; }
+.editor-styles-wrapper .bc-audience-editor-header { border-block-end: 1px solid var(--bcds-surface-color-border-default); padding-block-end: .75rem; margin-block-end: 1rem; }
+.editor-styles-wrapper .bc-audience-editor-label { display: block; font-size: .875rem; color: var(--bcds-typography-color-secondary); margin-block-end: .375rem; }
+.editor-styles-wrapper .bc-audience-panel-title { margin-block: 0; padding: .25rem 0; }
+.editor-styles-wrapper .bc-audience-panel-content > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender { position: static; width: 100%; margin-block: 1rem 0; }
