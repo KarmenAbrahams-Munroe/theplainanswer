@@ -14,7 +14,7 @@
     border-block: 1px solid var(--bcds-surface-color-border-default); padding: 0; margin-block: 0;
 }
 .bc-accordion-group > .wp-block-details + .wp-block-details { border-top: 0; }
-.bc-accordion-group > h2 { font-size: 1.625rem; line-height: 1.3; margin-top: 0; }
+.bc-accordion-group > h2 { margin-top: 0; }
 .bc-accordion-group > .wp-block-details > summary, .bc-accordion-item.wp-block-details > summary {
     padding: 1rem .25rem; cursor: pointer; font-weight: 700; color: var(--bcds-typography-color-link); line-height: 1.5;
 }
@@ -65,7 +65,7 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 .bc-component-card.bc-outlined-text-card { height: auto; min-width: 0; background: transparent; overflow-wrap: anywhere; }
 .bc-outlined-text-card > :first-child { margin-block-start: 0; }
 .bc-outlined-text-card > :last-child { margin-block-end: 0; }
-.bc-component-related > h2 { font-size: 1.5rem; }
+
 .bc-component-related > .wp-block-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); align-items: stretch; gap: 1.5rem; }
 .bc-component-related .wp-block-column { min-width: 0; }
 .bc-last-updated { display: flex; gap: .6rem; align-items: baseline; color: var(--bcds-typography-color-secondary); font-size: .9375rem; border-bottom: 1px solid var(--bcds-surface-color-border-default); padding-bottom: 1rem; }
@@ -107,7 +107,7 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 .bc-quick-tile a:focus-visible { outline: 0; }
 .editor-styles-wrapper .bc-quick-tile a::after { display: none; }
 .bc-quick-links-panel { padding: 1.5rem; border: 1px solid var(--bcds-surface-color-border-default); border-radius: 12px; background: white; box-shadow: 0 2px 4px rgb(0 0 0 / 8%); }
-.bc-quick-links-panel > h2 { margin-top: 0; padding-bottom: .75rem; border-bottom: 1px solid #eef2f6; font-size: 1.5rem; line-height: 1.35; }
+.bc-quick-links-panel > h2 { margin-top: 0; padding-bottom: .75rem; border-bottom: 1px solid #eef2f6; }
 .bc-quick-links-list { display: grid; gap: 1rem; }
 .wp-block-group.bc-quick-links-list > * { margin-block: 0; }
 .bc-quick-link-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; align-items: start; }
@@ -142,7 +142,7 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 .bc-text-column > :last-child { margin-bottom: 0; }
 .bc-text-column li + li { margin-top: .5rem; }
 .bc-topic-banner { background: var(--bcds-surface-color-primary-default); color: var(--bcds-typography-color-primary-invert); border-bottom: 4px solid var(--bcds-theme-primary-gold); border-radius: 4px; padding: clamp(1.5rem, 4vw, 3rem); margin-block: 2.5rem; }
-.bc-topic-banner h2 { color: inherit; font-size: clamp(1.625rem, 3vw, 2rem); line-height: 1.3; margin-top: 0; }
+.bc-topic-banner h2 { color: inherit; margin-top: 0; }
 .bc-topic-banner > p { max-width: 72ch; }
 .bc-topic-banner > :last-child { margin-bottom: 0; }
 .bc-topic-banner a { color: inherit; }
@@ -150,7 +150,7 @@ ol.bc-steps { list-style: none; padding: 0; margin-block: 1.5rem 2rem; counter-r
 .bc-task-panel, .bc-split-introduction { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 1.5rem 2.5rem; padding: clamp(1.25rem, 3vw, 2rem); margin-block: 2.5rem; background: var(--bcds-surface-color-background-light-blue); border: 1px solid var(--bcds-surface-color-border-default); border-radius: 4px; }
 .bc-split-introduction { background: var(--bcds-surface-color-background-light-gray); border-inline-start: 4px solid var(--bcds-theme-primary-gold); }
 .wp-block-group.bc-task-panel > *, .wp-block-group.bc-split-introduction > * { margin-block: 0; min-width: 0; }
-.bc-feature-intro h2 { margin-top: 0; font-size: 1.625rem; line-height: 1.3; }
+.bc-feature-intro h2 { margin-top: 0; }
 .bc-feature-intro > :last-child, .bc-feature-content > :last-child { margin-bottom: 0; }
 .bc-feature-content > :first-child { margin-top: 0; }
 ul.bc-task-links { list-style: none; padding: 0; margin: 0; }

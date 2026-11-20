@@ -1,4 +1,15 @@
-Clarity: BC Public Service Web Theme — version 1.18.4
+Clarity: BC Public Service Web Theme — version 1.18.5
+
+Consistent H2 headings — version 1.18.5
+H2 headings share a 2rem font size, 700 weight and 1.25 line height, with a short yellow line above the text. This applies to ordinary headings and H2s inside patterns, cards, tabs, navigation and templates. H3 and lower headings receive no yellow heading accent.
+
+The decorative line is 2rem wide and 3px high, with a .75rem gap below it. It sits in normal flow inside the heading, following component padding. Native left/centre/right heading-alignment classes align the line with the text. In forced-colour mode, the line uses the system foreground colour.
+
+Conflicting component and mobile H2 size rules and the older line-suppression rules are removed. Existing component colours, backgrounds, surrounding spacing, H1 typography, H3/lower heading rules, step markers and card borders are retained. The common CSS targets the themed site and editor content canvas rather than WordPress administration headings.
+
+This patch applies after patches 1–4 to Clarity 1.18.4 and updates the version to 1.18.5 to refresh the styles. It sets theme defaults and shared CSS. Individually styled heading blocks and saved Global Styles may require review on the installed site; this patch does not rewrite stored styles or content.
+
+Source verification: theme.json is valid and changes only H2 typography; CSS delimiter and conflicting-heading-rule checks pass; all 66 pattern files, PHP, JavaScript and template markup are unchanged. Original file line endings are retained and the patch adds no trailing spaces or tabs. Installed WordPress, narrow-screen/zoom and editor/published visual checks remain to be completed, including review of saved style overrides.
 
 Pattern availability and navigation setup — version 1.18.4
 The page and post pattern catalogue contains 38 individual content patterns. These patterns are also available for template and template-part editing. Template editing adds seven patterns: PSW Header with mega menu, PSW Mega menu, PSW Page contents: inline, PSW Page contents: sidebar, PSW Section contents: automatic, PSW Audience information and PSW Last updated.

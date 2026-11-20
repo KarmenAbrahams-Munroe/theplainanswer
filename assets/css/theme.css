@@ -1,6 +1,28 @@
 /* Custom WordPress block styling using the bundled upstream tokens. */
 html { scroll-padding-top: 2rem; }
 body { margin: 0; }
+/* H2 typography and its decorative line are shared by site and editor content. */
+:is(.wp-site-blocks, .editor-styles-wrapper) h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+:is(.wp-site-blocks, .editor-styles-wrapper) h2::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 3px;
+    margin-block: 0 .75rem;
+    background: var(--bcds-theme-primary-gold);
+    pointer-events: none;
+}
+:is(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-left::before { margin-left: 0; margin-right: auto; }
+:is(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-center::before { margin-left: auto; margin-right: auto; }
+:is(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-right::before { margin-left: auto; margin-right: 0; }
+@media (forced-colors: active) {
+    :is(.wp-site-blocks, .editor-styles-wrapper) h2::before { background: CanvasText; }
+}
 .wp-site-blocks { min-height: 100vh; display: flex; flex-direction: column; }
 .wp-site-blocks > main { flex: 1; width: 100%; box-sizing: border-box; }
 .wp-site-blocks > header, .wp-site-blocks > footer { margin-block-start: 0; }

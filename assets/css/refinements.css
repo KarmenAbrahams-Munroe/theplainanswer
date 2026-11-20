@@ -62,7 +62,7 @@ ul.bc-preparation-list { list-style-type: '\25a1  '; padding-inline-start: 1.4re
 .bc-navigation-style-rows .bc-navigation-cards { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
 .bc-navigation-style-rows .bc-navigation-card { border-block-start-width: 1px; }
 .bc-navigation-style-rows .bc-topic-card-summary { padding: 1rem; background: white; }
-.bc-navigation-style-rows .bc-navigation-card h2 { font-size: 1.25rem; }
+
 .bc-navigation-style-rows .bc-navigation-card .bc-auto-topic-heading { min-height: 0; }
 .bc-navigation-style-rows .bc-navigation-card .bc-grandchild-links { padding: .5rem 1rem .5rem 4.75rem; }
 /* Disabling both menus removes the reserved rail and lets the title reach the viewport edges. */
