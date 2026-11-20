@@ -4,7 +4,7 @@
  * Slug: bc-practice/navigation-panels
  * Categories: bc-cards, bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, panel, panels, card, cards, icon, icons, link, links, navigation, column, columns, sublinks, Link panels: icons, Panels: icon links
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Icon link panels with headings, descriptions and a main link. Choose the panel columns in Pattern layout.
  * Viewport Width: 1200
  * Inserter: yes

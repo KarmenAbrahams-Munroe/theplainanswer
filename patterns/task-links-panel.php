@@ -4,7 +4,7 @@
  * Slug: bc-practice/task-links-panel
  * Categories: bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, link, links, list, task, tasks, introduction, services, column, columns, popular, task links panel, Task links with introduction, Links: task list with introduction
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Introductory text beside a list of common task links.
  * Viewport Width: 1200
  * Inserter: yes

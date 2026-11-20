@@ -4,7 +4,7 @@
  * Slug: bc-practice/information-notice
  * Categories: bc-notices
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, notice, information, message, announcement, alert, callout, icon, icons, information notice, Notice: information
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A static information message with a heading and decorative icon.
  * Viewport Width: 1100
  * Inserter: yes

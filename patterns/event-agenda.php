@@ -4,7 +4,7 @@
  * Slug: bc-practice/event-agenda
  * Categories: bc-news
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, event, events, agenda, schedule, session, sessions, date, dates, calendar, training, workshops, Event agenda
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Event sessions grouped under editable dates, with controls to add dates and sessions.
  * Viewport Width: 1200
  * Inserter: yes

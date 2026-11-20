@@ -1,4 +1,22 @@
-Clarity: BC Public Service Web Theme — version 1.18.3
+Clarity: BC Public Service Web Theme — version 1.18.4
+
+Pattern availability and navigation setup — version 1.18.4
+The page and post pattern catalogue contains 38 individual content patterns. These patterns are also available for template and template-part editing. Template editing adds seven patterns: PSW Header with mega menu, PSW Mega menu, PSW Page contents: inline, PSW Page contents: sidebar, PSW Section contents: automatic, PSW Audience information and PSW Last updated.
+
+The Navigation page starter is available through Navigation page setup in the page settings sidebar. Select the Navigation page template on an empty page, then choose Insert navigation page starter. The action adds optional related-link content below the template’s automatic child-page cards. It does not insert a second automatic card group. The button is hidden once the page has content and rechecks the page before inserting. Normal insertion permissions and block locks are respected.
+
+Home, Standard content and Guide/reference starters and all four banner patterns are retired from new selection. Page-title banner styles remain available in Page title style. Page starters and Banners are removed from the category list. Earlier registered pattern bodies and their identifiers remain available to resolve saved references, including the old starter aliases.
+
+Generated page-structure blocks are reserved for template development. Existing saved instances remain registered and render normally. This includes breadcrumbs, page title/introduction, automatic child-page cards, page metadata, reading/section/guide navigation, mega menu, home content and footer feedback. Content blocks such as steps, tabs, icons and accordion controls remain available on pages.
+
+This patch applies after patches 1–3 to Clarity 1.18.3 and updates the version to 1.18.4. The shared H2 treatment follows in patch 5.
+
+Validation for version 1.18.4
+The metadata audit confirmed 38 content patterns for pages/posts and 45 for template/template-part editing, including seven additional template patterns. All 66 registered pattern bodies and identifiers matched version 1.18.3; hidden entries still resolve their earlier includes. There are 21 hidden registered patterns and 14 active categories. The availability filter reserves 15 generated theme block types for template authors while keeping their registrations and rendering code.
+
+The actual page-settings script passed JavaScript syntax checks and 26 WordPress API-stub cases covering empty pages/paragraphs, navigation-template and post-type gates, permission and removal locks, restricted block lists, stale clicks, repeat clicks, invalid content, custom page-editor types and excluding duplicate automatic child-page cards. No existing page content was overwritten in these cases. Structural delimiter checks passed for the changed PHP files.
+
+Installed WordPress, PHP runtime and browser checks remain pending. On staging, verify the setup button, native Undo, save/reopen, pattern availability and existing generated blocks; include the shared-workflow draft editor if it is installed.
 
 Pattern catalogue and search — version 1.18.3
 The content catalogue uses Cards and panels; Text and columns; Images and introductions; Lists and checklists; Links; Tabs and accordions; Steps and processes; Comparisons and tables; Notices and callouts; News and events; and Contact and support.

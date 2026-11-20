@@ -4,7 +4,7 @@
  * Slug: bc-practice/tabbed-resource-cards
  * Categories: bc-tabs-accordions, bc-cards, bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, tab, tabs, tabbed, resource, resources, card, cards, link, links, image, images, photo, picture, groups, categories, tabbed resource cards, Resource links: tabs, Tabs: resource cards
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Resource cards arranged in named tabs. Edit each resource group heading to name its tab.
  * Viewport Width: 1200
  * Inserter: yes

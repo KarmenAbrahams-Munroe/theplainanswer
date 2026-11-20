@@ -4,7 +4,7 @@
  * Slug: bc-practice/comparison-cards
  * Categories: bc-comparisons-tables, bc-cards
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, comparison, compare, option, options, alternatives, card, cards, icon, icons, requirements, conditions, eligibility, Comparison cards, Comparison: two options, Comparison: with icons, with icons
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Two comparison cards with editable headings, paragraphs and lists. Show or hide icons in Pattern layout.
  * Viewport Width: 1200
  * Inserter: yes

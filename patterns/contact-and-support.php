@@ -4,7 +4,7 @@
  * Slug: bc-practice/contact-and-support
  * Categories: bc-contact
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, contact, contacts, support, help, email, telephone, phone, icon, icons, Contact and support
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Contact information and supporting text with a changeable decorative icon.
  * Viewport Width: 1100
  * Inserter: yes

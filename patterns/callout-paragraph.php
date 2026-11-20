@@ -4,7 +4,7 @@
  * Slug: bc-practice/callout-paragraph
  * Categories: bc-notices
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, callout, callouts, note, inset, emphasis, highlight, paragraph, text, box, boxed, text only, callout: paragraph only, Callout: text only
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A short inset note containing text without a heading.
  * Viewport Width: 1200
  * Inserter: yes

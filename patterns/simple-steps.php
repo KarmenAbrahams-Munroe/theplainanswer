@@ -4,7 +4,7 @@
  * Slug: bc-practice/simple-steps
  * Categories: bc-processes
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, step, steps, process, number, numbers, numbered, icon, icons, instructions, separator, separators, simple, Steps: simple
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Short ordered instructions with separators. Choose numbers or icons in block settings.
  * Viewport Width: 1200
  * Inserter: yes

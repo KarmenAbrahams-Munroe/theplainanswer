@@ -4,7 +4,7 @@
  * Slug: bc-practice/warning-notice
  * Categories: bc-notices
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, notice, warning, caution, message, alert, callout, icon, icons, important, warning notice, Notice: warning
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A static warning explaining a risk and any action needed.
  * Viewport Width: 1100
  * Inserter: yes

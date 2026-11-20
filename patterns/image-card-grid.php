@@ -4,7 +4,7 @@
  * Slug: bc-practice/image-card-grid
  * Categories: bc-cards, bc-links, bc-introductions
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, card, cards, image, images, photo, picture, link, links, grid, column, columns, image cards, Link cards: image, Cards: image links
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Image link cards with editable headings and descriptions. Add an image and destination for each card.
  * Viewport Width: 1200
  * Inserter: yes

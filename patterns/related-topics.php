@@ -4,7 +4,7 @@
  * Slug: bc-practice/related-topics
  * Categories: bc-cards, bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, card, cards, link, links, text, grid, column, columns, related, topic, topics, related topics, Link cards: text, Cards: text links
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A group of text link cards with editable headings and descriptions. Add a destination to each heading.
  * Viewport Width: 1100
  * Inserter: yes

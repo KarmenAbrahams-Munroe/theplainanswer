@@ -4,7 +4,7 @@
  * Slug: bc-practice/icon-information-list
  * Categories: bc-text
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, icon, icons, text, summary, summaries, feature, features, list, column, columns, two columns, information, icon information list, Icon summaries
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Short icon-and-text summaries. Choose a list or two columns in Pattern layout.
  * Viewport Width: 1100
  * Inserter: yes

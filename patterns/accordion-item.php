@@ -4,7 +4,7 @@
  * Slug: bc-practice/accordion-item
  * Categories: bc-tabs-accordions
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, accordion, accordions, panel, single, item, expand, collapse, details, disclosure, accordion item, Accordion panel, Accordion: single panel
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: One collapsible panel, usable on its own or inside an accordion group.
  * Viewport Width: 1100
  * Inserter: yes

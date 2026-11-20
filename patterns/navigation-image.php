@@ -4,7 +4,7 @@
  * Slug: bc-practice/navigation-image
  * Categories: bc-cards, bc-links, bc-introductions
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, card, cards, image, images, photo, picture, link, links, sublink, sublinks, navigation, grid, column, columns, Link cards: image and sublinks, Cards: images and sublinks
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Image link cards with headings, descriptions and supporting links. Choose the card columns in Pattern layout.
  * Viewport Width: 1200
  * Inserter: yes

@@ -4,7 +4,7 @@
  * Slug: bc-practice/three-column-lists
  * Categories: bc-lists
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, list, lists, column, columns, grid, tasks, requirements, resources, three columns, two columns, three-column lists, Lists: columns
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Named lists arranged in columns. Change the column count without replacing the list content.
  * Viewport Width: 1200
  * Inserter: yes

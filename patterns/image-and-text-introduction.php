@@ -4,7 +4,7 @@
  * Slug: bc-practice/image-and-text-introduction
  * Categories: bc-introductions
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, image, images, photo, picture, text, introduction, feature, overview, column, columns, overlapping, split, single image, Introduction: image and text
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Images beside an editable introduction. Choose a single image or overlapping images in Pattern layout.
  * Viewport Width: 1200
  * Inserter: yes

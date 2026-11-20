@@ -4,7 +4,7 @@
  * Slug: bc-practice/icon-link-rows
  * Categories: bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, link, links, row, rows, icon, icons, list, resource, resources, navigation, tasks, Link rows: icons, Links: icon rows
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: Rows containing a decorative icon, linked heading and description.
  * Viewport Width: 1200
  * Inserter: yes

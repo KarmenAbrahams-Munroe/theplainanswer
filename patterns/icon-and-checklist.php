@@ -4,7 +4,7 @@
  * Slug: bc-practice/icon-and-checklist
  * Categories: bc-lists
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, checklist, checklists, check, list, icon, icons, feature, features, requirements, benefits, summary, Icon and checklist, Checklist: with icon
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: An icon, heading and introduction with a static checklist. Edit the list items using ordinary blocks.
  * Viewport Width: 1200
  * Inserter: yes

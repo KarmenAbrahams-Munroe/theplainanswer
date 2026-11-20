@@ -4,7 +4,7 @@
  * Slug: bc-practice/quick-action-tiles
  * Categories: bc-cards, bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, card, cards, icon, icons, tile, tiles, link, links, grid, column, columns, task, tasks, quick actions, resources, quick actions and resources, Link cards: icons, Cards: icon links
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A compact grid of icon link cards for common tasks and resources.
  * Inserter: yes
  */

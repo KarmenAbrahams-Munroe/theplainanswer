@@ -4,7 +4,7 @@
  * Slug: bc-practice/icon-and-text
  * Categories: bc-text
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, icon, icons, text, heading, paragraph, feature, summary, information, explanation, Icon and text
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A changeable decorative icon beside a heading and supporting text.
  * Viewport Width: 1100
  * Inserter: yes

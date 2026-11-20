@@ -4,7 +4,7 @@
  * Slug: bc-practice/quick-access-links
  * Categories: bc-links
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, link, links, list, compact, box, boxed, resource, resources, column, columns, quick access, quick access links, Link list: compact, Links: compact list
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A compact boxed list of resource links. Choose one or two link columns in Pattern layout.
  * Inserter: yes
  */

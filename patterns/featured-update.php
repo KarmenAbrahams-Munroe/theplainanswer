@@ -4,7 +4,7 @@
  * Slug: bc-practice/featured-update
  * Categories: bc-news, bc-cards
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, feature, featured, update, highlight, news, announcement, card, cards, image, images, photo, picture, graphic, date, Featured update
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: One linked update with an optional date and a text-only, photo, solid-colour or theme-graphic appearance.
  * Viewport Width: 1200
  * Inserter: yes

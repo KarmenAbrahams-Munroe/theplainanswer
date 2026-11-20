@@ -58,6 +58,70 @@
             })) : el('p', {}, 'No related pages selected. The section stays hidden until you choose a page.')
         );
     }
+    function navigationPageIsEmpty(blocks) {
+        if (!Array.isArray(blocks)) return false;
+        if (!blocks.length) return true;
+        if (blocks.length !== 1 || blocks[0].name !== 'core/paragraph' || (blocks[0].innerBlocks || []).length) return false;
+        var attributes = blocks[0].attributes || {}, content = attributes.content;
+        content = content && typeof content.toHTMLString === 'function' ? content.toHTMLString() : (content == null ? '' : String(content));
+        if (content.replace(/[\s\u00a0\u200b\ufeff]/g, '')) return false;
+        return Object.keys(attributes).every(function (key) {
+            var value = attributes[key];
+            return key === 'content' || value == null || value === '' || (key === 'dropCap' && value === false) || (typeof value === 'object' && !Object.keys(value).length);
+        });
+    }
+    function navigationStarterBlocks(blocks) {
+        // The Navigation page template already supplies the automatic cards.
+        return blocks.filter(function (block) { return block.name !== 'bc-practice/child-page-cards'; }).map(function (block) {
+            return wp.blocks.cloneBlock(block, {}, navigationStarterBlocks(block.innerBlocks || []));
+        });
+    }
+    function invalidNavigationStarter(blocks, allowed) {
+        return blocks.some(function (block) {
+            return block.isValid === false || block.name === 'core/pattern' || block.name === 'core/missing' || (Array.isArray(allowed) && allowed.indexOf(block.name) === -1) || invalidNavigationStarter(block.innerBlocks || [], allowed);
+        });
+    }
+    function NavigationStarter() {
+        var message = wp.element.useState(''), error = message[0], setError = message[1];
+        var data = wp.data.useSelect(function (select) {
+            var editor = select('core/editor'), blocks = select('core/block-editor');
+            var settings = blocks.getSettings() || {}, current = blocks.getBlocks();
+            return {
+                type: editor.getCurrentPostType(), template: editor.getEditedPostAttribute('template'),
+                starter: settings.bcNavigationStarter, empty: navigationPageIsEmpty(current),
+                canInsert: blocks.canInsertBlockType('core/group') && (!current.length || blocks.canRemoveBlock(current[0].clientId))
+            };
+        }, []);
+        if ((window.bcPracticePageEditorTypes || ['page']).indexOf(data.type) === -1 || !data.starter || !data.starter.content || data.template !== data.starter.template || !data.empty) return null;
+        async function insertStarter() {
+            var editor = wp.data.select('core/editor'), blocks = wp.data.select('core/block-editor');
+            var current = blocks.getBlocks(), settings = blocks.getSettings() || {}, starter = settings.bcNavigationStarter;
+            if ((window.bcPracticePageEditorTypes || ['page']).indexOf(editor.getCurrentPostType()) === -1 || !starter || !starter.content || editor.getEditedPostAttribute('template') !== starter.template || !navigationPageIsEmpty(current)) return;
+            if (!blocks.canInsertBlockType('core/group') || (current.length && !blocks.canRemoveBlock(current[0].clientId))) return;
+            setError('');
+            try {
+                var content = navigationStarterBlocks(wp.blocks.parse(starter.content));
+                if (!content.length || !content.some(function (block) { return (block.innerBlocks || []).length; }) || invalidNavigationStarter(content, settings.allowedBlockTypes)) throw new Error('Starter content is unavailable.');
+                var actions = wp.data.dispatch('core/block-editor');
+                if (current.length) {
+                    await actions.replaceBlocks(current.map(function (block) { return block.clientId; }), content);
+                } else {
+                    await actions.insertBlocks(content, 0);
+                }
+            } catch (failure) {
+                setError('The starter could not be inserted. Reload the editor and try again.');
+            }
+        }
+        return el(Panel, { name: 'bc-navigation-starter', title: 'Navigation page setup', className: 'bc-page-sidebar-panel' },
+            el('div', { className: 'bc-page-sidebar-fields' },
+                el('p', {}, 'Add optional related links below the automatic child-page cards.'),
+                error && el(wp.components.Notice, { status: 'error', isDismissible: false }, error),
+                el(wp.components.Button, { variant: 'secondary', disabled: !data.canInsert, onClick: insertStarter }, 'Insert navigation page starter'),
+                !data.canInsert && el('p', { className: 'bc-page-sidebar-help' }, 'The page’s editing permissions or block locks prevent inserting this starter.')
+            )
+        );
+    }
+
     function PageSettings() {
         var data = wp.data.useSelect(function (select) {
             var editor = select('core/editor');
@@ -94,6 +158,7 @@
                     onChange: function (value) { wp.data.dispatch('core/editor').editPost({ excerpt: value }); }
                 })
             )),
+            el(NavigationStarter),
             panel('bc-page-navigation', 'Page navigation', el(wp.element.Fragment, {},
                 compatibilityNotice(),
                 el(wp.components.ToggleControl, { label: 'Show On this page', __nextHasNoMarginBottom: true, checked: ['both','page'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1, disabled: disabled, onChange: function (value) { var section = ['both','section'].indexOf(data.meta._bc_navigation_panels || 'both') !== -1; update('_bc_navigation_panels', value ? (section ? 'both' : 'page') : (section ? 'section' : 'none')); }, help: 'Links to this page’s H2 headings in content and guide layouts.' }),

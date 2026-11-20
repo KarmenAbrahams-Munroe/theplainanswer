@@ -4,7 +4,7 @@
  * Slug: bc-practice/before-you-start
  * Categories: bc-lists
  * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, checklist, checklists, list, preparation, requirements, before you start, icon, icons, prepare, before, start, Checklist: before you start
- * Post Types: page, post
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: A preparation checklist with an editable heading and a changeable decorative icon.
  * Viewport Width: 1200
  * Inserter: yes
