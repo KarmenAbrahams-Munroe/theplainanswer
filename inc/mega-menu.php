@@ -18,7 +18,7 @@ add_action( 'init', function () {
     wp_add_inline_script( 'bc-practice-mega-editor', 'window.bcPracticeMegaAttributes = ' . wp_json_encode( bc_practice_mega_attributes() ) . ';', 'before' );
     register_block_type( 'bc-practice/mega-menu', array(
         'api_version' => 3,
-        'title' => 'Mega menu',
+        'title' => 'PSW Mega menu',
         'description' => 'A global drill-down menu populated from published page hierarchies.',
         'category' => 'theme',
         'icon' => 'menu-alt3',

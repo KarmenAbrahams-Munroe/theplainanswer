@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Page contents: inline
+ * Title: PSW Page contents: inline
  * Slug: bc-practice/on-this-page-inline
  * Categories: bc-site-structure
  * Keywords: on this page, contents, inline, automatic, template, on this page: inline
@@ -9,4 +9,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Page contents: inline"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/page-contents /--></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Page contents: inline"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/page-contents /--></div><!-- /wp:group -->

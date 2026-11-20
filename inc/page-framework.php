@@ -5,14 +5,14 @@ require_once get_theme_file_path( 'inc/reading-navigation.php' );
 
 function bc_practice_framework_blocks() {
     return array(
-        'page-title' => array( 'title' => 'Page title and introduction', 'icon' => 'heading', 'description' => 'Current page title, explicit excerpt, appearance and page information.', 'attributes' => array( 'showUpdated' => array( 'type' => 'boolean', 'default' => true ), 'showAudience' => array( 'type' => 'boolean', 'default' => true ) ) ),
-        'page-information' => array( 'title' => 'Page information', 'icon' => 'info', 'description' => 'Selected audience and applicability terms, with an optional saved modification date.', 'attributes' => array( 'showUpdated' => array( 'type' => 'boolean', 'default' => false ), 'showAudience' => array( 'type' => 'boolean', 'default' => true ) ) ),
-        'guide-contents' => array( 'title' => 'In this section', 'icon' => 'editor-ol', 'description' => 'Lists published pages within the closest marked guide, in page order.' ),
-        'guide-navigation' => array( 'title' => 'Previous and next chapter', 'icon' => 'leftright', 'description' => 'Previous and next pages within an explicitly marked guide.' ),
-        'home-content' => array( 'title' => 'Home page content', 'icon' => 'admin-home', 'description' => 'The static home page body, or the posts index when Reading settings use latest posts.' ),
-        'footer-feedback' => array( 'title' => 'Footer page feedback', 'icon' => 'feedback', 'description' => 'Page-linked feedback followed by selected related pages above the site footer. Feedback requires B.C. page feedback 1.1 or later.' ),
-        'reading-navigation' => array( 'title' => 'Reading navigation', 'icon' => 'menu', 'description' => 'A sticky page index with a separate section menu. The section menu appears after the article on mobile.' ),
-        'section-menu' => array( 'title' => 'Section menu at page end', 'icon' => 'editor-ul', 'description' => 'Published section pages, paired with the Reading navigation block.' ),
+        'page-title' => array( 'title' => 'PSW Page title and introduction', 'icon' => 'heading', 'description' => 'Current page title, explicit excerpt, appearance and page information.', 'attributes' => array( 'showUpdated' => array( 'type' => 'boolean', 'default' => true ), 'showAudience' => array( 'type' => 'boolean', 'default' => true ) ) ),
+        'page-information' => array( 'title' => 'PSW Page information', 'icon' => 'info', 'description' => 'Selected audience and applicability terms, with an optional saved modification date.', 'attributes' => array( 'showUpdated' => array( 'type' => 'boolean', 'default' => false ), 'showAudience' => array( 'type' => 'boolean', 'default' => true ) ) ),
+        'guide-contents' => array( 'title' => 'PSW In this section', 'icon' => 'editor-ol', 'description' => 'Lists published pages within the closest marked guide, in page order.' ),
+        'guide-navigation' => array( 'title' => 'PSW Previous and next chapter', 'icon' => 'leftright', 'description' => 'Previous and next pages within an explicitly marked guide.' ),
+        'home-content' => array( 'title' => 'PSW Home page content', 'icon' => 'admin-home', 'description' => 'The static home page body, or the posts index when Reading settings use latest posts.' ),
+        'footer-feedback' => array( 'title' => 'PSW Footer page feedback', 'icon' => 'feedback', 'description' => 'Page-linked feedback followed by selected related pages above the site footer. Feedback requires B.C. page feedback 1.1 or later.' ),
+        'reading-navigation' => array( 'title' => 'PSW Reading navigation', 'icon' => 'menu', 'description' => 'A sticky page index with a separate section menu. The section menu appears after the article on mobile.' ),
+        'section-menu' => array( 'title' => 'PSW Section menu at page end', 'icon' => 'editor-ul', 'description' => 'Published section pages, paired with the Reading navigation block.' ),
     );
 }
 

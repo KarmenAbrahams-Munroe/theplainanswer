@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Accordion panel
+ * Title: PSW Accordion panel
  * Slug: bc-practice/accordion-item
  * Categories: bc-accordions
  * Keywords: accordion, panel, item, details, collapse, accordion item
@@ -10,4 +10,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Accordion panel"}} --><div class="wp-block-group bc-pattern"><!-- wp:details {"className":"bc-accordion-item"} --><details class="wp-block-details bc-accordion-item"><summary>Section title</summary><!-- wp:paragraph --><p>Add the supplementary content for this section.</p><!-- /wp:paragraph --></details><!-- /wp:details --></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Accordion panel"}} --><div class="wp-block-group bc-pattern"><!-- wp:details {"className":"bc-accordion-item"} --><details class="wp-block-details bc-accordion-item"><summary>Section title</summary><!-- wp:paragraph --><p>Add the supplementary content for this section.</p><!-- /wp:paragraph --></details><!-- /wp:details --></div><!-- /wp:group -->

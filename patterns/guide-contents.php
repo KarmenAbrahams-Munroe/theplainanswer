@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Section contents: automatic
+ * Title: PSW Section contents: automatic
  * Slug: bc-practice/guide-contents
  * Categories: bc-site-structure
  * Keywords: in this section, guide, contents, automatic, template, in this section
@@ -10,4 +10,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Section contents: automatic"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/guide-contents /--></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Section contents: automatic"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/guide-contents /--></div><!-- /wp:group -->

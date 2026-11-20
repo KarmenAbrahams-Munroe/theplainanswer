@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Mega menu
+ * Title: PSW Mega menu
  * Slug: bc-practice/mega-menu
  * Categories: bc-site-structure
  * Post Types: wp_template, wp_template_part

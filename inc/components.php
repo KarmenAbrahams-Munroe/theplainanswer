@@ -59,14 +59,14 @@ function bc_practice_component_blocks() {
         $options[] = array( 'value' => $value, 'label' => $icon['label'], 'paths' => $icon['paths'] );
     }
     return array(
-        'icon' => array( 'title' => __( 'Component icon', 'bc-practice' ), 'icon' => 'info', 'description' => __( 'A decorative icon accompanying a heading or message.', 'bc-practice' ), 'category' => 'bc-components', 'iconOptions' => $options, 'attributes' => array( 'icon' => array( 'type' => 'string', 'enum' => array_keys( bc_practice_component_icons() ), 'default' => 'info' ) ) ),
-        'accordion-controls' => array( 'title' => __( 'Accordion controls', 'bc-practice' ), 'icon' => 'list-view', 'description' => __( 'Expand all and Collapse all for the Details blocks in an accordion group.', 'bc-practice' ), 'category' => 'bc-components' ),
-        'last-updated' => array( 'title' => __( 'Last updated', 'bc-practice' ), 'icon' => 'calendar-alt', 'description' => __( 'Shows the last saved modification date using the site date format and time zone.', 'bc-practice' ), 'category' => 'bc-components' ),
+        'icon' => array( 'title' => __( 'PSW Component icon', 'bc-practice' ), 'icon' => 'info', 'description' => __( 'A decorative icon accompanying a heading or message.', 'bc-practice' ), 'category' => 'bc-components', 'iconOptions' => $options, 'attributes' => array( 'icon' => array( 'type' => 'string', 'enum' => array_keys( bc_practice_component_icons() ), 'default' => 'info' ) ) ),
+        'accordion-controls' => array( 'title' => __( 'PSW Accordion controls', 'bc-practice' ), 'icon' => 'list-view', 'description' => __( 'Expand all and Collapse all for the Details blocks in an accordion group.', 'bc-practice' ), 'category' => 'bc-components' ),
+        'last-updated' => array( 'title' => __( 'PSW Last updated', 'bc-practice' ), 'icon' => 'calendar-alt', 'description' => __( 'Shows the last saved modification date using the site date format and time zone.', 'bc-practice' ), 'category' => 'bc-components' ),
     );
 }
 
 add_filter( 'block_categories_all', function ( $categories ) {
-    $categories[] = array( 'slug' => 'bc-components', 'title' => __( 'B.C. components', 'bc-practice' ) );
+    $categories[] = array( 'slug' => 'bc-components', 'title' => __( 'Clarity components', 'bc-practice' ) );
     return $categories;
 } );
 
@@ -75,17 +75,17 @@ add_action( 'init', function () {
     wp_register_script( 'bc-practice-editor-tools', get_theme_file_uri( 'assets/js/editor-tools.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-hooks', 'wp-notices' ), $version, true );
     wp_register_script( 'bc-practice-component-blocks', get_theme_file_uri( 'assets/js/component-blocks.js' ), array( 'bc-practice-editor-tools' ), $version, true );
     register_block_type( 'bc-practice/steps', array(
-        'api_version' => 3, 'title' => __( 'Steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
+        'api_version' => 3, 'title' => __( 'PSW Steps', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
         'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'simple', 'connected', 'cards', 'roadmap' ), 'default' => 'connected' ), 'markers' => array( 'type' => 'string', 'enum' => array( '', 'numbers', 'icons' ), 'default' => '' ) ),
         'supports' => array( 'html' => false ), 'editor_script' => 'bc-practice-component-blocks',
     ) );
     register_block_type( 'bc-practice/resource-tabs', array(
-        'api_version' => 3, 'title' => __( 'Resource tabs', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'index-card',
+        'api_version' => 3, 'title' => __( 'PSW Resource tabs', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'index-card',
         'attributes' => array( 'label' => array( 'type' => 'string', 'default' => 'Resource categories' ) ),
         'supports' => array( 'html' => false, 'anchor' => true ), 'editor_script' => 'bc-practice-component-blocks',
     ) );
     register_block_type( 'bc-practice/resource-panel', array(
-        'api_version' => 3, 'title' => __( 'Resource group', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'screenoptions',
+        'api_version' => 3, 'title' => __( 'PSW Resource group', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'screenoptions',
         'attributes' => array( 'title' => array( 'type' => 'string', 'source' => 'html', 'selector' => '.bc-tab-panel-title', 'default' => 'Resource group' ) ),
         'parent' => array( 'bc-practice/resource-tabs' ), 'supports' => array( 'html' => false, 'anchor' => true, 'reusable' => false ),
         'editor_script' => 'bc-practice-component-blocks',
@@ -94,19 +94,19 @@ add_action( 'init', function () {
     wp_localize_script( 'bc-practice-audience-tabs', 'bcPracticeAudienceTabsLabels', array( 'group' => __( 'Audience guidance', 'bc-practice' ), 'tab' => __( 'Tab', 'bc-practice' ) ) );
     wp_register_style( 'bc-practice-audience-tabs', get_theme_file_uri( 'assets/css/audience-tabs.css' ), array( 'bc-practice-components' ), $version );
     register_block_type( 'bc-practice/audience-tabs', array(
-        'api_version' => 3, 'title' => __( 'Audience tabs', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'index-card',
+        'api_version' => 3, 'title' => __( 'PSW Audience tabs', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'index-card',
         'attributes' => array( 'label' => array( 'type' => 'string', 'default' => 'Audience guidance' ), 'presentation' => array( 'type' => 'string', 'enum' => array( 'underlined', 'framed' ), 'default' => 'underlined' ) ),
         'supports' => array( 'html' => false, 'anchor' => true ), 'editor_script' => 'bc-practice-component-blocks',
         'style' => 'bc-practice-audience-tabs', 'view_script' => 'bc-practice-audience-tabs',
     ) );
     register_block_type( 'bc-practice/audience-panel', array(
-        'api_version' => 3, 'title' => __( 'Audience tab', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'excerpt-view',
+        'api_version' => 3, 'title' => __( 'PSW Audience tab', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'excerpt-view',
         'attributes' => array( 'title' => array( 'type' => 'string', 'source' => 'html', 'selector' => '.bc-audience-panel-title', 'default' => '' ) ),
         'parent' => array( 'bc-practice/audience-tabs' ), 'supports' => array( 'html' => false, 'anchor' => true, 'reusable' => false ),
         'editor_script' => 'bc-practice-component-blocks',
     ) );
     register_block_type( 'bc-practice/step', array(
-        'api_version' => 3, 'title' => __( 'Step', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
+        'api_version' => 3, 'title' => __( 'PSW Step', 'bc-practice' ), 'category' => 'bc-components', 'icon' => 'editor-ol',
         'parent' => array( 'bc-practice/steps' ), 'supports' => array( 'html' => false, 'reusable' => false ),
         'editor_script' => 'bc-practice-component-blocks',
     ) );

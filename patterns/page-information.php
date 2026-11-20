@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Audience information
+ * Title: PSW Audience information
  * Slug: bc-practice/page-information
  * Categories: bc-page-information
  * Keywords: audience, written for, applies to, groups, applicability, audience and applicability
@@ -10,4 +10,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Audience information"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/page-information /--></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Audience information"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/page-information /--></div><!-- /wp:group -->

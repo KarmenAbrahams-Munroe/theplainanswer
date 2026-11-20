@@ -6,7 +6,7 @@ add_action( 'init', function () {
     $version = wp_get_theme()->get( 'Version' );
     wp_register_script( 'bc-practice-pattern-components', get_theme_file_uri( 'assets/js/pattern-components.js' ), array( 'bc-practice-component-blocks', 'wp-dom-ready', 'wp-html-entities' ), $version, true );
     register_block_type( 'bc-practice/featured-update', array(
-        'api_version' => 3, 'title' => 'Featured update', 'category' => 'bc-components', 'icon' => 'megaphone',
+        'api_version' => 3, 'title' => 'PSW Featured update', 'category' => 'bc-components', 'icon' => 'megaphone',
         'attributes' => array(
             'title' => array( 'type' => 'string', 'default' => '' ), 'description' => array( 'type' => 'string', 'default' => '' ),
             'url' => array( 'type' => 'string', 'default' => '' ), 'date' => array( 'type' => 'string', 'default' => '' ),
@@ -17,7 +17,7 @@ add_action( 'init', function () {
         'supports' => array( 'html' => false, 'anchor' => true ), 'editor_script' => 'bc-practice-pattern-components',
         'render_callback' => 'bc_practice_render_featured_update',
     ) );
-    foreach ( array( 'agenda' => array( 'Event agenda', null ), 'event-day' => array( 'Event date', array( 'bc-practice/agenda' ) ), 'event' => array( 'Event session', array( 'bc-practice/event-day' ) ) ) as $name => $settings ) {
+    foreach ( array( 'agenda' => array( 'PSW Event agenda', null ), 'event-day' => array( 'PSW Event date', array( 'bc-practice/agenda' ) ), 'event' => array( 'PSW Event session', array( 'bc-practice/event-day' ) ) ) as $name => $settings ) {
         $args = array( 'api_version' => 3, 'title' => $settings[0], 'category' => 'bc-components', 'icon' => 'calendar', 'supports' => array( 'html' => false, 'anchor' => true ), 'editor_script' => 'bc-practice-pattern-components' );
         if ( $settings[1] ) { $args['parent'] = $settings[1]; }
         if ( 'event-day' === $name ) { $args['attributes'] = array( 'date' => array( 'type' => 'string', 'source' => 'html', 'selector' => '.bc-event-date', 'default' => '' ) ); }

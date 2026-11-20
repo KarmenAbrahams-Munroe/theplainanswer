@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Notice: success
+ * Title: PSW Notice: success
  * Slug: bc-practice/success-notice
  * Categories: bc-notices
  * Keywords: notice, success, confirmation, message, success notice
@@ -10,4 +10,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Notice: success"}} --><div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-icon-text bc-notice bc-notice-success","layout":{"type":"default"}} --><div class="wp-block-group bc-icon-text bc-notice bc-notice-success"><!-- wp:bc-practice/icon {"icon":"check"} /--><!-- wp:group {"className":"bc-icon-text-body","layout":{"type":"default"}} --><div class="wp-block-group bc-icon-text-body"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Success</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Confirm what has been completed and explain any next steps.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Notice: success"}} --><div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-icon-text bc-notice bc-notice-success","layout":{"type":"default"}} --><div class="wp-block-group bc-icon-text bc-notice bc-notice-success"><!-- wp:bc-practice/icon {"icon":"check"} /--><!-- wp:group {"className":"bc-icon-text-body","layout":{"type":"default"}} --><div class="wp-block-group bc-icon-text-body"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Success</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Confirm what has been completed and explain any next steps.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group -->

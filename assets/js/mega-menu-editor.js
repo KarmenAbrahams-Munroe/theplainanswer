@@ -48,7 +48,7 @@
         );
     }
     wp.blocks.registerBlockType('bc-practice/mega-menu', {
-        apiVersion: 3, title: 'Mega menu', icon: 'menu-alt3', category: 'theme',
+        apiVersion: 3, title: 'PSW Mega menu', icon: 'menu-alt3', category: 'theme',
         description: 'A global drill-down menu populated from published page hierarchies.',
         attributes: window.bcPracticeMegaAttributes,
         supports: { html: false, align: ['full', 'wide'] },

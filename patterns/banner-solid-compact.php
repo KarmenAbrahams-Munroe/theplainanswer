@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Banner: solid colour, compact
+ * Title: PSW Banner: solid colour, compact
  * Slug: bc-practice/banner-solid-compact
  * Categories: bc-banners
  * Keywords: banner, compact, solid, colour, introduction, compact solid-colour banner
@@ -10,4 +10,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Banner: solid colour, compact"}} --><div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-banner-frame","layout":{"type":"default"}} --><div class="wp-block-group bc-banner-frame"><!-- wp:group {"className":"bc-banner bc-banner-solid bc-banner-compact","layout":{"type":"default"}} --><div class="wp-block-group bc-banner bc-banner-solid bc-banner-compact"><!-- wp:group {"className":"bc-banner-copy","layout":{"type":"default"}} --><div class="wp-block-group bc-banner-copy"><!-- wp:heading {"className":"bc-banner-heading"} --><h2 class="wp-block-heading bc-banner-heading">Explore this topic</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Find information, services and resources in one place.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Banner: solid colour, compact"}} --><div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-banner-frame","layout":{"type":"default"}} --><div class="wp-block-group bc-banner-frame"><!-- wp:group {"className":"bc-banner bc-banner-solid bc-banner-compact","layout":{"type":"default"}} --><div class="wp-block-group bc-banner bc-banner-solid bc-banner-compact"><!-- wp:group {"className":"bc-banner-copy","layout":{"type":"default"}} --><div class="wp-block-group bc-banner-copy"><!-- wp:heading {"className":"bc-banner-heading"} --><h2 class="wp-block-heading bc-banner-heading">Explore this topic</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Find information, services and resources in one place.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group -->

@@ -1,4 +1,16 @@
-B.C. practice — WordPress block theme, version 1.18.0
+Clarity: BC Public Service Web Theme — version 1.18.1
+
+Clarity identity and editor labels — version 1.18.1
+The theme is named Clarity: BC Public Service Web Theme. Visible theme patterns and theme-owned blocks use PSW followed by a space in their editor titles. The theme block category is Clarity components. Pattern group labels and the theme Data table variation use the same prefix.
+
+This patch applies to version 1.18.0. Its version bump refreshes the theme editor assets. Existing block and pattern identifiers, template slugs, translation domain, stored settings and author attribution are retained. The prefix identifies editor components; it is not added to published headings or page text.
+
+Pattern consolidation, categories, insertion availability and heading appearance are covered by later patches in the implementation plan.
+
+Validation for version 1.18.1
+All three changed scripts passed Node.js syntax checks. A registration comparison using WordPress API stubs confirmed one PSW prefix on all 27 theme block types and the theme Data table variation; block identifiers, attributes, supports and edit/save callback sources matched the baseline after removing the intended label changes. All 54 visible pattern titles were checked; the nine hidden pattern files were unchanged. Pattern-body changes were limited to editor metadata names. Templates, template parts and theme.json matched the baseline byte for byte. PHP changes were restricted to display-label string contents.
+
+PHP runtime and installed WordPress editor checks were not run in this build environment. On staging, check the theme name, pattern and block inserters, and saving/reopening an existing page.
 
 Audience tabs — version 1.18.0
 Insert Audience tabs from Text, lists and tables in the pattern library, or insert the Audience tabs block. In Block settings, Tab appearance offers Underlined (the default) and Framed. Changing appearance preserves labels, content and order. The pattern uses generic Applicants and Reviewers examples that should be renamed for the page's audiences.
@@ -240,7 +252,7 @@ Sources and licences
 - @bcgov/design-tokens 5.0.0, bundled locally: https://github.com/bcgov/design-tokens — Apache-2.0.
 - @bcgov/bc-sans 2.1.2, locally hosted WOFF2 fonts: https://github.com/bcgov/bc-sans — Apache-2.0 and OFL-1.1.
 - See licenses/ and THIRD-PARTY-NOTICES.txt. Custom theme code: GPL-3.0-or-later.
-This is a custom practice theme, not an official B.C. government theme or an accessibility certification.
+Clarity is a project-developed WordPress theme for BC Public Service information and services. This package does not establish a government-wide standard or certify a site’s accessibility.
 
 Validation for version 1.11.1
 Checked with WordPress 6.6.10 and 7.1.3 using PHP 8.3.33. PHP syntax passed on 7.4.33 and 8.3.33; all nine theme scripts passed JavaScript syntax checks. Installed checks covered pointer re-entry into panel paragraphs after List View and other selections, Edit panel content focus, saving/reopening and continued editing without invalid blocks. Front-end checks covered introduction width, single-line selected/unselected tabs, the parent link destination, anonymous/signed-in anchor tracking, accordion height changes, page-end tracking, compact keyboard-operated bulk controls, 320–1440px reflow, mobile section placement and native no-JavaScript navigation/disclosures. Selected automated WCAG 2 A/AA and 2.1 AA checks reported no main-content violations. The exact reported intermittent body lock was not reproduced on clean sample content; the native-body change and explicit entry action were validated with repeated editing workflows.

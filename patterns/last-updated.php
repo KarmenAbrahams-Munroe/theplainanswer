@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Last updated
+ * Title: PSW Last updated
  * Slug: bc-practice/last-updated
  * Categories: bc-page-information
  * Keywords: date, last updated, modified, automatic
@@ -10,4 +10,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Last updated"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/last-updated /--></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Last updated"}} --><div class="wp-block-group bc-pattern"><!-- wp:bc-practice/last-updated /--></div><!-- /wp:group -->

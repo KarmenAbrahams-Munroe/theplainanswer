@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Audience tabs
+ * Title: PSW Audience tabs
  * Slug: bc-practice/audience-tabs
  * Categories: bc-text
  * Keywords: audiences, tabs, content, recipients, guidance, groups
@@ -8,7 +8,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Audience tabs"}} -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Audience tabs"}} -->
 <div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-pattern-section","layout":{"type":"default"}} -->
 <div class="wp-block-group bc-pattern-section"><!-- wp:heading --><h2 class="wp-block-heading">Guidance by audience</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Choose the group that applies to you.</p><!-- /wp:paragraph -->

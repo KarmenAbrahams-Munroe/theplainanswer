@@ -37,12 +37,12 @@
         ));
     }
     wp.blocks.registerBlockType('bc-practice/featured-update', {
-        apiVersion: 3, title: 'Featured update', category: 'bc-components', icon: 'megaphone', description: 'One linked update with text only, a photo, solid colour or theme graphic.',
+        apiVersion: 3, title: 'PSW Featured update', category: 'bc-components', icon: 'megaphone', description: 'One linked update with text only, a photo, solid colour or theme graphic.',
         attributes: { title: { type: 'string', default: '' }, description: { type: 'string', default: '' }, url: { type: 'string', default: '' }, date: { type: 'string', default: '' }, showDate: { type: 'boolean', default: false }, visual: { type: 'string', enum: ['none', 'photo', 'solid', 'graphic'], default: 'none' }, fallback: { type: 'string', enum: ['solid', 'graphic'], default: 'graphic' }, imageId: { type: 'number', default: 0 }, imageAlt: { type: 'string', default: '' } },
         supports: { html: false, anchor: true }, edit: Featured, save: function () { return null; }
     });
     wp.blocks.registerBlockType('bc-practice/agenda', {
-        apiVersion: 3, title: 'Event agenda', category: 'bc-components', icon: 'calendar', supports: { html: false, anchor: true },
+        apiVersion: 3, title: 'PSW Event agenda', category: 'bc-components', icon: 'calendar', supports: { html: false, anchor: true },
         edit: function (props) {
             var preview = tools.usePreview(), inner = be.useInnerBlocksProps(be.useBlockProps({ className: 'bc-agenda' }), { allowedBlocks: ['bc-practice/event-day'], template: [['bc-practice/event-day', { date: 'Add a date' }, [['bc-practice/event', {}, [['core/heading', { level: 4, content: 'Session title' }], ['core/paragraph', { content: 'Add the time and location.', className: 'bc-event-time' }]]]]]], renderAppender: preview ? false : function () { return el(tools.Appender, { clientId: props.clientId, name: 'bc-practice/event-day', label: 'Add date group', create: day }); } });
             return el('div', inner);
@@ -50,7 +50,7 @@
         save: function () { return el('div', be.useBlockProps.save({ className: 'bc-agenda' }), el(be.InnerBlocks.Content)); }
     });
     wp.blocks.registerBlockType('bc-practice/event-day', {
-        apiVersion: 3, title: 'Event date', category: 'bc-components', icon: 'calendar', parent: ['bc-practice/agenda'], supports: { html: false, anchor: true }, attributes: { date: { type: 'string', source: 'html', selector: '.bc-event-date', default: '' } },
+        apiVersion: 3, title: 'PSW Event date', category: 'bc-components', icon: 'calendar', parent: ['bc-practice/agenda'], supports: { html: false, anchor: true }, attributes: { date: { type: 'string', source: 'html', selector: '.bc-event-date', default: '' } },
         edit: function (props) {
             var preview = tools.usePreview(), inner = be.useInnerBlocksProps({ className: 'bc-event-sessions' }, { allowedBlocks: ['bc-practice/event'], renderAppender: preview ? false : function () { return el(tools.Appender, { clientId: props.clientId, name: 'bc-practice/event', label: 'Add session', create: session }); } });
             return el('section', be.useBlockProps({ className: 'bc-event-day' }),
@@ -61,7 +61,7 @@
         save: function (props) { return el('section', be.useBlockProps.save({ className: 'bc-event-day' }), el(be.RichText.Content, { tagName: 'h3', className: 'bc-event-date', value: props.attributes.date }), el('div', { className: 'bc-event-sessions' }, el(be.InnerBlocks.Content))); }
     });
     wp.blocks.registerBlockType('bc-practice/event', {
-        apiVersion: 3, title: 'Event session', category: 'bc-components', icon: 'clock', parent: ['bc-practice/event-day'], supports: { html: false, anchor: true },
+        apiVersion: 3, title: 'PSW Event session', category: 'bc-components', icon: 'clock', parent: ['bc-practice/event-day'], supports: { html: false, anchor: true },
         edit: function (props) {
             var preview = tools.usePreview(), inner = be.useInnerBlocksProps(be.useBlockProps({ className: 'bc-event-session' }), { template: [['core/heading', { level: 4, placeholder: 'Session title' }], ['core/paragraph', { placeholder: 'Add the time and location.', className: 'bc-event-time' }], ['core/paragraph', { placeholder: 'Describe this session.' }]], allowedBlocks: ['core/heading', 'core/paragraph', 'core/image', 'core/list', 'core/buttons'], renderAppender: preview ? false : be.InnerBlocks.ButtonBlockAppender });
             return el('div', inner, inner.children, !preview && el(tools.ItemActions, { clientId: props.clientId, name: 'bc-practice/event', label: 'Session controls', showLabel: true }));
@@ -171,6 +171,6 @@
         };
     });
     wp.domReady(function () {
-        wp.blocks.registerBlockVariation('core/table', { name: 'bc-data-table', title: 'Data table', description: 'A simple data table with required headings, a title and publication checks.', attributes: { metadata: { name: 'Data table', bcDataTable: true }, className: 'bc-reference-table bc-data-table', hasFixedLayout: false, caption: '', head: [{ cells: [{ content: '', tag: 'th', scope: 'col' }, { content: '', tag: 'th', scope: 'col' }] }], body: [{ cells: [{ content: '', tag: 'td' }, { content: '', tag: 'td' }] }] }, isActive: function (a) { return has(a, 'bc-data-table'); }, scope: ['inserter'] });
+        wp.blocks.registerBlockVariation('core/table', { name: 'bc-data-table', title: 'PSW Data table', description: 'A simple data table with required headings, a title and publication checks.', attributes: { metadata: { name: 'PSW Data table', bcDataTable: true }, className: 'bc-reference-table bc-data-table', hasFixedLayout: false, caption: '', head: [{ cells: [{ content: '', tag: 'th', scope: 'col' }, { content: '', tag: 'th', scope: 'col' }] }], body: [{ cells: [{ content: '', tag: 'td' }, { content: '', tag: 'td' }] }] }, isActive: function (a) { return has(a, 'bc-data-table'); }, scope: ['inserter'] });
     });
 })(window.wp);

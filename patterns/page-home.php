@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Page starter: home
+ * Title: PSW Page starter: home
  * Slug: bc-practice/page-home
  * Categories: bc-page-starters
  * Keywords: home, start, page starter, landing, home: page starter
@@ -11,4 +11,4 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-page-starter","layout":{"type":"default"},"metadata":{"name":"Page starter: home"}} --><div class="wp-block-group bc-page-starter"><!-- wp:pattern {"slug":"bc-practice/task-links-panel"} /--><!-- wp:pattern {"slug":"bc-practice/quick-action-tiles"} /--><!-- wp:pattern {"slug":"bc-practice/banner-image-compact"} /--></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-page-starter","layout":{"type":"default"},"metadata":{"name":"PSW Page starter: home"}} --><div class="wp-block-group bc-page-starter"><!-- wp:pattern {"slug":"bc-practice/task-links-panel"} /--><!-- wp:pattern {"slug":"bc-practice/quick-action-tiles"} /--><!-- wp:pattern {"slug":"bc-practice/banner-image-compact"} /--></div><!-- /wp:group -->
