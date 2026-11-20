@@ -1,5 +1,5 @@
 <?php
-/** Pattern categories describe editorial tasks. Block categories remain separate. */
+/** Pattern categories describe components and layouts. Block categories remain separate. */
 defined( 'ABSPATH' ) || exit;
 
 /** Independent pattern copies use normal block editing; authored locks still apply. */
@@ -10,16 +10,23 @@ add_filter( 'block_editor_settings_all', function ( $settings ) {
 
 add_action( 'init', function () {
     foreach ( array(
-        'bc-page-starters' => 'Page starters',
-        'bc-banners' => 'Banners and introductions',
-        'bc-links' => 'Links and cards',
-        'bc-text' => 'Text, lists and tables',
+        'bc-cards' => 'Cards and panels',
+        'bc-text' => 'Text and columns',
+        'bc-introductions' => 'Images and introductions',
+        'bc-lists' => 'Lists and checklists',
+        'bc-links' => 'Links',
+        'bc-tabs-accordions' => 'Tabs and accordions',
         'bc-processes' => 'Steps and processes',
-        'bc-accordions' => 'Accordions',
+        'bc-comparisons-tables' => 'Comparisons and tables',
         'bc-notices' => 'Notices and callouts',
-        'bc-page-information' => 'Page information',
         'bc-news' => 'News and events',
-        'bc-site-structure' => 'Site structure',
+        'bc-contact' => 'Contact and support',
+        'bc-site-header' => 'Header and site navigation',
+        'bc-section-navigation' => 'Page and section navigation',
+        'bc-page-information' => 'Page information',
+        // Retained choices are reviewed in the availability patch.
+        'bc-page-starters' => 'Page starters',
+        'bc-banners' => 'Banners',
     ) as $slug => $label ) {
         register_block_pattern_category( $slug, array( 'label' => $label ) );
     }

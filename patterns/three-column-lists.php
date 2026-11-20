@@ -2,10 +2,10 @@
 /**
  * Title: PSW Lists: columns
  * Slug: bc-practice/three-column-lists
- * Categories: bc-text
- * Keywords: lists, columns, three columns, two columns, tasks, three-column lists
+ * Categories: bc-lists
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, list, lists, column, columns, grid, tasks, requirements, resources, three columns, two columns, three-column lists, Lists: columns
  * Post Types: page, post
- * Description: Named lists in columns. Change the column layout without replacing your text.
+ * Description: Named lists arranged in columns. Change the column count without replacing the list content.
  * Viewport Width: 1200
  * Inserter: yes
  */

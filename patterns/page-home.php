@@ -3,7 +3,7 @@
  * Title: PSW Page starter: home
  * Slug: bc-practice/page-home
  * Categories: bc-page-starters
- * Keywords: home, start, page starter, landing, home: page starter
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, page, starter, setup, layout, home, landing, card, cards, link, links, image, photo, start, page starter, home: page starter, Page starter: home
  * Block Types: core/post-content
  * Post Types: page
  * Description: Starter content for the static home page, with priority tasks and a promotion.

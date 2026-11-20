@@ -3,7 +3,7 @@
  * Title: PSW Banner: image, tall
  * Slug: bc-practice/banner-image-tall
  * Categories: bc-banners
- * Keywords: banner, tall, image, photo, introduction, taller image banner
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, banner, feature, introduction, promotion, image, images, photo, picture, tall, taller image banner, Banner: image
  * Post Types: page, post
  * Description: A taller image banner with text on a translucent panel and an optional action.
  * Viewport Width: 1440

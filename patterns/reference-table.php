@@ -2,10 +2,10 @@
 /**
  * Title: PSW Data table
  * Slug: bc-practice/reference-table
- * Categories: bc-text
- * Keywords: table, data, headings, rows, columns, reference, reference table
+ * Categories: bc-comparisons-tables
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, data, table, tables, reference, row, rows, column, columns, headings, requirements, reference table, Data table
  * Post Types: page, post
- * Description: A simple data table with required headings, a title and checks before publication.
+ * Description: A simple data table with a title, column headings and checks before publication.
  * Viewport Width: 1100
  * Inserter: yes
  */

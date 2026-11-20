@@ -3,7 +3,7 @@
  * Title: PSW Callout: with heading
  * Slug: bc-practice/callout-box
  * Categories: bc-notices
- * Keywords: callout, heading, note, emphasis, important, callout box
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, callout, callouts, note, inset, emphasis, highlight, heading, text, box, boxed, important, callout box, Callout: with heading
  * Post Types: page, post
  * Description: An inset heading and paragraph for information that needs emphasis.
  * Viewport Width: 1100

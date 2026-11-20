@@ -3,7 +3,7 @@
  * Title: PSW Page starter: guide and reference
  * Slug: bc-practice/page-guide
  * Categories: bc-page-starters
- * Keywords: guide, reference, policy, chapter, page starter, guide and reference: page starter
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, page, starter, setup, layout, guide, reference, table, requirements, policy, chapter, page starter, guide and reference: page starter, Page starter: guide and reference
  * Block Types: core/post-content
  * Post Types: page
  * Description: Starter requirements, a data table and supporting sources. Use with Guide and reference.

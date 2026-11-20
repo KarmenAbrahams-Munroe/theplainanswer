@@ -3,7 +3,7 @@
  * Title: PSW Page starter: standard content
  * Slug: bc-practice/page-standard
  * Categories: bc-page-starters
- * Keywords: content, article, standard, page starter, standard content: page starter
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, page, starter, setup, layout, content, article, step, steps, callout, standard, page starter, standard content: page starter, Page starter: standard content
  * Block Types: core/post-content
  * Post Types: page
  * Description: Starter sections for a content page. The Pages template supplies navigation and page information.

@@ -3,9 +3,9 @@
  * Title: PSW Audience information
  * Slug: bc-practice/page-information
  * Categories: bc-page-information
- * Keywords: audience, written for, applies to, groups, applicability, audience and applicability
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, audience, audiences, information, metadata, applicability, written for, applies to, groups, automatic, audience and applicability, Audience information
  * Post Types: page, post
- * Description: Shows selected Written for and Applies to groups automatically. Templates already include these where appropriate.
+ * Description: Automatically displays the Written for and Applies to groups selected in page settings.
  * Viewport Width: 1200
  * Inserter: yes
  */

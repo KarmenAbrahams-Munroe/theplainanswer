@@ -2,10 +2,10 @@
 /**
  * Title: PSW Steps: cards
  * Slug: bc-practice/numbered-step-cards
- * Categories: bc-processes
- * Keywords: steps, cards, boxed, numbered, icons, process, numbered step cards
+ * Categories: bc-processes, bc-cards
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, step, steps, process, number, numbers, numbered, icon, icons, card, cards, box, boxed, instructions, numbered step cards, Steps: cards
  * Post Types: page, post
- * Description: Boxed process steps with rich content. Choose numbers or icons.
+ * Description: Boxed process steps with editable content. Choose numbers or icons in block settings.
  * Viewport Width: 1100
  * Inserter: yes
  */

@@ -3,9 +3,9 @@
  * Title: PSW Event agenda
  * Slug: bc-practice/event-agenda
  * Categories: bc-news
- * Keywords: events, agenda, schedule, training, workshops
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, event, events, agenda, schedule, session, sessions, date, dates, calendar, training, workshops, Event agenda
  * Post Types: page, post
- * Description: Sessions grouped under editable dates, with Add date group and Add session controls.
+ * Description: Event sessions grouped under editable dates, with controls to add dates and sessions.
  * Viewport Width: 1200
  * Inserter: yes
  */

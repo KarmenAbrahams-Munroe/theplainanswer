@@ -3,7 +3,7 @@
  * Title: PSW Steps: simple
  * Slug: bc-practice/simple-steps
  * Categories: bc-processes
- * Keywords: steps, simple, numbered, icons, process, instructions
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, step, steps, process, number, numbers, numbered, icon, icons, instructions, separator, separators, simple, Steps: simple
  * Post Types: page, post
  * Description: Short ordered instructions with separators. Choose numbers or icons in block settings.
  * Viewport Width: 1200

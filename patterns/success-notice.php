@@ -3,9 +3,9 @@
  * Title: PSW Notice: success
  * Slug: bc-practice/success-notice
  * Categories: bc-notices
- * Keywords: notice, success, confirmation, message, success notice
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, notice, success, confirmation, message, alert, callout, icon, icons, success notice, Notice: success
  * Post Types: page, post
- * Description: A static confirmation message with a heading and decorative icon.
+ * Description: A static confirmation message with a heading, decorative icon and space for next steps.
  * Viewport Width: 1100
  * Inserter: yes
  */

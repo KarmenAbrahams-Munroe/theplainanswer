@@ -1,14 +1,15 @@
 <?php
 /**
- * Title: PSW Audience tabs
+ * Title: PSW Tabs: audience guidance
  * Slug: bc-practice/audience-tabs
- * Categories: bc-text
- * Keywords: audiences, tabs, content, recipients, guidance, groups
+ * Categories: bc-tabs-accordions
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, tab, tabs, tabbed, audience, audiences, guidance, groups, employee groups, eligibility, underlined, framed, content, recipients, Audience tabs, Tabs: audience guidance
+ * Description: Tabbed guidance for different audiences, with editable labels and ordinary content blocks. Choose underlined or framed tabs in block settings.
  * Viewport Width: 1100
  */
 defined( 'ABSPATH' ) || exit;
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Audience tabs"}} -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Tabs: audience guidance"}} -->
 <div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-pattern-section","layout":{"type":"default"}} -->
 <div class="wp-block-group bc-pattern-section"><!-- wp:heading --><h2 class="wp-block-heading">Guidance by audience</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Choose the group that applies to you.</p><!-- /wp:paragraph -->

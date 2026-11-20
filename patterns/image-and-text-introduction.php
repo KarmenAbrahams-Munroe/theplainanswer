@@ -2,10 +2,10 @@
 /**
  * Title: PSW Introduction: image and text
  * Slug: bc-practice/image-and-text-introduction
- * Categories: bc-banners
- * Keywords: image, photo, introduction, split, overlapping, single image
+ * Categories: bc-introductions
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, image, images, photo, picture, text, introduction, feature, overview, column, columns, overlapping, split, single image, Introduction: image and text
  * Post Types: page, post
- * Description: Images beside an editable introduction. Choose overlapping images or one image.
+ * Description: Images beside an editable introduction. Choose a single image or overlapping images in Pattern layout.
  * Viewport Width: 1200
  * Inserter: yes
  */

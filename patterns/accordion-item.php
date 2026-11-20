@@ -1,13 +1,13 @@
 <?php
 /**
- * Title: PSW Accordion panel
+ * Title: PSW Accordion: single panel
  * Slug: bc-practice/accordion-item
- * Categories: bc-accordions
- * Keywords: accordion, panel, item, details, collapse, accordion item
+ * Categories: bc-tabs-accordions
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, accordion, accordions, panel, single, item, expand, collapse, details, disclosure, accordion item, Accordion panel, Accordion: single panel
  * Post Types: page, post
- * Description: One collapsible panel. Add it to a group or use it on its own.
+ * Description: One collapsible panel, usable on its own or inside an accordion group.
  * Viewport Width: 1100
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Accordion panel"}} --><div class="wp-block-group bc-pattern"><!-- wp:details {"className":"bc-accordion-item"} --><details class="wp-block-details bc-accordion-item"><summary>Section title</summary><!-- wp:paragraph --><p>Add the supplementary content for this section.</p><!-- /wp:paragraph --></details><!-- /wp:details --></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Accordion: single panel"}} --><div class="wp-block-group bc-pattern"><!-- wp:details {"className":"bc-accordion-item"} --><details class="wp-block-details bc-accordion-item"><summary>Section title</summary><!-- wp:paragraph --><p>Add the supplementary content for this section.</p><!-- /wp:paragraph --></details><!-- /wp:details --></div><!-- /wp:group -->

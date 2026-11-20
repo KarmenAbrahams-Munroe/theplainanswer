@@ -2,10 +2,10 @@
 /**
  * Title: PSW Featured update
  * Slug: bc-practice/featured-update
- * Categories: bc-news
- * Keywords: news, featured, update, announcement, highlight
+ * Categories: bc-news, bc-cards
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, feature, featured, update, highlight, news, announcement, card, cards, image, images, photo, picture, graphic, date, Featured update
  * Post Types: page, post
- * Description: One linked update with a text only, a photo, solid colour or theme graphic. Optional date; no author name.
+ * Description: One linked update with an optional date and a text-only, photo, solid-colour or theme-graphic appearance.
  * Viewport Width: 1200
  * Inserter: yes
  */

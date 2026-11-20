@@ -3,7 +3,7 @@
  * Title: PSW Banner: image, compact
  * Slug: bc-practice/banner-image-compact
  * Categories: bc-banners
- * Keywords: banner, compact, image, photo, introduction, compact image banner
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, banner, feature, introduction, promotion, image, images, photo, picture, compact, compact image banner, Banner: image
  * Post Types: page, post
  * Description: A short image banner with an editable heading and introduction.
  * Viewport Width: 1440

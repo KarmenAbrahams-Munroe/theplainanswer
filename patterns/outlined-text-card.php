@@ -2,10 +2,10 @@
 /**
  * Title: PSW Card: outlined text
  * Slug: bc-practice/outlined-text-card
- * Categories: bc-text
- * Keywords: PSW, Clarity, card, cards, text, box, boxed, border, bordered, outline, outlined, information
+ * Categories: bc-cards
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, card, cards, text, box, boxed, border, bordered, outline, outlined, information, Card: outlined text
  * Post Types: page, post
- * Description: A bordered text container with the surrounding page background, padding and an optional heading. Add paragraphs, lists or ordinary links.
+ * Description: An outlined text card with a neutral border, padding and the surrounding page background. Add a heading, paragraphs, lists and optional links.
  * Viewport Width: 1200
  * Inserter: yes
  */

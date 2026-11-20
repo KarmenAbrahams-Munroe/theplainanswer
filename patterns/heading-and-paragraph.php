@@ -3,9 +3,9 @@
  * Title: PSW Heading and paragraph
  * Slug: bc-practice/heading-and-paragraph
  * Categories: bc-text
- * Keywords: heading, paragraph, text, basic, section
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, heading, paragraph, text, section, introduction, basic, Heading and paragraph
  * Post Types: page, post
- * Description: A basic editable heading and paragraph.
+ * Description: An editable section heading and paragraph for ordinary page content.
  * Viewport Width: 1200
  * Inserter: yes
  */

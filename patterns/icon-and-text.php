@@ -3,9 +3,9 @@
  * Title: PSW Icon and text
  * Slug: bc-practice/icon-and-text
  * Categories: bc-text
- * Keywords: icon, heading, paragraph, explanation
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, icon, icons, text, heading, paragraph, feature, summary, information, explanation, Icon and text
  * Post Types: page, post
- * Description: One changeable decorative icon beside a heading and supporting text.
+ * Description: A changeable decorative icon beside a heading and supporting text.
  * Viewport Width: 1100
  * Inserter: yes
  */

@@ -3,9 +3,9 @@
  * Title: PSW Steps: connected
  * Slug: bc-practice/numbered-steps
  * Categories: bc-processes
- * Keywords: steps, connected, numbered, icons, process, instructions, numbered steps
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, step, steps, process, number, numbers, numbered, icon, icons, connected, instructions, timeline, numbered steps, Steps: connected
  * Post Types: page, post
- * Description: Connected process steps with rich content. Choose numbers or icons.
+ * Description: Connected process steps with editable headings, paragraphs and lists. Choose numbers or icons in block settings.
  * Viewport Width: 1100
  * Inserter: yes
  */

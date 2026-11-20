@@ -3,7 +3,7 @@
  * Title: PSW Notice: information
  * Slug: bc-practice/information-notice
  * Categories: bc-notices
- * Keywords: notice, information, message, announcement, information notice
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, notice, information, message, announcement, alert, callout, icon, icons, information notice, Notice: information
  * Post Types: page, post
  * Description: A static information message with a heading and decorative icon.
  * Viewport Width: 1100

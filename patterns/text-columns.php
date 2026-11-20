@@ -3,9 +3,9 @@
  * Title: PSW Text columns
  * Slug: bc-practice/text-columns
  * Categories: bc-text
- * Keywords: PSW, Clarity, text, summary, summaries, column, columns, grid, divider, dividers, separator, overview
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, text, summary, summaries, column, columns, grid, divider, dividers, separator, separators, overview, Text columns, Text summaries: two columns, Text summaries: three columns, two columns, three columns
  * Post Types: page, post
- * Description: Editable heading-and-text items with two columns, three columns or fit available space. Optional dividers are available in Pattern layout.
+ * Description: Editable heading-and-text summaries with two columns, three columns or fit available space. Choose columns and optional dividers in Pattern layout.
  * Viewport Width: 1200
  * Inserter: yes
  */

@@ -2,11 +2,11 @@
 /**
  * Title: PSW Header with mega menu
  * Slug: bc-practice/header-mega-menu
- * Categories: bc-site-structure
+ * Categories: bc-site-header
  * Post Types: wp_template, wp_template_part
- * Keywords: header, mega menu, site structure, navigation
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, header, site, identity, title, search, navigation, menu, global, mega menu, site structure, Header with mega menu
  * Block Types: core/template-part/header
- * Description: A shared-header starting layout for template authors, with site identity, search and navigation.
+ * Description: A shared header starting layout with site identity, search and global navigation.
  * Inserter: true
  */
 ?>

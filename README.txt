@@ -1,4 +1,22 @@
-Clarity: BC Public Service Web Theme — version 1.18.2
+Clarity: BC Public Service Web Theme — version 1.18.3
+
+Pattern catalogue and search — version 1.18.3
+The content catalogue uses Cards and panels; Text and columns; Images and introductions; Lists and checklists; Links; Tabs and accordions; Steps and processes; Comparisons and tables; Notices and callouts; News and events; and Contact and support.
+
+Template-oriented patterns are grouped under Header and site navigation; Page and section navigation; and Page information. Page starters and Banners remain available at this stage; their availability is handled in patch 4.
+
+Related patterns now use consistent names such as PSW Cards: image links, PSW Links: icon rows, PSW Tabs: audience guidance, PSW Tabs: resource cards, PSW Accordion: group and PSW Checklist: before you start. Navigation is named PSW Navigation page starter. Text columns and Comparison cards keep their single configurable entries.
+
+Patterns can appear in more than one category. Link cards also appear under Links, image link cards under Images and introductions, and tabbed resource cards under Tabs and accordions, Cards and panels, and Links. Step cards, comparison cards and featured updates also appear under Cards and panels.
+
+Search metadata includes component characteristics and available options, with singular/plural forms and synonyms for cards, icons, numbers, images, columns, features, callouts and tabs. PSW, Clarity and the full theme name identify the collection. Earlier names remain as search aliases where useful.
+
+This patch applies to Clarity 1.18.2 after patches 1 and 2. It changes discovery metadata and category registration, with editor group names following renamed patterns. Stored identifiers, insertion contexts, hidden compatibility patterns and rendered content are retained.
+
+Validation for version 1.18.3
+A metadata audit checked all 53 visible patterns, 16 renamed entries and their editor group labels, category memberships, unique identifiers and descriptions. The 16 categories each have at least one visible member across the supported contexts at this stage. Checks covered 149 required feature/theme search cases and seven aliases for the retired summary/comparison names. The 13 hidden pattern files were byte-identical to version 1.18.2. Pattern bodies matched after accounting for editor-name changes. JavaScript, CSS, templates, block registrations and rendering code matched the baseline, and page/post/template availability sets were identical.
+
+PHP runtime and installed WordPress inserter/search checks require staging. This release has metadata and editor-name checks; no installed editor or browser validation is claimed.
 
 Text columns, comparison cards and outlined text card — version 1.18.2
 Insert PSW Text columns, PSW Comparison cards or PSW Card: outlined text from Text, lists and tables. Search by PSW, Clarity or the component features. The category reorganization follows in patch 3.

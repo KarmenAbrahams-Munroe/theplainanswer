@@ -3,9 +3,9 @@
  * Title: PSW Notice: error
  * Slug: bc-practice/error-notice
  * Categories: bc-notices
- * Keywords: notice, error, problem, message, error notice
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, notice, error, problem, message, alert, callout, icon, icons, error notice, Notice: error
  * Post Types: page, post
- * Description: A static message explaining a problem and what to do next.
+ * Description: A static message explaining a problem and what to do next, with a decorative icon.
  * Viewport Width: 1100
  * Inserter: yes
  */

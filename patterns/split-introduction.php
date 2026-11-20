@@ -2,10 +2,10 @@
 /**
  * Title: PSW Introduction: split text
  * Slug: bc-practice/split-introduction
- * Categories: bc-banners
- * Keywords: introduction, split, text, overview, statement, split introduction
+ * Categories: bc-introductions
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, text, introduction, split, feature, overview, column, columns, action, button, statement, split introduction, Introduction: split text
  * Post Types: page, post
- * Description: A prominent introduction alongside supporting text and an optional action.
+ * Description: A prominent introduction beside supporting text and an optional action.
  * Viewport Width: 1200
  * Inserter: yes
  */

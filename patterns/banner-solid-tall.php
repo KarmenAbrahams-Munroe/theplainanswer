@@ -3,7 +3,7 @@
  * Title: PSW Banner: solid colour, tall
  * Slug: bc-practice/banner-solid-tall
  * Categories: bc-banners
- * Keywords: banner, tall, solid, colour, introduction, taller solid-colour banner
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, banner, feature, introduction, promotion, tall, solid, colour, taller solid-colour banner, Banner: solid colour
  * Post Types: page, post
  * Description: A taller solid-colour banner with supporting text and an optional action.
  * Viewport Width: 1440

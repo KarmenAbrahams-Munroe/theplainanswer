@@ -3,9 +3,9 @@
  * Title: PSW Last updated
  * Slug: bc-practice/last-updated
  * Categories: bc-page-information
- * Keywords: date, last updated, modified, automatic
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, date, updated, modified, last updated, information, metadata, automatic
  * Post Types: page, post
- * Description: Automatic saved modification date. Standard content and guide templates already include it.
+ * Description: Automatically displays the saved modification date. Standard content and guide templates already supply this information.
  * Viewport Width: 1100
  * Inserter: yes
  */

@@ -3,7 +3,7 @@
  * Title: PSW Banner: solid colour, compact
  * Slug: bc-practice/banner-solid-compact
  * Categories: bc-banners
- * Keywords: banner, compact, solid, colour, introduction, compact solid-colour banner
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, banner, feature, introduction, promotion, compact, solid, colour, compact solid-colour banner, Banner: solid colour
  * Post Types: page, post
  * Description: A short solid-colour banner with an editable heading and introduction.
  * Viewport Width: 1440

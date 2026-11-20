@@ -3,9 +3,9 @@
  * Title: PSW Steps: horizontal
  * Slug: bc-practice/icon-roadmap
  * Categories: bc-processes
- * Keywords: steps, horizontal, roadmap, icons, process, sequence, icon roadmap
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, step, steps, process, number, numbers, numbered, icon, icons, horizontal, roadmap, timeline, sequence, icon roadmap, Steps: horizontal
  * Post Types: page, post
- * Description: An ordered horizontal process that stacks in narrow spaces. Choose numbers or icons.
+ * Description: An ordered horizontal process that stacks in narrow spaces. Choose numbers or icons in block settings.
  * Viewport Width: 1200
  * Inserter: yes
  */
