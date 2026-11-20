@@ -1,4 +1,22 @@
-Clarity: BC Public Service Web Theme — version 1.18.1
+Clarity: BC Public Service Web Theme — version 1.18.2
+
+Text columns, comparison cards and outlined text card — version 1.18.2
+Insert PSW Text columns, PSW Comparison cards or PSW Card: outlined text from Text, lists and tables. Search by PSW, Clarity or the component features. The category reorganization follows in patch 3.
+
+PSW Text columns combines the earlier two-column and three-column summary starters. Select the pattern, then use Block > Pattern layout to choose two columns, three columns or Fit available space and to show separators above items. The default is two columns without separators. Its introduction and item headings/text use ordinary blocks.
+
+PSW Comparison cards combines the earlier two comparison starters. Select the pattern and use Block > Pattern layout > Show icons. Icons start hidden and are retained when hidden. Headings, paragraphs and lists remain editable with ordinary blocks.
+
+PSW Card: outlined text is a standalone neutral bordered container with padding and the surrounding page background. Its heading can be removed or its level changed using the normal editor controls. Add paragraphs, lists and optional links with the normal inserter. The card has natural height and does not require a destination link.
+
+This patch applies after patch 1 to Clarity 1.18.1 and updates the version to 1.18.2 to refresh the edited styles. The earlier four summary/comparison pattern entries are hidden from new selection while their original pattern bodies and identifiers remain registered for saved references.
+
+The shared H2 size and yellow-line treatment follow in patch 5.
+
+Validation for version 1.18.2
+The 46 blocks in the three new pattern bodies passed balanced block-comment, JSON-attribute, heading-level and saved group-class checks. A WordPress API-stub harness exercised the existing Pattern layout controls with the new pattern structures: column changes, separator toggles, icon toggles and restoring a missing icon retained the surrounding content and order. All 66 pattern slugs were unique, with 53 visible entries at this stage. Each retired pattern body matched version 1.18.1 byte for byte; only its Inserter header changed. Theme block scripts, registrations, templates and existing saved identifiers were retained.
+
+Installed WordPress save/reopen and PHP runtime checks require staging. The local Chromium process could not start in the build environment, so visual, responsive and browser-interaction checks remain pending.
 
 Clarity identity and editor labels — version 1.18.1
 The theme is named Clarity: BC Public Service Web Theme. Visible theme patterns and theme-owned blocks use PSW followed by a space in their editor titles. The theme block category is Clarity components. Pattern group labels and the theme Data table variation use the same prefix.
