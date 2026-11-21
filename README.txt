@@ -1,4 +1,17 @@
-Clarity: BC Public Service Web Theme — version 1.18.5
+Clarity: BC Public Service Web Theme — version 1.18.6
+
+Content section headings and component typography — version 1.18.6
+This follow-up applies after patch 5 (Clarity 1.18.5) and supersedes its all-H2 visual rule. It updates the theme to 1.18.6 without changing heading levels or saved content.
+
+Unboxed main-content section headings remain 2rem with a short yellow line. This includes ordinary content H2s and headings introducing accordion groups, card groups, tabs, tables, steps and text-column sections. The line follows native heading alignment and uses the system foreground in forced-colour mode.
+
+Navigation, feedback, individual cards, callouts, framed introductions and other enclosed components receive no heading line. Their existing component typography is restored, including compact On this page and section navigation titles, navigation cards and mobile variants. Heading levels remain semantic; H3 and lower rules are unchanged.
+
+The section gap is 4rem, reduced to 3rem at viewport widths up to 600px. Patterns receive the gap on their outer container; their first section heading has no extra top margin. Ordinary section H2s use the same gap. Legacy standalone section wrappers, accordion groups and content following automatic navigation cards are covered. Component padding and ordinary pattern spacing are retained.
+
+Section recognition uses the existing content/section wrapper classes, unboxed native Group blocks and the editor root. Enclosing navigation, cards, panels and native Group blocks with background or border colours suppress the section treatment. The patch edits CSS and release notes only; no pattern reinsertion or content migration is required. Individual block styles and saved Global Styles can still override theme defaults and require review on the installed site.
+
+Static verification: all 66 pattern files and all PHP, JavaScript, template and theme.json files are unchanged. The 28 section-pattern H2s and nine enclosed-pattern H2s follow the revised role rules; 11 additional markup cases cover navigation, feedback, native Groups and nested patterns. Earlier component typography and H3–H6 rules are preserved. CSS delimiter/nested-:has checks pass, original file line endings are retained, and the diff adds no whitespace errors. Installed WordPress, narrow-screen/zoom and editor/published visual checks remain pending, including saved style overrides.
 
 Consistent H2 headings — version 1.18.5
 H2 headings share a 2rem font size, 700 weight and 1.25 line height, with a short yellow line above the text. This applies to ordinary headings and H2s inside patterns, cards, tabs, navigation and templates. H3 and lower headings receive no yellow heading accent.

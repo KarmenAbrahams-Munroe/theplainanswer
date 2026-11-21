@@ -4,9 +4,8 @@
 .bc-banner-copy { box-sizing: border-box; min-width: 0; padding: clamp(1.5rem, 4cqw, 3rem); color: var(--bcds-typography-color-primary); }
 .bc-banner-copy > :first-child { margin-top: 0; }
 .bc-banner-copy > :last-child { margin-bottom: 0; }
-.bc-banner .bc-banner-copy > :is(h1, h2, .wp-block-post-title) { margin-block: 0 1rem; padding: 0; color: var(--bcds-surface-color-primary-default); overflow-wrap: anywhere; text-wrap: balance; }
-.bc-banner .bc-banner-copy > :is(h1, .wp-block-post-title):not(h2) { font-size: clamp(1.75rem, 3cqw, 2.5rem); line-height: 1.2; }
-.bc-banner .bc-banner-copy > h1::before { content: none; }
+.bc-banner .bc-banner-copy > :is(h1, h2, .wp-block-post-title) { margin-block: 0 1rem; padding: 0; font-size: clamp(1.75rem, 3cqw, 2.5rem); line-height: 1.2; color: var(--bcds-surface-color-primary-default); overflow-wrap: anywhere; text-wrap: balance; }
+.bc-banner .bc-banner-copy > :is(h1, h2)::before { content: none; }
 .bc-banner-copy p, .bc-banner-copy .bc-page-introduction { font-size: 1.125rem; line-height: 1.6; max-width: 65ch; color: inherit; overflow-wrap: anywhere; }
 .bc-banner-copy .bc-page-introduction { margin-block: 1rem 0; }
 .bc-banner-copy .bc-page-introduction p { margin: 0; }

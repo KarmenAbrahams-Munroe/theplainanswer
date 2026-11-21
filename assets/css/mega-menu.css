@@ -79,7 +79,7 @@
 .bc-mega-fallback { max-width: 80rem; margin-inline: auto; padding: .75rem 1.5rem; }
 .bc-mega-fallback > summary { padding: .5rem 0; cursor: pointer; font-weight: 700; }
 .bc-mega-fallback-content { max-height: 65vh; overflow: auto; padding: .5rem; }
-.bc-mega-fallback-content h2 { margin: 1rem 0 .5rem; }
+.bc-mega-fallback-content h2 { font-size: 1.2rem; margin: 1rem 0 .5rem; }
 .bc-mega-fallback-content ul { padding-left: 1.5rem; list-style: disc; }
 .bc-mega-fallback-content a { display: inline-block; padding: .4rem; }
 .bc-mega-fallback-content [aria-current="page"] { font-weight: 700; }

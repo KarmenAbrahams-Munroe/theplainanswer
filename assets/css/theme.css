@@ -1,15 +1,109 @@
 /* Custom WordPress block styling using the bundled upstream tokens. */
 html { scroll-padding-top: 2rem; }
 body { margin: 0; }
-/* H2 typography and its decorative line are shared by site and editor content. */
-:is(.wp-site-blocks, .editor-styles-wrapper) h2 {
+/* A line marks an unboxed content section; component H2s keep their own type. */
+:where(.wp-site-blocks, .editor-styles-wrapper) h2 { --bc-section-heading-accent: none; }
+:where(.wp-site-blocks, .editor-styles-wrapper)
+:is(
+    .wp-block-post-content,
+    .bc-detail-body,
+    .bc-pattern-flow,
+    .bc-page-starter,
+    .bc-pattern,
+    .bc-pattern-section,
+    .bc-content-section,
+    .bc-heading-paragraph,
+    .bc-accordion-group,
+    .bc-component-related,
+    .bc-related-topics,
+    .bc-home-content,
+    .is-root-container,
+    .wp-block-group:not([class*="bc-"])
+) > h2:not(.wp-block-post-title):not(:where(
+    .wp-block-post-title,
+    header *,
+    nav *,
+    aside *,
+    footer *,
+    .bc-page-feedback *,
+    .bc-footer-feedback *,
+    .bc-related-pages *,
+    .bc-component-card *,
+    .bc-component-callout *,
+    .bc-quick-links-panel *,
+    .bc-task-panel *,
+    .bc-split-introduction *,
+    .bc-topic-banner *,
+    .bc-banner *,
+    .bc-media-feature *,
+    .bc-resource-panel *,
+    .bc-support-panel *,
+    .bc-featured-update *,
+    .bc-comparison-card *,
+    .bc-image-card *,
+    .bc-navigation-card *,
+    .bc-navigation-manual-card *,
+    .bc-tab-panel *,
+    .bc-audience-panel *,
+    .wp-block-details *,
+    .wp-block-group.has-background *,
+    .wp-block-group.has-border-color *
+)) {
+    --bc-section-heading-accent: '';
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.25;
     overflow-wrap: anywhere;
+    margin-block-start: var(--bc-section-gap, 4rem);
 }
-:is(.wp-site-blocks, .editor-styles-wrapper) h2::before {
-    content: '';
+:where(.wp-site-blocks, .editor-styles-wrapper)
+:is(
+    .wp-block-post-content,
+    .bc-detail-body,
+    .bc-pattern-flow,
+    .bc-page-starter,
+    .bc-pattern,
+    .bc-pattern-section,
+    .bc-content-section,
+    .bc-heading-paragraph,
+    .bc-accordion-group,
+    .bc-component-related,
+    .bc-related-topics,
+    .bc-home-content,
+    .is-root-container,
+    .wp-block-group:not([class*="bc-"])
+) > h2:not(.wp-block-post-title):not(:where(
+    .wp-block-post-title,
+    header *,
+    nav *,
+    aside *,
+    footer *,
+    .bc-page-feedback *,
+    .bc-footer-feedback *,
+    .bc-related-pages *,
+    .bc-component-card *,
+    .bc-component-callout *,
+    .bc-quick-links-panel *,
+    .bc-task-panel *,
+    .bc-split-introduction *,
+    .bc-topic-banner *,
+    .bc-banner *,
+    .bc-media-feature *,
+    .bc-resource-panel *,
+    .bc-support-panel *,
+    .bc-featured-update *,
+    .bc-comparison-card *,
+    .bc-image-card *,
+    .bc-navigation-card *,
+    .bc-navigation-manual-card *,
+    .bc-tab-panel *,
+    .bc-audience-panel *,
+    .wp-block-details *,
+    .wp-block-group.has-background *,
+    .wp-block-group.has-border-color *
+)):first-child { margin-block-start: 0; }
+:where(.wp-site-blocks, .editor-styles-wrapper) h2::before {
+    content: var(--bc-section-heading-accent, none);
     display: block;
     width: 2rem;
     height: 3px;
@@ -17,11 +111,11 @@ body { margin: 0; }
     background: var(--bcds-theme-primary-gold);
     pointer-events: none;
 }
-:is(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-left::before { margin-left: 0; margin-right: auto; }
-:is(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-center::before { margin-left: auto; margin-right: auto; }
-:is(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-right::before { margin-left: auto; margin-right: 0; }
+:where(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-left::before { margin-left: 0; margin-right: auto; }
+:where(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-center::before { margin-left: auto; margin-right: auto; }
+:where(.wp-site-blocks, .editor-styles-wrapper) h2.has-text-align-right::before { margin-left: auto; margin-right: 0; }
 @media (forced-colors: active) {
-    :is(.wp-site-blocks, .editor-styles-wrapper) h2::before { background: CanvasText; }
+    :where(.wp-site-blocks, .editor-styles-wrapper) h2::before { background: CanvasText; }
 }
 .wp-site-blocks { min-height: 100vh; display: flex; flex-direction: column; }
 .wp-site-blocks > main { flex: 1; width: 100%; box-sizing: border-box; }
