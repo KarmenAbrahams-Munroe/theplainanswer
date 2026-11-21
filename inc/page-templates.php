@@ -8,11 +8,11 @@ add_action( 'after_setup_theme', function () {
 
 function bc_practice_template_blocks() {
     return array_merge( array(
-        'breadcrumbs' => array( 'title' => 'Page breadcrumbs', 'icon' => 'admin-links', 'description' => 'Shows this page and its parent pages.' ),
-        'page-introduction' => array( 'title' => 'Page introduction', 'icon' => 'editor-paragraph', 'description' => 'Shows the introduction entered in the page Excerpt field.' ),
-        'topic-navigation' => array( 'title' => 'Topic navigation', 'icon' => 'menu', 'description' => 'Shows the page hierarchy for this topic.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'sidebar', 'disclosure' ), 'default' => 'sidebar' ) ) ),
-        'page-contents' => array( 'title' => 'On this page', 'icon' => 'editor-ul', 'description' => 'Links to the level-two headings in this page.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'inline', 'sticky' ), 'default' => 'inline' ) ) ),
-        'child-page-cards' => array( 'title' => 'Child page cards', 'icon' => 'index-card', 'description' => 'Creates linked cards from published child pages, their explicit excerpts and grandchild links.', 'attributes' => array( 'automatic' => array( 'type' => 'boolean', 'default' => false ) ) ),
+        'breadcrumbs' => array( 'title' => 'PSW Page breadcrumbs', 'icon' => 'admin-links', 'description' => 'Shows this page and its parent pages.' ),
+        'page-introduction' => array( 'title' => 'PSW Page introduction', 'icon' => 'editor-paragraph', 'description' => 'Shows the introduction entered in the page Excerpt field.' ),
+        'topic-navigation' => array( 'title' => 'PSW Topic navigation', 'icon' => 'menu', 'description' => 'Shows the page hierarchy for this topic.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'sidebar', 'disclosure' ), 'default' => 'sidebar' ) ) ),
+        'page-contents' => array( 'title' => 'PSW On this page', 'icon' => 'editor-ul', 'description' => 'Links to the level-two headings in this page.', 'attributes' => array( 'presentation' => array( 'type' => 'string', 'enum' => array( 'inline', 'sticky' ), 'default' => 'inline' ) ) ),
+        'child-page-cards' => array( 'title' => 'PSW Child page cards', 'icon' => 'index-card', 'description' => 'Creates linked cards from published child pages, their explicit excerpts and grandchild links.', 'attributes' => array( 'automatic' => array( 'type' => 'boolean', 'default' => false ) ) ),
     ), bc_practice_component_blocks(), bc_practice_framework_blocks() );
 }
 

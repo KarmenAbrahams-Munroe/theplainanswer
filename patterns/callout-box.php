@@ -1,13 +1,13 @@
 <?php
 /**
- * Title: Callout: with heading
+ * Title: PSW Callout: with heading
  * Slug: bc-practice/callout-box
  * Categories: bc-notices
- * Keywords: callout, heading, note, emphasis, important, callout box
- * Post Types: page, post
+ * Keywords: PSW, Clarity, Clarity: BC Public Service Web Theme, BC Public Service Web, BC Public Service, callout, callouts, note, inset, emphasis, highlight, heading, text, box, boxed, important, callout box, Callout: with heading
+ * Post Types: page, post, wp_template, wp_template_part
  * Description: An inset heading and paragraph for information that needs emphasis.
  * Viewport Width: 1100
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"Callout: with heading"}} --><div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-component-callout","layout":{"type":"default"}} --><div class="wp-block-group bc-component-callout"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Before you start</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Add the key information people need before they begin.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group -->
+<!-- wp:group {"className":"bc-pattern","layout":{"type":"default"},"metadata":{"name":"PSW Callout: with heading"}} --><div class="wp-block-group bc-pattern"><!-- wp:group {"className":"bc-component-callout","layout":{"type":"default"}} --><div class="wp-block-group bc-component-callout"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Before you start</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Add the key information people need before they begin.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group -->

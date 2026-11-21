@@ -15,7 +15,7 @@
 
     wp.blocks.registerBlockType('bc-practice/steps', {
         apiVersion: 3,
-        title: __('Steps', 'bc-practice'),
+        title: __('PSW Steps', 'bc-practice'),
         description: __('An ordered process with editable headings, paragraphs and lists.', 'bc-practice'),
         category: 'bc-components',
         icon: 'editor-ol',
@@ -71,7 +71,7 @@
 
     wp.blocks.registerBlockType('bc-practice/step', {
         apiVersion: 3,
-        title: __('Step', 'bc-practice'),
+        title: __('PSW Step', 'bc-practice'),
         category: 'bc-components',
         icon: 'editor-ol',
         parent: ['bc-practice/steps'],
@@ -93,7 +93,7 @@
 
     wp.blocks.registerBlockType('bc-practice/resource-tabs', {
         apiVersion: 3,
-        title: __('Resource tabs', 'bc-practice'),
+        title: __('PSW Resource tabs', 'bc-practice'),
         description: __('Groups of related resources, with tabs on the published page.', 'bc-practice'),
         category: 'bc-components', icon: 'index-card',
         attributes: { label: { type: 'string', default: 'Resource categories' } },
@@ -124,7 +124,7 @@
     });
 
     wp.blocks.registerBlockType('bc-practice/resource-panel', {
-        apiVersion: 3, title: __('Resource group', 'bc-practice'), category: 'bc-components', icon: 'screenoptions',
+        apiVersion: 3, title: __('PSW Resource group', 'bc-practice'), category: 'bc-components', icon: 'screenoptions',
         parent: ['bc-practice/resource-tabs'],
         attributes: { title: { type: 'string', source: 'html', selector: '.bc-tab-panel-title', default: 'Resource group' } },
         supports: { html: false, anchor: true, reusable: false },
@@ -152,7 +152,7 @@
     });
     wp.blocks.registerBlockType('bc-practice/audience-tabs', {
         apiVersion: 3,
-        title: __('Audience tabs', 'bc-practice'),
+        title: __('PSW Audience tabs', 'bc-practice'),
         description: __('Labelled tabs containing editable text, blocks and patterns.', 'bc-practice'),
         category: 'bc-components', icon: 'index-card',
         keywords: [__('audience', 'bc-practice'), __('tabs', 'bc-practice'), __('content', 'bc-practice')],
@@ -190,7 +190,7 @@
     });
 
     wp.blocks.registerBlockType('bc-practice/audience-panel', {
-        apiVersion: 3, title: __('Audience tab', 'bc-practice'), category: 'bc-components', icon: 'excerpt-view',
+        apiVersion: 3, title: __('PSW Audience tab', 'bc-practice'), category: 'bc-components', icon: 'excerpt-view',
         parent: ['bc-practice/audience-tabs'],
         attributes: { title: { type: 'string', source: 'html', selector: '.bc-audience-panel-title', default: '' } },
         supports: { html: false, anchor: true, reusable: false },

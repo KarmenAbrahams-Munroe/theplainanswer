@@ -2,7 +2,6 @@
 /**
  * Title: Topic banner
  * Slug: bc-practice/topic-banner
- * Categories: bc-banners
  * Keywords: banner, introduction, title, hero
  * Post Types: page, post
  * Description: A blue and gold section banner. Uses a level-two heading within an existing page.

@@ -1,7 +1,42 @@
-/* Content rhythm stays separate from the compact spacing within components. */
-:root { --bc-section-gap: 3rem; }
-:is(.wp-block-post-content, .bc-pattern-flow, .bc-page-starter) > h2:not(:first-child),
-:is(.wp-block-post-content, .bc-pattern-flow, .bc-page-starter) > .bc-pattern:has(> h2, > .bc-pattern-section > h2, > .bc-heading-paragraph > h2):not(:first-child) { margin-block-start: var(--bc-section-gap); }
+/* Content sections have space above the line; component interiors keep their rhythm. */
+:root { --bc-section-gap: 4rem; }
+:where(.wp-site-blocks, .editor-styles-wrapper)
+:is(.wp-block-post-content, .bc-detail-body, .bc-pattern-flow, .bc-page-starter, .bc-pattern, .bc-pattern-section, .bc-content-section, .bc-heading-paragraph, .bc-accordion-group, .bc-component-related, .bc-related-topics, .bc-home-content, .is-root-container, .wp-block-group:not([class*="bc-"])) > :is(.bc-pattern, .bc-pattern-section, .bc-content-section, .bc-heading-paragraph, .bc-accordion-group, .bc-component-related, .bc-related-topics, .wp-block-group:not([class*="bc-"])):has(> h2, > :is(.bc-pattern-section, .bc-heading-paragraph, .bc-content-section, .bc-accordion-group, .bc-component-related, .bc-related-topics, .wp-block-group:not([class*="bc-"])) > h2):not(:where(
+    .wp-block-post-title,
+    header *,
+    nav *,
+    aside *,
+    footer *,
+    .bc-page-feedback *,
+    .bc-footer-feedback *,
+    .bc-related-pages *,
+    .bc-component-card *,
+    .bc-component-callout *,
+    .bc-quick-links-panel *,
+    .bc-task-panel *,
+    .bc-split-introduction *,
+    .bc-topic-banner *,
+    .bc-banner *,
+    .bc-media-feature *,
+    .bc-resource-panel *,
+    .bc-support-panel *,
+    .bc-featured-update *,
+    .bc-comparison-card *,
+    .bc-image-card *,
+    .bc-navigation-card *,
+    .bc-navigation-manual-card *,
+    .bc-tab-panel *,
+    .bc-audience-panel *,
+    .wp-block-details *,
+    .wp-block-group.has-background *,
+    .wp-block-group.has-border-color *
+)):not(.has-background, .has-border-color):not(:first-child) {
+    margin-block-start: var(--bc-section-gap);
+}
+/* A first section after automatic navigation cards also needs this separation. */
+.bc-navigation-cards-frame + .wp-block-post-content:has(> h2:first-child, > .bc-pattern:first-child > h2, > .bc-pattern:first-child > :is(.bc-pattern-section, .bc-heading-paragraph, .bc-content-section, .bc-accordion-group, .bc-component-related, .bc-related-topics, .wp-block-group:not([class*="bc-"])) > h2) {
+    margin-block-start: var(--bc-section-gap);
+}
 .wp-block-group.bc-link-rows { gap: .75rem; }
 .wp-block-group.bc-link-rows > .bc-link-row { margin-block: 0; }
 .wp-block-group.bc-link-row { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; padding: .875rem 2.75rem .875rem 1rem; }
@@ -81,7 +116,7 @@ body.bc-reading-off .bc-page-title.bc-banner-frame > .bc-page-information { box-
 @container (max-width: 36rem) { .bc-quick-links-list.bc-quick-links-two-column { grid-template-columns: minmax(0, 1fr); } }
 @container (max-width: 42rem) { .bc-media-overlap .bc-feature-images .wp-block-image + .wp-block-image { width: 65%; margin-block-start: -18%; border: 4px solid white; } }
 @media (max-width: 600px) {
-    :root { --bc-section-gap: 2.5rem; }
+    :root { --bc-section-gap: 3rem; }
     .bc-featured-visual { flex-basis: 100%; min-height: 10rem; }
     .bc-media-overlap .bc-feature-images .wp-block-image + .wp-block-image { width: 65%; margin-block-start: -18%; border: 4px solid white; }
     .bc-before-start { grid-template-columns: 4rem minmax(0, 1fr); }
